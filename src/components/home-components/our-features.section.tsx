@@ -1,17 +1,18 @@
 'use client'
 import React from 'react'
 
-import { ShieldCheck } from 'lucide-react'
+import { DollarSign, Hammer, Languages, ShieldCheck } from 'lucide-react'
 
+import { Button } from '../ui/button'
 import { Card, CardDescription, CardHeader, CardTitle } from '../ui/card'
 
 const features = [
   {
-    title: 'Multi-Format Support',
-    description:
-      'Easily convert various file types to PDF with just a few clicks.',
+    title: 'Easy builder',
+    description: 'Easily build your PDFs with our intuitive interface.',
     summary:
-      'With Multi-Format Support, you can effortlessly convert DOCX, XLSX, PPT, and more to PDF.',
+      'Our intuitive interface makes it easy to create PDFs in just a few clicks.',
+    icon: <Hammer size={32} />,
   },
   {
     title: 'Completely Free',
@@ -19,6 +20,7 @@ const features = [
       'Enjoy unlimited PDF conversions without any costs or hidden fees.',
     summary:
       'Our service is completely free with no hidden charges or subscription fees.',
+    icon: <DollarSign size={32} />,
   },
   {
     title: 'Privacy & Security',
@@ -26,12 +28,14 @@ const features = [
       'Your files are safe with us—no storage, no tracking, just secure conversions.',
     summary:
       'We prioritize your privacy and security. No data is stored or tracked during the conversion process.',
+    icon: <ShieldCheck size={32} />,
   },
   {
-    title: 'Cross-Platform',
-    description: 'Use our service on any device or operating system.',
+    title: 'Multi language',
+    description: 'Multi language support for all your PDF conversion needs.',
     summary:
-      'Our tool works seamlessly across all devices and operating systems, including Windows, macOS, iOS, and Android.',
+      'Our tool works with multiple languages, making it easy to convert PDFs in any language.',
+    icon: <Languages size={32} />,
   },
 ]
 
@@ -70,25 +74,35 @@ function OurFeatures() {
   const [selectedFeature, setSelectedFeature] = React.useState(features[0])
 
   return (
-    <div className="container mx-auto flex max-w-5xl flex-wrap justify-center gap-4 py-4">
-      <div className="flex gap-4">
-        <div className="flex-1 rounded-md bg-gray-100 p-4 dark:bg-zinc-800">
+    <section id="features" className="grid grid-cols-2 gap-4">
+      <div className="flex flex-col justify-evenly rounded-md">
+        <div className="space-y-4">
+          <span className="text-xs font-bold uppercase text-light-blue">
+            Our features
+          </span>
           <h1 className="text-2xl font-bold">{selectedFeature.title}</h1>
-          <p className="mt-2 text-lg">{selectedFeature.summary}</p>
+          <p className="mt-2 text-zinc-500">{selectedFeature.summary}</p>
         </div>
-        <div className="grid grid-cols-2 gap-2">
-          {features.map((feature, index) => (
-            <FeatureCard
-              key={index}
-              {...feature}
-              isSelected={selectedFeature.title === feature.title}
-              onClick={() => setSelectedFeature(feature)}
-              icon={<ShieldCheck size={32} />}
-            />
-          ))}
-        </div>
+        <Button
+          size="lg"
+          variant="outline"
+          className="max-w-48 bg-transparent hover:border-light-blue dark:bg-transparent dark:hover:border-light-blue dark:hover:bg-transparent"
+        >
+          Start for free
+        </Button>
       </div>
-    </div>
+      <div className="grid grid-cols-2 gap-2">
+        {features.map((feature, index) => (
+          <FeatureCard
+            key={index}
+            {...feature}
+            isSelected={selectedFeature.title === feature.title}
+            onClick={() => setSelectedFeature(feature)}
+            icon={feature.icon}
+          />
+        ))}
+      </div>
+    </section>
   )
 }
 
