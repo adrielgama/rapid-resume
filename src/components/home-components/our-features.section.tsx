@@ -74,7 +74,7 @@ function OurFeatures() {
   const [selectedFeature, setSelectedFeature] = React.useState(features[0])
 
   return (
-    <section id="features" className="grid grid-cols-2 gap-4">
+    <section id="features" className="grid grid-cols-2 gap-4 py-16">
       <div className="flex flex-col justify-evenly rounded-md">
         <div className="space-y-4">
           <span className="text-xs font-bold uppercase text-light-blue">

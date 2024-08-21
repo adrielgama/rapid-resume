@@ -21,8 +21,8 @@ function Header() {
       url: '#pricing',
     },
     {
-      name: 'Resources',
-      url: '#resources',
+      name: 'Testimonials',
+      url: '#testimonials',
     },
   ]
 
