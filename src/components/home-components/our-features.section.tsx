@@ -2,6 +2,7 @@
 import React from 'react'
 
 import { DollarSign, Hammer, Languages, ShieldCheck } from 'lucide-react'
+import Link from 'next/link'
 
 import { Button } from '../ui/button'
 import { Card, CardDescription, CardHeader, CardTitle } from '../ui/card'
@@ -91,7 +92,7 @@ function OurFeatures() {
           variant="outline"
           className="max-w-48 bg-transparent hover:border-light-blue dark:bg-transparent dark:hover:border-light-blue dark:hover:bg-transparent"
         >
-          Start for free
+          <Link href="/signup">Start for free</Link>
         </Button>
       </div>
       <div className="grid grid-cols-2 gap-2">

@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import { Button } from '../ui/button'
 
 function HeroSection() {
@@ -11,7 +13,9 @@ function HeroSection() {
         Just fill in the items and you CV ready to use.
       </p>
 
-      <Button size="lg">Get started</Button>
+      <Button size="lg">
+        <Link href="/signup">Get started</Link>
+      </Button>
     </section>
   )
 }

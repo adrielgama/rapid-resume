@@ -46,15 +46,17 @@ function Header() {
 
         <div className="hidden items-center space-x-2 lg:flex">
           <Button variant="link" aria-label="Login">
-            Login
+            <Link href="/login">Login</Link>
           </Button>
-          <Button aria-label="Get started">Get started</Button>
+          <Button aria-label="Get started">
+            <Link href="/signup">Get started</Link>
+          </Button>
           <ModeToggle />
         </div>
 
         <div className="flex items-center space-x-2 lg:hidden">
           <Button variant="link" aria-label="Login">
-            Login
+            <Link href="/login">Login</Link>
           </Button>
           <Button
             variant="ghost"

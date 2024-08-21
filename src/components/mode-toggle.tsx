@@ -7,7 +7,7 @@ import { useTheme } from 'next-themes'
 
 import { Button } from './ui/button'
 
-export function ModeToggle() {
+export function ModeToggle({ className }: { className?: string }) {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
 
@@ -28,7 +28,12 @@ export function ModeToggle() {
   }
 
   return (
-    <Button variant="ghost" size="icon" onClick={toggleTheme}>
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={toggleTheme}
+      className={className}
+    >
       {theme === 'light' ? (
         <Sun className="h-[1.2rem] w-[1.2rem] transition-all" />
       ) : (
