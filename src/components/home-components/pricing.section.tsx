@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import BMCButton from '@public/images/bmc-button.svg'
 import BMCQRCode from '@public/images/bmc_qr.webp'
@@ -25,7 +26,7 @@ function PricingSection() {
       </p>
 
       <div className="flex flex-col items-center gap-16 lg:flex-row">
-        <a
+        <Link
           href="https://buymeacoffee.com/adrielgama"
           target="_blank"
           rel="noopener noreferrer"
@@ -38,7 +39,7 @@ function PricingSection() {
             height={160}
             layout="responsive"
           />
-        </a>
+        </Link>
         <Separator orientation="vertical" className="hidden h-12 lg:block" />
         <Image
           src={BMCQRCode}

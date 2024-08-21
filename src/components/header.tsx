@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 
 import { Menu as MenuIcon, X as CloseIcon } from 'lucide-react'
+import Link from 'next/link'
 
 import Logo from './logo'
 import { ModeToggle } from './mode-toggle'
@@ -38,7 +39,7 @@ function Header() {
         <nav className="hidden space-x-4 lg:flex" aria-label="Main navigation">
           {nav.map(({ name, url }) => (
             <Button key={name} variant="link">
-              <a href={url}>{name}</a>
+              <Link href={url}>{name}</Link>
             </Button>
           ))}
         </nav>
@@ -89,17 +90,19 @@ function Header() {
             aria-label="Mobile navigation"
           >
             {nav.map(({ name, url }) => (
-              <a href={url} key={name} className="hover:underline">
+              <Link href={url} key={name} className="hover:underline">
                 {name}
-              </a>
+              </Link>
             ))}
           </nav>
 
           <div className="mt-8 flex flex-col items-center space-y-4">
             <Button variant="link" aria-label="Login">
-              Login
+              <Link href="/login">Login</Link>
             </Button>
-            <Button aria-label="Get started">Get started</Button>
+            <Button aria-label="Get started">
+              <Link href="/signup">Get started</Link>
+            </Button>
             <ModeToggle />
           </div>
         </div>

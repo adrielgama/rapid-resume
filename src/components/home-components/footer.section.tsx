@@ -1,5 +1,6 @@
 import { Linkedin, Mail, Phone } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import BMCButton from '@public/images/bmc-button.svg'
 
@@ -42,7 +43,7 @@ function FooterSection() {
             Create your resume in minutes. No more writer&rsquo;s block or
             formatting.
           </p>
-          <a
+          <Link
             href="https://buymeacoffee.com/adrielgama"
             target="_blank"
             rel="noopener noreferrer"
@@ -54,7 +55,7 @@ function FooterSection() {
               height={150}
               className="mt-2 grayscale transition-all duration-300 hover:grayscale-0"
             />
-          </a>
+          </Link>
         </div>
         <div className="col-span-1 text-sm">
           <h3 className="mb-4 font-bold text-gray-500 dark:text-gray-200">
@@ -63,12 +64,12 @@ function FooterSection() {
           <ul className="space-y-4 text-sm text-gray-500 dark:text-gray-400">
             {sections.map((section) => (
               <li key={section.href}>
-                <a
+                <Link
                   href={section.href}
                   className="hover:text-light-blue hover:underline"
                 >
                   {section.title}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -81,14 +82,14 @@ function FooterSection() {
             {contacts.map((contact) => (
               <li key={contact.href} className="flex items-center">
                 <contact.icon size={16} className="mr-2" />
-                <a
+                <Link
                   href={contact.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-light-blue hover:underline"
                 >
                   {contact.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

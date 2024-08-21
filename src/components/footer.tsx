@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import { DialogPolicy } from './terms/dialog-policy'
 import PrivacyPolicy from './terms/privacy-policy'
 import TermsOfService from './terms/terms-of-service'
@@ -26,14 +28,14 @@ function Footer() {
       <div className="mt-1 text-xs text-gray-400 lg:mt-4 lg:text-right">
         <p>
           Made with ❤️ by{' '}
-          <a
+          <Link
             href="https://adrielgama.dev"
             target="_blank"
             rel="noopener noreferrer"
             className="text-light-blue hover:underline"
           >
             Adriel Gama
-          </a>
+          </Link>
         </p>
       </div>
     </footer>
