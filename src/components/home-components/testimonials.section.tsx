@@ -31,15 +31,16 @@ const testimonials = [
 function TestimonialsSection() {
   return (
     <section id="testimonials">
-      <h1 className="py-6 text-center text-3xl font-bold uppercase text-dark-blue dark:text-white lg:text-5xl">
-        Testimonials
-      </h1>
+      <header>
+        <h1 className="py-6 text-center text-3xl font-bold uppercase text-dark-blue dark:text-white lg:text-5xl">
+          Testimonials
+        </h1>
+      </header>
       <div className="dark:bg-grid-white/[0.05] relative flex flex-col items-center justify-center overflow-hidden rounded-md py-6 antialiased">
         <InfiniteMovingCards
           items={testimonials}
           direction="right"
           speed="slow"
-          // pauseOnHover={false}
         />
       </div>
     </section>

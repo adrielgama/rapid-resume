@@ -11,9 +11,11 @@ function PricingSection() {
       id="pricing"
       className="mx-auto flex w-full flex-col items-center justify-center space-y-4 py-16"
     >
-      <h1 className="text-3xl font-bold uppercase text-dark-blue dark:text-light-blue lg:text-5xl">
-        Pricing
-      </h1>
+      <header>
+        <h1 className="text-3xl font-bold uppercase text-dark-blue dark:text-light-blue lg:text-5xl">
+          Pricing
+        </h1>
+      </header>
 
       <p className="max-w-xl py-6 text-center text-sm text-zinc-600 dark:text-light-gray lg:text-base">
         Our service is completely{' '}

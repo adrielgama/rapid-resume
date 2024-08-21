@@ -1,9 +1,18 @@
+'use client'
+import useCountUp from '@/hooks/useCountStatistics'
+
 import { Separator } from '../ui/separator'
 
 const StatisticsItem = ({ title, value }: { title: string; value: string }) => {
+  const decimalPlaces = value.includes('.') ? value.split('.')[1].length : 0
+  const animatedValue = useCountUp(parseFloat(value), 2000, decimalPlaces)
+
   return (
     <article className="flex flex-col items-center">
-      <div className="text-2xl font-bold lg:text-4xl">{value}</div>
+      <div className="text-2xl font-bold lg:text-4xl">
+        {animatedValue}
+        {value.includes('+') && '+'}
+      </div>
       <p className="text-dark-gray">{title}</p>
     </article>
   )
