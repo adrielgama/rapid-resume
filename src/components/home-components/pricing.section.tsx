@@ -1,7 +1,8 @@
 import Image from 'next/image'
 
-import BMCButton from '../../../public/images/bmc-button.svg'
-import BMCQRCode from '../../../public/images/bmc_qr.webp'
+import BMCButton from '@public/images/bmc-button.svg'
+import BMCQRCode from '@public/images/bmc_qr.webp'
+
 import { Separator } from '../ui/separator'
 
 function PricingSection() {
