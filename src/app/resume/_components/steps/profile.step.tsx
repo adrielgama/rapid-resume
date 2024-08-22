@@ -1,4 +1,3 @@
-import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { ResumeData } from '@/types/resume'
 
@@ -13,17 +12,14 @@ function ProfileStep({ resumeData, setResumeData }: ProfileStepProps) {
       <h2 className="text-xl font-semibold text-dark-blue dark:text-neutral-200">
         Profile
       </h2>
-      <Label htmlFor="profile" className="mt-4">
-        Summary
-      </Label>
       <Textarea
         id="profile"
-        value={resumeData.profile}
+        value={resumeData.resume}
         onChange={(e) =>
-          setResumeData({ ...resumeData, profile: e.target.value })
+          setResumeData({ ...resumeData, resume: e.target.value })
         }
-        className="mt-2 w-full resize-none rounded-md focus-visible:ring-0"
-        rows={4}
+        className="mt-2 w-full rounded-md"
+        rows={5}
       />
     </div>
   )

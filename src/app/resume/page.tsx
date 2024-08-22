@@ -4,37 +4,39 @@ import { useState } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ResumeData } from '@/types/resume'
 
-import ExperienceStep from './_components/experience.step'
-import ProfileStep from './_components/profile.step'
 import ResumePreview from './_components/resume-preview'
+import {
+  ExperienceStep,
+  HeaderStep,
+  LinksStep,
+  ProfileStep,
+} from './_components/steps'
+import { dataProfile } from './_types/data'
 
 function ResumeSection() {
-  const [resumeData, setResumeData] = useState<ResumeData>({
-    profile:
-      "I'm a Front-end developer with 5 years of experience in responsive web projects...",
-    experience: [
-      {
-        title: 'Full-stack Developer',
-        company: 'Farmácias APP',
-        location: 'Salvador, Brazil',
-        startPeriod: 'Jul 2021',
-        endPeriod: 'Present',
-        description:
-          'Fullstack web development specialist with expertise in front-end technologies...',
-      },
-    ],
-  })
+  const [resumeData, setResumeData] = useState<ResumeData>(
+    dataProfile as ResumeData
+  )
 
   return (
-    <div className="flex min-h-screen w-full flex-1 gap-2 rounded-tl-2xl border border-neutral-200 bg-white p-2 dark:border-neutral-700 dark:bg-neutral-900 md:p-6">
+    <div className="flex min-h-screen w-full flex-1 flex-col justify-center gap-2 rounded-tl-2xl border border-neutral-200 bg-white p-2 dark:border-neutral-700 dark:bg-neutral-900 md:p-6 lg:flex-row">
       <div className="md:w-3/5">
-        <Tabs defaultValue="profile" className="w-full">
-          <TabsList className="grid w-full grid-cols-2">
+        <Tabs defaultValue="header" className="w-full">
+          <TabsList className="grid w-full grid-cols-6">
+            <TabsTrigger value="header">Header</TabsTrigger>
+            <TabsTrigger value="links">Links</TabsTrigger>
             <TabsTrigger value="profile">Profile</TabsTrigger>
             <TabsTrigger value="experience">Experience</TabsTrigger>
-            {/* Add more triggers if needed */}
+            <TabsTrigger value="education">Education</TabsTrigger>
+            <TabsTrigger value="skills">Skills</TabsTrigger>
           </TabsList>
 
+          <TabsContent value="header">
+            <HeaderStep resumeData={resumeData} setResumeData={setResumeData} />
+          </TabsContent>
+          <TabsContent value="links">
+            <LinksStep resumeData={resumeData} setResumeData={setResumeData} />
+          </TabsContent>
           <TabsContent value="profile">
             <ProfileStep
               resumeData={resumeData}

@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { ResumeData, Experience } from '@/types/resume'
 
-import ExperienceForm from './experience.form'
+import ExperienceForm from '../experience.form'
 
 interface ExperienceStepProps {
   resumeData: ResumeData
