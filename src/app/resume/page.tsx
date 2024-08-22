@@ -13,7 +13,7 @@ import {
   ProfileStep,
   SkillStep,
 } from './_components/steps'
-import { dataProfile } from './_types/data'
+import { dataProfile } from './_data/data'
 
 function ResumeSection() {
   const [resumeData, setResumeData] = useState<ResumeData>(
