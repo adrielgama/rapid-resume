@@ -43,13 +43,16 @@ export interface ResumeData {
   languages: Languages[]
 }
 
-export interface ExperienceFormProps {
-  experience: Experience
+export type FormData = Experience | Education
+
+export interface GenericMultipleFormProps<T extends FormData> {
+  data: T
   onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    section: keyof Experience
+    section: keyof T
   ) => void
   onDelete: () => void
+  entityType: 'experience' | 'education'
 }
 
 export interface ResumePreviewProps {

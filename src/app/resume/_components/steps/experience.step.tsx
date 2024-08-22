@@ -1,7 +1,9 @@
+import { CirclePlus } from 'lucide-react'
+
 import { Button } from '@/components/ui/button'
 import { ResumeData, Experience } from '@/types/resume'
 
-import ExperienceForm from '../experience.form'
+import GenericMultipleForm from './generic-multiple.form'
 
 interface ExperienceStepProps {
   resumeData: ResumeData
@@ -52,15 +54,16 @@ function ExperienceStep({ resumeData, setResumeData }: ExperienceStepProps) {
         Experience
       </h2>
       {resumeData.experience.map((exp, idx) => (
-        <ExperienceForm
+        <GenericMultipleForm
           key={idx}
-          experience={exp}
+          data={exp}
           onChange={(e, section) => handleExperienceChange(e, section, idx)}
           onDelete={() => deleteExperience(idx)}
+          entityType="experience"
         />
       ))}
-      <Button variant="outline" className="mt-4" onClick={addExperience}>
-        Add Experience
+      <Button variant="outline" className="mt-4 w-full" onClick={addExperience}>
+        <CirclePlus size={14} className="mr-2" /> Add Education
       </Button>
     </div>
   )

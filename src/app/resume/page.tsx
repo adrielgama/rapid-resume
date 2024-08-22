@@ -6,10 +6,12 @@ import { ResumeData } from '@/types/resume'
 
 import ResumePreview from './_components/resume-preview'
 import {
+  EducationStep,
   ExperienceStep,
   HeaderStep,
   LinksStep,
   ProfileStep,
+  SkillStep,
 } from './_components/steps'
 import { dataProfile } from './_types/data'
 
@@ -49,6 +51,15 @@ function ResumeSection() {
               resumeData={resumeData}
               setResumeData={setResumeData}
             />
+          </TabsContent>
+          <TabsContent value="education">
+            <EducationStep
+              resumeData={resumeData}
+              setResumeData={setResumeData}
+            />
+          </TabsContent>
+          <TabsContent value="skills">
+            <SkillStep resumeData={resumeData} setResumeData={setResumeData} />
           </TabsContent>
         </Tabs>
       </div>
