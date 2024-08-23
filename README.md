@@ -102,10 +102,10 @@ Contributions are welcome! If you have suggestions or want to contribute to the 
 
 We are continually working on improving the Resume Builder. Here are some of the planned features and enhancements:
 
+- [x] **Profile Page Security**: Implement authentication and authorization to restrict access to profile and edit pages.
 - [ ] **Input Validation**: Implement input validation using Yup or Zod to ensure all required fields are correctly filled out.
 - [ ] **Testing**: Add comprehensive testing to ensure the reliability of the application.
 - [ ] **Data Storage**: Implement data storage in MongoDB for persistent resume data management.
-- [ ] **Profile Page Security**: Implement authentication and authorization to restrict access to profile and edit pages.
 - [ ] **Internationalization**: Add support for multiple languages using i18n, allowing users to create resumes in different languages.
 - [ ] **Customizable Themes**: Enable users to select or create custom themes for their resumes.
 - [ ] **Export Options**: Provide options to export resumes in various formats such as PDF, DOCX, etc.
