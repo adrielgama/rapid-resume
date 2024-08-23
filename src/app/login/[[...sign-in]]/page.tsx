@@ -9,7 +9,7 @@ export default function Page() {
   return (
     <div className="relative grid min-h-screen w-screen grid-cols-1 items-center bg-gray-200 dark:bg-dark-blue lg:grid-cols-2">
       <div className="z-10 flex flex-col items-center justify-center lg:col-span-1">
-        <SignIn signUpUrl="/signup" />
+        <SignIn signUpUrl="/signup" fallbackRedirectUrl="/resume" />
         <Button variant="link" className="mt-2">
           <Link href="/">Back to home</Link>
         </Button>

@@ -17,7 +17,7 @@ import {
 } from './_components/steps'
 import { dataProfile } from './_data/data'
 
-function ResumeSection() {
+export default function ResumePage() {
   const [resumeData, setResumeData] = useState<ResumeData>(
     dataProfile as ResumeData
   )
@@ -72,5 +72,3 @@ function ResumeSection() {
     </div>
   )
 }
-
-export default ResumeSection
