@@ -1,6 +1,7 @@
 'use client'
 import React, { memo, useState } from 'react'
 
+import { useAuth } from '@clerk/nextjs'
 import { FileText, LogOut, User } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
@@ -22,6 +23,7 @@ const links = [
 ]
 
 const SideNav = memo(function SideNav() {
+  const { signOut } = useAuth()
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
 
@@ -35,6 +37,7 @@ const SideNav = memo(function SideNav() {
               const isActive = pathname === link.href.toLowerCase()
               return (
                 <SidebarLink
+                  onClick={() => setOpen(false)}
                   key={idx}
                   link={{
                     ...link,
@@ -56,6 +59,7 @@ const SideNav = memo(function SideNav() {
         </div>
         <div>
           <SidebarLink
+            onClick={() => signOut()}
             link={{
               label: 'Logout',
               href: '#',
