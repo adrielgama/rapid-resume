@@ -119,12 +119,12 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 If you found this project helpful, consider buying me a coffee to support further development:
 
-<!-- <a href="https://buymeacoffee.com/adrielgama" target="_blank">
+<a href="https://buymeacoffee.com/adrielgama" target="_blank">
   <img src="public/images/bmc-button.svg" alt="Buy Me a Coffee" width="200">
 </a>
 
 
 You can also scan the QR code to donate:
 
-<img src="public/images/bmc_qr.webp" alt="Buy Me a Coffee QR Code" width="150" > -->
+<img src="public/images/bmc_qr.webp" alt="Buy Me a Coffee QR Code" width="150" >
 
