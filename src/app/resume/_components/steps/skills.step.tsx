@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+
+import { toast } from 'sonner'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -22,7 +24,8 @@ interface SkillStepProps {
 }
 
 function SkillStep({ resumeData, setResumeData }: SkillStepProps) {
-  const [selectedArea, setSelectedArea] = useState<AreaOfWork | ''>('')
+  const defaultArea: AreaOfWork = Object.keys(areasOfWork)[0] as AreaOfWork
+  const [selectedArea, setSelectedArea] = useState<AreaOfWork>(defaultArea)
   const [selectedSkills, setSelectedSkills] = useState<string[]>(
     resumeData.skills || []
   )
@@ -36,30 +39,53 @@ function SkillStep({ resumeData, setResumeData }: SkillStepProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedSkills])
 
-  const handleSkillToggle = (skill: string) => {
+  const handleSkillToggle = useCallback((skill: string) => {
     setSelectedSkills((prev) =>
       prev.includes(skill) ? prev.filter((s) => s !== skill) : [...prev, skill]
     )
-  }
+  }, [])
 
-  const handleAddCustomSkill = () => {
-    if (customSkill && !selectedSkills.includes(customSkill)) {
+  const handleAddCustomSkill = useCallback(() => {
+    const normalizedSkill = customSkill.trim().toLowerCase()
+
+    const skillExists = selectedSkills.some(
+      (skill) => skill.toLowerCase() === normalizedSkill
+    )
+
+    if (customSkill && skillExists) {
+      toast.info('Skill Already Added')
+    } else if (customSkill && !skillExists) {
       setSelectedSkills((prev) => [...prev, customSkill])
       setCustomSkill('')
     }
-  }
+  }, [customSkill, selectedSkills])
 
-  const filteredSkills: string[] = searchTerm
-    ? areasOfWork[selectedArea as AreaOfWork]?.filter((skill: string) =>
-        skill.toLowerCase().includes(searchTerm.toLowerCase())
-      ) || []
-    : selectedArea
-      ? areasOfWork[selectedArea as AreaOfWork]
+  const allSkills = useMemo(() => {
+    return selectedArea
+      ? areasOfWork[selectedArea as AreaOfWork].filter(
+          (skill) => !selectedSkills.includes(skill)
+        )
       : []
+  }, [selectedArea, selectedSkills])
+
+  const uniqueSkills = useMemo(() => {
+    return Array.from(new Set(allSkills))
+  }, [allSkills])
+
+  const filteredSkills: string[] = useMemo(() => {
+    return searchTerm
+      ? uniqueSkills.filter((skill: string) =>
+          skill.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      : uniqueSkills
+  }, [searchTerm, uniqueSkills])
 
   return (
     <div className="p-4">
-      <Select onValueChange={(value: AreaOfWork) => setSelectedArea(value)}>
+      <Select
+        value={selectedArea}
+        onValueChange={(value: AreaOfWork) => setSelectedArea(value)}
+      >
         <SelectTrigger className="w-full">
           <SelectValue placeholder="Select area of work" />
         </SelectTrigger>
@@ -107,7 +133,8 @@ function SkillStep({ resumeData, setResumeData }: SkillStepProps) {
                   <Badge
                     key={skill}
                     variant="secondary"
-                    className="select-none"
+                    className="cursor-pointer select-none"
+                    onClick={() => handleSkillToggle(skill)}
                   >
                     {skill}
                   </Badge>
