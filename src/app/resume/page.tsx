@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
-import { useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ResumeData } from '@/types/resume'
@@ -9,6 +10,7 @@ import {
   EducationStep,
   ExperienceStep,
   HeaderStep,
+  LanguageStep,
   LinksStep,
   ProfileStep,
   SkillStep,
@@ -20,51 +22,51 @@ function ResumeSection() {
     dataProfile as ResumeData
   )
 
+  const steps = useMemo(
+    () => [
+      { label: 'Header', component: HeaderStep },
+      { label: 'Links', component: LinksStep },
+      { label: 'Profile', component: ProfileStep },
+      { label: 'Experience', component: ExperienceStep },
+      { label: 'Education', component: EducationStep },
+      { label: 'Skills', component: SkillStep },
+      { label: 'Language', component: LanguageStep },
+    ],
+    []
+  )
+
+  const renderTabContent = useCallback(
+    (Component: React.ComponentType<any>) => (
+      <Component resumeData={resumeData} setResumeData={setResumeData} />
+    ),
+    [resumeData]
+  )
+
   return (
-    <div className="flex min-h-screen w-full flex-1 flex-col justify-center gap-2 rounded-tl-2xl border border-neutral-200 bg-white p-2 dark:border-neutral-700 dark:bg-neutral-900 md:p-6 lg:flex-row">
-      <div className="md:w-3/5">
-        <Tabs defaultValue="header" className="w-full">
-          <TabsList className="grid w-full grid-cols-6">
-            <TabsTrigger value="header">Header</TabsTrigger>
-            <TabsTrigger value="links">Links</TabsTrigger>
-            <TabsTrigger value="profile">Profile</TabsTrigger>
-            <TabsTrigger value="experience">Experience</TabsTrigger>
-            <TabsTrigger value="education">Education</TabsTrigger>
-            <TabsTrigger value="skills">Skills</TabsTrigger>
+    <div className="grid min-h-screen w-full grid-cols-1 gap-2 rounded-tl-2xl border border-neutral-200 bg-white p-2 dark:border-neutral-700 dark:bg-neutral-900 lg:grid-cols-2 lg:p-6">
+      <div className="col-span-1">
+        <Tabs defaultValue="Header" className="w-full">
+          <TabsList className="flex h-auto w-full flex-wrap justify-evenly">
+            {steps.map((step) => (
+              <TabsTrigger
+                key={step.label}
+                value={step.label}
+                className="w-full max-w-max text-center"
+              >
+                {step.label}
+              </TabsTrigger>
+            ))}
           </TabsList>
 
-          <TabsContent value="header">
-            <HeaderStep resumeData={resumeData} setResumeData={setResumeData} />
-          </TabsContent>
-          <TabsContent value="links">
-            <LinksStep resumeData={resumeData} setResumeData={setResumeData} />
-          </TabsContent>
-          <TabsContent value="profile">
-            <ProfileStep
-              resumeData={resumeData}
-              setResumeData={setResumeData}
-            />
-          </TabsContent>
-
-          <TabsContent value="experience">
-            <ExperienceStep
-              resumeData={resumeData}
-              setResumeData={setResumeData}
-            />
-          </TabsContent>
-          <TabsContent value="education">
-            <EducationStep
-              resumeData={resumeData}
-              setResumeData={setResumeData}
-            />
-          </TabsContent>
-          <TabsContent value="skills">
-            <SkillStep resumeData={resumeData} setResumeData={setResumeData} />
-          </TabsContent>
+          {steps.map((step) => (
+            <TabsContent key={step.label} value={step.label}>
+              {renderTabContent(step.component)}
+            </TabsContent>
+          ))}
         </Tabs>
       </div>
 
-      <div className="md:w-2/5">
+      <div className="col-span-1">
         <ResumePreview resumeData={resumeData} />
       </div>
     </div>

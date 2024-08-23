@@ -10,7 +10,7 @@ type DashboardLayoutProps = {
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
-    <div className="flex h-screen flex-col bg-neutral-100 dark:bg-neutral-800 lg:flex-row">
+    <div className="flex h-screen flex-col bg-neutral-100 dark:bg-neutral-800 md:flex-row">
       <SideNav />
       <ScrollArea className="h-full w-full">{children}</ScrollArea>
     </div>
