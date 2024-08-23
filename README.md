@@ -119,16 +119,8 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 If you found this project helpful, consider buying me a coffee to support further development:
 
-<<<<<<< HEAD
 [![Buy Me a Coffee](public/images/bmc-button.svg)](https://buymeacoffee.com/adrielgama)
 
 You can also scan the QR code to donate:
 
 ![Buy Me a Coffee QR](public/images/bmc_qr.webp)
-=======
-[![Buy Me a Coffee](public/images/bmc-button.svg)](https://buymeacoffee.com/adrielgama){:target="_blank"}
-
-You can also scan the QR code to donate:
-
-![Buy Me a Coffee QR](public/images/bmc-qr.webp)
->>>>>>> e334bed3fc26f375c11c0ff70e6eada1e969ece9
