@@ -43,7 +43,7 @@ function GenericMultipleForm<T extends FormData>({
       <div className="relative grid grid-cols-2 gap-4">
         <Trash2
           size={16}
-          className="absolute col-span-2 cursor-pointer justify-self-end text-gray-600 transition-colors duration-200 hover:text-red-500"
+          className="absolute col-span-2 cursor-pointer justify-self-end text-gray-600 transition-colors duration-200 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-500"
           onClick={onDelete}
         />
         <div className="col-span-2">
