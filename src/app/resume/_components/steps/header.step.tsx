@@ -18,6 +18,7 @@ function HeaderStep({ resumeData, setResumeData }: HeaderStepProps) {
       </Label>
       <Input
         id="name"
+        type="text"
         value={resumeData.profile.name}
         onChange={(e) =>
           setResumeData({
@@ -37,6 +38,7 @@ function HeaderStep({ resumeData, setResumeData }: HeaderStepProps) {
           </Label>
           <Input
             id="email"
+            type="email"
             value={resumeData.profile.email}
             onChange={(e) =>
               setResumeData({
@@ -56,6 +58,7 @@ function HeaderStep({ resumeData, setResumeData }: HeaderStepProps) {
           </Label>
           <Input
             id="phone"
+            type="tel"
             value={resumeData.profile.phone}
             onChange={(e) =>
               setResumeData({
@@ -77,6 +80,7 @@ function HeaderStep({ resumeData, setResumeData }: HeaderStepProps) {
           </Label>
           <Input
             id="location"
+            type="text"
             value={resumeData.profile.location}
             onChange={(e) =>
               setResumeData({
@@ -96,6 +100,7 @@ function HeaderStep({ resumeData, setResumeData }: HeaderStepProps) {
           </Label>
           <Input
             id="title"
+            type="text"
             value={resumeData.profile.title}
             onChange={(e) =>
               setResumeData({

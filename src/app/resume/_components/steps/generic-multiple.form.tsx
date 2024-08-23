@@ -50,6 +50,7 @@ function GenericMultipleForm<T extends FormData>({
           <Label htmlFor="title">Title</Label>
           <Input
             id="title"
+            type="text"
             value={(data as any).title}
             onChange={(e) => onChange(e, 'title')}
             className="mt-1"
@@ -62,6 +63,7 @@ function GenericMultipleForm<T extends FormData>({
               <Label htmlFor="company">Company</Label>
               <Input
                 id="company"
+                type="text"
                 value={(data as Experience).company}
                 onChange={(e) => onChange(e, 'company' as keyof T)}
                 className="mt-1"
@@ -72,6 +74,7 @@ function GenericMultipleForm<T extends FormData>({
               <Label htmlFor="institution">Institution</Label>
               <Input
                 id="institution"
+                type="text"
                 value={(data as Education).institution}
                 onChange={(e) => onChange(e, 'institution' as keyof T)}
                 className="mt-1"
@@ -86,6 +89,7 @@ function GenericMultipleForm<T extends FormData>({
               <Label htmlFor="location">Location</Label>
               <Input
                 id="location"
+                type="text"
                 value={(data as Experience).location}
                 onChange={(e) => onChange(e, 'location' as keyof T)}
                 className="mt-1"
@@ -96,6 +100,7 @@ function GenericMultipleForm<T extends FormData>({
               <Label htmlFor="degree">Degree</Label>
               <Input
                 id="degree"
+                type="text"
                 value={(data as Education).degree}
                 onChange={(e) => onChange(e, 'degree' as keyof T)}
                 className="mt-1"

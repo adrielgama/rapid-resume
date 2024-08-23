@@ -4,7 +4,7 @@ export const dataProfile: ResumeData = {
   profile: {
     name: 'John Doe',
     email: 'johndoe@mail.com',
-    phone: '+1 (555) 555-5555',
+    phone: '+1 (212) 456-7890',
     location: 'Miami, FL',
     title: 'Software Engineer',
   },
@@ -54,14 +54,14 @@ export const dataProfile: ResumeData = {
   languages: [
     {
       language: 'English',
-      level: 'Conversational',
-    },
-    {
-      language: 'Portuguese',
       level: 'Fluent',
     },
     {
       language: 'Spanish',
+      level: 'Conversational',
+    },
+    {
+      language: 'Portuguese',
       level: 'Basic',
     },
   ],

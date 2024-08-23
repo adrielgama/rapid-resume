@@ -41,7 +41,7 @@ export function UrlInput({
         <span className="px-2 text-gray-500 dark:text-gray-300">{prefix}</span>
       )}
       <Input
-        type="text"
+        type={'text' || 'url'}
         value={username}
         onChange={(e) => handleInputChange(e.target.value)}
         placeholder={placeholder}

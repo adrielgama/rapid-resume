@@ -104,6 +104,7 @@ function SkillStep({ resumeData, setResumeData }: SkillStepProps) {
             Select Skills for {selectedArea}
           </h2>
           <Input
+            type="text"
             placeholder="Search skills"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -150,6 +151,7 @@ function SkillStep({ resumeData, setResumeData }: SkillStepProps) {
             <Label>Add Custom Skill</Label>
             <div className="flex items-center gap-2">
               <Input
+                type="text"
                 placeholder="Enter custom skill"
                 value={customSkill}
                 onChange={(e) => setCustomSkill(e.target.value)}
