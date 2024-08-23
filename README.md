@@ -123,4 +123,5 @@ If you found this project helpful, consider buying me a coffee to support furthe
 
 You can also scan the QR code to donate:
 
-![Buy Me a Coffee QR](public/images/bmc_qr.webp)
+<img src="public/images/bmc-qr.webp" alt="Buy Me a Coffee QR Code" width="150" >
+
