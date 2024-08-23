@@ -1,5 +1,6 @@
-
 # Resume Builder
+
+![Resume Builder Banner](public/images/banner_readme.webp)
 
 Welcome to the Resume Builder project! This application allows users to create and customize resumes by filling in various sections such as personal information, experience, education, skills, languages, and more. The application is designed to be highly flexible, supporting multiple areas of work and providing a seamless user experience.
 
@@ -20,6 +21,7 @@ Welcome to the Resume Builder project! This application allows users to create a
     - [Adding Custom Skills](#adding-custom-skills)
     - [Customizing Phone Input](#customizing-phone-input)
   - [Contributing](#contributing)
+  - [Feature Improvements](#feature-improvements)
   - [License](#license)
 
 ## Features
@@ -31,6 +33,7 @@ Welcome to the Resume Builder project! This application allows users to create a
 - **Resume Preview**: Real-time preview of your resume as you fill in the sections.
 - **Responsive Design**: Fully responsive and mobile-friendly interface.
 - **International Phone Input**: Automatically format phone numbers based on the selected country.
+- **Checkbox Features**: Easily toggle on/off features as needed.
 
 ## Getting Started
 
@@ -95,6 +98,29 @@ The phone input field is designed to handle international phone numbers. It auto
 
 Contributions are welcome! If you have suggestions or want to contribute to the project, feel free to open an issue or submit a pull request. Please make sure to follow the [contributing guidelines](CONTRIBUTING.md).
 
+## Feature Improvements
+
+We are continually working on improving the Resume Builder. Here are some of the planned features and enhancements:
+
+- **Input Validation**: Implement input validation using Yup or Zod to ensure all required fields are correctly filled out.
+- **Testing**: Add comprehensive testing to ensure the reliability of the application.
+- **Data Storage**: Implement data storage in MongoDB for persistent resume data management.
+- **Profile Page Security**: Implement authentication and authorization to restrict access to profile and edit pages.
+- **Internationalization**: Add support for multiple languages using i18n, allowing users to create resumes in different languages.
+- **Customizable Themes**: Enable users to select or create custom themes for their resumes.
+- **Export Options**: Provide options to export resumes in various formats such as PDF, DOCX, etc.
+- **Collaboration**: Allow multiple users to collaborate on a single resume.
+
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE.md) file for more details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+---
+
+If you found this project helpful, consider buying me a coffee to support further development:
+
+[![Buy Me a Coffee](public/images/bmc-button.svg)](https://buymeacoffee.com/adrielgama)
+
+You can also scan the QR code to donate:
+
+![Buy Me a Coffee QR](public/images/bmc_qr.webp)
