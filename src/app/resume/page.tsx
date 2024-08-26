@@ -1,21 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
-import { useCallback, useMemo, useState } from 'react'
+import React, { Suspense, useCallback, useMemo, useState, lazy } from 'react'
 
+import Loader from '@/components/loader'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ResumeData } from '@/types/resume'
 
-import ResumePreview from './_components/resume-preview'
-import {
-  EducationStep,
-  ExperienceStep,
-  HeaderStep,
-  LanguageStep,
-  LinksStep,
-  ProfileStep,
-  SkillStep,
-} from './_components/steps'
 import { dataProfile } from './_data/data'
+
+const HeaderStep = lazy(() => import('./_components/steps/header.step'))
+const LinksStep = lazy(() => import('./_components/steps/links.step'))
+const ProfileStep = lazy(() => import('./_components/steps/profile.step'))
+const ExperienceStep = lazy(() => import('./_components/steps/experience.step'))
+const EducationStep = lazy(() => import('./_components/steps/education.step'))
+const SkillStep = lazy(() => import('./_components/steps/skills.step'))
+const LanguageStep = lazy(() => import('./_components/steps/language.step'))
+const ResumePreview = lazy(() => import('./_components/resume-preview'))
 
 export default function ResumePage() {
   const [resumeData, setResumeData] = useState<ResumeData>(
@@ -37,7 +37,9 @@ export default function ResumePage() {
 
   const renderTabContent = useCallback(
     (Component: React.ComponentType<any>) => (
-      <Component resumeData={resumeData} setResumeData={setResumeData} />
+      <Suspense fallback={<Loader />}>
+        <Component resumeData={resumeData} setResumeData={setResumeData} />
+      </Suspense>
     ),
     [resumeData]
   )
@@ -67,7 +69,9 @@ export default function ResumePage() {
       </div>
 
       <div className="col-span-1">
-        <ResumePreview resumeData={resumeData} />
+        <Suspense fallback={<Loader />}>
+          <ResumePreview resumeData={resumeData} />
+        </Suspense>
       </div>
     </div>
   )

@@ -103,6 +103,7 @@ Contributions are welcome! If you have suggestions or want to contribute to the 
 We are continually working on improving the Resume Builder. Here are some of the planned features and enhancements:
 
 - [x] **Profile Page Security**: Implement authentication and authorization to restrict access to profile and edit pages.
+- [x] **Optimize Step Components**: Implement lazy loading for the step components to improve performance by loading these components. 
 - [ ] **Input Validation**: Implement input validation using Yup or Zod to ensure all required fields are correctly filled out.
 - [ ] **Testing**: Add comprehensive testing to ensure the reliability of the application.
 - [ ] **Data Storage**: Implement data storage in MongoDB for persistent resume data management.
