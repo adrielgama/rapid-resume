@@ -45,29 +45,7 @@ export default function ResumePage() {
   )
 
   return (
-    <div className="grid min-h-screen w-full grid-cols-1 gap-2 rounded-tl-2xl border border-neutral-200 bg-white p-2 dark:border-neutral-700 dark:bg-neutral-900 lg:grid-cols-2 lg:p-6">
-      <div className="col-span-1">
-        <Tabs defaultValue="Header" className="w-full">
-          <TabsList className="flex h-auto w-full flex-wrap justify-evenly">
-            {steps.map((step) => (
-              <TabsTrigger
-                key={step.label}
-                value={step.label}
-                className="w-full max-w-max text-center"
-              >
-                {step.label}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-
-          {steps.map((step) => (
-            <TabsContent key={step.label} value={step.label}>
-              {renderTabContent(step.component)}
-            </TabsContent>
-          ))}
-        </Tabs>
-      </div>
-
+    <div className="grid min-h-screen w-full grid-cols-1 gap-2 rounded-tl-2xl border border-neutral-200 bg-white p-2 lg:grid-cols-2 lg:p-6 dark:border-neutral-700 dark:bg-neutral-900">
       <div className="col-span-1">
         <Suspense fallback={<Loader />}>
           <ResumePreview resumeData={resumeData} />

@@ -1,31 +1,13 @@
 'use client'
 
-import * as React from 'react'
-
-import { Moon, Sun } from 'lucide-react'
-import { useTheme } from 'next-themes'
-
+import { Sun, Moon } from 'lucide-react'
 import { Button } from './ui/button'
+import { useModeToggle } from '@/hooks/use-mode-toggle'
 
 export function ModeToggle({ className }: { className?: string }) {
-  const { theme, setTheme } = useTheme()
-  const [mounted, setMounted] = React.useState(false)
+  const { theme, toggleTheme, isMounted } = useModeToggle()
 
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) {
-    return null
-  }
-
-  const toggleTheme = () => {
-    if (theme === 'light') {
-      setTheme('dark')
-    } else {
-      setTheme('light')
-    }
-  }
+  if (!isMounted) return null
 
   return (
     <Button

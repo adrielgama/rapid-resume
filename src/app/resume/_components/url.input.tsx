@@ -45,7 +45,7 @@ export function UrlInput({
         value={username}
         onChange={(e) => handleInputChange(e.target.value)}
         placeholder={placeholder}
-        className={cn('flex-1 border-none outline-none')}
+        className={cn('flex-1 border-none outline-hidden')}
       />
     </div>
   )

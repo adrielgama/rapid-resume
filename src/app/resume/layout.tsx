@@ -1,20 +1,36 @@
 'use client'
 import React, { useEffect } from 'react'
 
-import { useAuth } from '@clerk/nextjs'
-import { useRouter } from 'next/navigation'
+import { useAuth, useUser } from '@clerk/nextjs'
+import { usePathname, useRouter } from 'next/navigation'
 
 import Loader from '@/components/loader'
-import { SideNav } from '@/components/sidenav'
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+} from '@/components/ui/sidebar'
+import { FileText } from 'lucide-react'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { NavUser } from '@/components/navbar/nav-user'
+import Logo from '@/components/logo'
 
 type DashboardLayoutProps = {
   children: React.ReactNode
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
-  const { isLoaded, userId } = useAuth()
+  const { isLoaded, userId, signOut } = useAuth()
+  const { user } = useUser()
+  const pathname = usePathname()
   const router = useRouter()
+
+  const isActive = (href: string) => pathname === href
 
   useEffect(() => {
     if (isLoaded && !userId) {
@@ -27,9 +43,32 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   }
 
   return (
-    <div className="flex h-screen flex-col bg-neutral-100 dark:bg-neutral-800 md:flex-row">
-      <SideNav />
-      <ScrollArea className="h-full w-full">{children}</ScrollArea>
+    <div className="flex h-screen flex-col bg-neutral-100 md:flex-row dark:bg-neutral-800">
+      <SidebarProvider>
+        <Sidebar variant="inset">
+          <SidebarHeader>
+            <Logo />
+          </SidebarHeader>
+          <SidebarContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  onClick={() => router.push('/resume')}
+                  isActive={isActive('/resume')}
+                >
+                  <FileText />
+                  <span>Resume</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarContent>
+
+          <SidebarFooter>
+            <NavUser user={user} logout={signOut} />
+          </SidebarFooter>
+        </Sidebar>
+        <ScrollArea className="h-full w-full">{children}</ScrollArea>
+      </SidebarProvider>
     </div>
   )
 }

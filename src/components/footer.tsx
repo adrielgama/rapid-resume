@@ -27,7 +27,7 @@ function Footer() {
       </div>
       <div className="mt-1 text-xs text-gray-400 lg:mt-4 lg:text-right">
         <p>
-          Made with ❤️ by{' '}
+          Developed by{' '}
           <Link
             href="https://adrielgama.dev"
             target="_blank"

@@ -13,14 +13,14 @@ function PricingSection() {
       className="mx-auto flex w-full flex-col items-center justify-center space-y-4 py-16"
     >
       <header>
-        <h1 className="text-3xl font-bold uppercase text-dark-blue dark:text-light-blue lg:text-5xl">
+        <h1 className="text-dark-blue dark:text-light-blue text-3xl font-bold uppercase lg:text-5xl">
           Pricing
         </h1>
       </header>
 
-      <p className="max-w-xl py-6 text-center text-sm text-zinc-600 dark:text-light-gray lg:text-base">
+      <p className="dark:text-light-gray max-w-xl py-6 text-center text-sm text-zinc-600 lg:text-base">
         Our service is completely{' '}
-        <span className="font-bold text-light-blue">free</span> to use. If you
+        <span className="text-light-blue font-bold">free</span> to use. If you
         find it helpful, you can support us by buying a coffee to help keep the
         project running!
       </p>
@@ -30,7 +30,7 @@ function PricingSection() {
           href="https://buymeacoffee.com/adrielgama"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-40 overflow-hidden transition-all hover:w-44 hover:drop-shadow-sm"
+          className="w-40 overflow-hidden transition-all hover:w-44 hover:drop-shadow-xs"
         >
           <Image
             src={BMCButton}

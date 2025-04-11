@@ -116,7 +116,7 @@ function LanguageStep({ resumeData, setResumeData }: LanguageStepProps) {
       </div>
 
       <Label className="mt-4">Selected Languages</Label>
-      <ScrollArea className="mt-2 h-36 rounded border p-2">
+      <ScrollArea className="mt-2 h-36 rounded-sm border p-2">
         {selectedLanguages.length > 0 ? (
           <div className="flex flex-wrap gap-2">
             {selectedLanguages.map(({ language, level }) => (

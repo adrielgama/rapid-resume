@@ -111,7 +111,7 @@ function SkillStep({ resumeData, setResumeData }: SkillStepProps) {
             className="mt-2"
           />
           <div className="mt-2 flex flex-wrap gap-2">
-            <ScrollArea className="h-36 w-full rounded border p-2">
+            <ScrollArea className="h-36 w-full rounded-sm border p-2">
               {filteredSkills.map((skill: string) => (
                 <Badge
                   key={skill}
@@ -127,7 +127,7 @@ function SkillStep({ resumeData, setResumeData }: SkillStepProps) {
             </ScrollArea>
           </div>
           <Label className="mt-4">Selected Skills</Label>
-          <ScrollArea className="mt-2 h-36 rounded border p-2">
+          <ScrollArea className="mt-2 h-36 rounded-sm border p-2">
             {selectedSkills.length > 0 ? (
               <div className="flex flex-wrap gap-2">
                 {selectedSkills.map((skill) => (
