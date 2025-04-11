@@ -1,6 +1,7 @@
 import { Badge } from '@/components/ui/badge'
 import { ResumeData } from '@/types/resume'
 
+import PDFDownloader from './pdf-download'
 import {
   ContactItem,
   LanguageItem,
@@ -16,8 +17,14 @@ export interface ResumePreviewProps {
 
 function ResumePreview({ resumeData, color = '#4aa2ef' }: ResumePreviewProps) {
   return (
-    <div className="space-y-4 rounded-md border bg-white p-4 text-dark-blue">
-      <h2 className="text-4xl font-bold">{resumeData.profile.name}</h2>
+    <div
+      id="resume-preview"
+      className="space-y-4 rounded-md border bg-white p-4 text-dark-blue"
+    >
+      <header className="flex items-center justify-between">
+        <h2 className="text-4xl font-bold">{resumeData.profile.name}</h2>
+        <PDFDownloader resumeData={resumeData} fileName="resume" />
+      </header>
       <section className="flex gap-6 text-sm">
         <ContactItem resumeData={resumeData} color={color} />
       </section>
