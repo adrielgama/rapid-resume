@@ -7,41 +7,43 @@ import BMCButton from '@public/images/bmc-button.svg'
 import Footer from '../footer'
 import Logo from '../logo'
 import { Separator } from '../ui/separator'
-
-const sections = [
-  { title: 'Our features', href: '#features' },
-  { title: 'Pricing', href: '#pricing' },
-  { title: 'Testimonials', href: '#testimonials' },
-  { title: 'FAQ', href: '#faq' },
-]
-
-const contacts = [
-  {
-    icon: Mail,
-    label: 'adrielgama@gmail.com',
-    href: 'mailto:adrielgama@gmail.com',
-  },
-  {
-    icon: Phone,
-    label: '+55 (71) 99655-9476',
-    href: 'tel:+5571996559476',
-  },
-  {
-    icon: Linkedin,
-    label: 'adrielgama',
-    href: 'https://linkedin.com/in/adrielgama',
-  },
-]
+import { useTranslations } from 'next-intl'
 
 function FooterSection() {
+  const t = useTranslations('Footer')
+
+  const sections = [
+    { title: t('sections.features'), href: '#features' },
+    { title: t('sections.pricing'), href: '#pricing' },
+    { title: t('sections.testimonials'), href: '#testimonials' },
+    { title: t('sections.faq'), href: '#faq' },
+  ]
+
+  const contacts = [
+    {
+      icon: Mail,
+      label: 'adrielgama@gmail.com',
+      href: 'mailto:adrielgama@gmail.com',
+    },
+    {
+      icon: Phone,
+      label: '+55 (71) 99655-9476',
+      href: 'tel:+5571996559476',
+    },
+    {
+      icon: Linkedin,
+      label: 'adrielgama',
+      href: 'https://linkedin.com/in/adrielgama',
+    },
+  ]
+
   return (
     <section className="w-full bg-zinc-100 dark:bg-zinc-900">
       <div className="container mx-auto grid max-w-5xl grid-cols-1 gap-8 py-16 md:grid-cols-4 lg:py-24">
         <div className="col-span-2 space-y-4">
           <Logo className="text-lg" />
           <p className="mt-4 max-w-sm text-xs text-gray-400">
-            Create your resume in minutes. No more writer&rsquo;s block or
-            formatting.
+            {t('description')}
           </p>
           <Link
             href="https://buymeacoffee.com/adrielgama"
@@ -50,7 +52,7 @@ function FooterSection() {
           >
             <Image
               src={BMCButton}
-              alt="Buy me a coffee"
+              alt={t('donateAlt')}
               width={150}
               height={150}
               className="mt-2 grayscale transition-all duration-300 hover:grayscale-0"
@@ -59,7 +61,7 @@ function FooterSection() {
         </div>
         <div className="col-span-1 text-sm">
           <h3 className="mb-4 font-bold text-gray-500 dark:text-gray-200">
-            Sections
+            {t('sectionsTitle')}
           </h3>
           <ul className="space-y-4 text-sm text-gray-500 dark:text-gray-400">
             {sections.map((section) => (
@@ -76,7 +78,7 @@ function FooterSection() {
         </div>
         <div className="col-span-1">
           <h3 className="mb-4 font-bold text-gray-500 dark:text-gray-200">
-            Contact
+            {t('contactTitle')}
           </h3>
           <ul className="space-y-4 text-sm text-gray-500 dark:text-gray-400">
             {contacts.map((contact) => (

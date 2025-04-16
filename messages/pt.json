@@ -1,0 +1,118 @@
+{
+  "Header": {
+    "features": "Funcionalidades",
+    "pricing": "Preços",
+    "testimonials": "Depoimentos",
+    "login": "Entrar",
+    "getStarted": "Começar"
+  },
+  "HeroSection": {
+    "title": "Crie um currículo profissional em apenas alguns minutos,",
+    "highlight": "gratuito",
+    "description": "Basta preencher os campos e seu currículo estará pronto para uso.",
+    "cta": "Começar"
+  },
+  "Statistics": {
+    "cvCreated": "Currículos criados",
+    "rating": "Avaliação",
+    "users": "Usuários"
+  },
+  "OurFeatures": {
+    "sectionTitle": "Funcionalidades",
+    "cta": "Comece de graça",
+    "easyBuilder": {
+      "title": "Construtor fácil",
+      "description": "Crie seus PDFs facilmente com nossa interface intuitiva.",
+      "summary": "Nossa interface intuitiva facilita a criação de PDFs em poucos cliques."
+    },
+    "free": {
+      "title": "Completamente grátis",
+      "description": "Aproveite conversões ilimitadas de PDF sem custos ou taxas ocultas.",
+      "summary": "Nosso serviço é totalmente gratuito, sem cobranças escondidas ou assinaturas."
+    },
+    "secure": {
+      "title": "Privacidade e segurança",
+      "description": "Seus arquivos estão seguros conosco — sem armazenamento, sem rastreamento.",
+      "summary": "Priorizamos sua privacidade e segurança. Nenhum dado é armazenado ou rastreado durante a conversão."
+    },
+    "multiLanguage": {
+      "title": "Multilíngue",
+      "description": "Suporte multilíngue para todas as suas conversões de PDF.",
+      "summary": "Nossa ferramenta funciona com diversos idiomas, facilitando a conversão de PDFs em qualquer língua."
+    }
+  },
+  "Pricing": {
+    "title": "Preços",
+    "description": "Nosso serviço é totalmente <strong>gratuito</strong> para usar. Se achar útil, você pode nos apoiar comprando um café para ajudar a manter o projeto funcionando!",
+    "buttonAlt": "Compre um café para mim - Botão",
+    "qrAlt": "Compre um café para mim - Código QR"
+  },
+  "Testimonials": {
+    "title": "Depoimentos",
+    "items": [
+      {
+        "text": "Este gerador de PDF online é simplesmente incrível! Consegui criar meus documentos em minutos e, o melhor de tudo, é totalmente gratuito. Altamente recomendado!",
+        "name": "João Silva"
+      },
+      {
+        "text": "Eu procurava uma ferramenta fácil de usar para converter meus arquivos, e este site superou minhas expectativas. A interface é intuitiva e o processo é rápido.",
+        "name": "Edna Oliveira"
+      },
+      {
+        "text": "Nunca imaginei que seria tão fácil criar PDFs de alta qualidade. Além disso, a segurança dos meus arquivos foi um grande diferencial. Excelente trabalho!",
+        "name": "Lucas Souza"
+      },
+      {
+        "text": "Sou usuária fiel deste gerador de PDF. É gratuito, rápido e confiável. Se precisar de ajuda, os desenvolvedores ainda oferecem um suporte incrível.",
+        "name": "Olívia Ferreira"
+      },
+      {
+        "text": "Uso este gerador de PDF para todas as minhas necessidades de trabalho. O suporte a múltiplos formatos é essencial para mim. Adoro!",
+        "name": "Sofia Costa"
+      }
+    ]
+  },
+  "FAQ": {
+    "title": "Perguntas Frequentes",
+    "items": [
+      {
+        "question": "Como eu crio um PDF usando esta ferramenta?",
+        "answer": "Para criar um PDF com nossa ferramenta, basta criar uma conta, preencher suas informações ou enviar o PDF gerado pelo LinkedIn. Após revisar os dados, você poderá baixar o PDF final com apenas um clique."
+      },
+      {
+        "question": "O serviço é realmente gratuito?",
+        "answer": "Sim, nosso serviço é totalmente gratuito. Não há custos ocultos ou taxas. Porém, se você achar o serviço útil e quiser nos apoiar, pode fazer uma doação para manter o projeto funcionando."
+      },
+      {
+        "question": "Quais formatos de arquivo são suportados?",
+        "answer": "Atualmente, nossa ferramenta suporta apenas PDFs gerados pelo LinkedIn. Estamos trabalhando para oferecer suporte a mais formatos em breve."
+      },
+      {
+        "question": "Meus dados estão seguros ao usar este serviço?",
+        "answer": "Sim, seus dados estão seguros. Usamos suas informações apenas para armazenar o histórico de criações de PDF. Todos os dados são gerenciados com segurança, garantindo sua privacidade."
+      },
+      {
+        "question": "Posso usar esta ferramenta em dispositivos móveis?",
+        "answer": "Sim, nosso site é totalmente responsivo e otimizado para dispositivos móveis, permitindo o uso fácil em smartphones ou tablets."
+      }
+    ]
+  },
+  "Footer": {
+    "description": "Crie seu currículo em minutos. Sem bloqueio criativo ou formatação.",
+    "donateAlt": "Compre um café para mim",
+    "sectionsTitle": "Seções",
+    "contactTitle": "Contato",
+    "sections": {
+      "features": "Funcionalidades",
+      "pricing": "Preços",
+      "testimonials": "Depoimentos",
+      "faq": "FAQ"
+    }
+  },
+  "Legal": {
+    "privacyPolicy": "Política de Privacidade",
+    "termsOfService": "Termos de Uso",
+    "copyright": "Resume Builder. Todos os direitos reservados.",
+    "developedBy": "Desenvolvido por"
+  }
+}

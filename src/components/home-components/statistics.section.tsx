@@ -2,6 +2,7 @@
 import useCountUp from '@/hooks/useCountStatistics'
 
 import { Separator } from '../ui/separator'
+import { useTranslations } from 'next-intl'
 
 const StatisticsItem = ({ title, value }: { title: string; value: string }) => {
   const decimalPlaces = value.includes('.') ? value.split('.')[1].length : 0
@@ -19,13 +20,15 @@ const StatisticsItem = ({ title, value }: { title: string; value: string }) => {
 }
 
 function StatisticsSection() {
+  const t = useTranslations('Statistics')
+
   return (
-    <section className="flex items-center justify-evenly space-x-4 py-16 text-sm text-dark-blue dark:text-white">
-      <StatisticsItem title="CV created" value="300+" />
+    <section className="text-dark-blue flex items-center justify-evenly space-x-4 py-16 text-sm dark:text-white">
+      <StatisticsItem title={t('cvCreated')} value="300+" />
       <Separator orientation="vertical" className="h-8" />
-      <StatisticsItem title="Rating" value="9.8" />
+      <StatisticsItem title={t('rating')} value="9.8" />
       <Separator orientation="vertical" className="h-8" />
-      <StatisticsItem title="Users" value="100+" />
+      <StatisticsItem title={t('users')} value="100+" />
     </section>
   )
 }

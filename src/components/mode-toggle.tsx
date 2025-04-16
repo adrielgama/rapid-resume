@@ -3,6 +3,7 @@
 import { Sun, Moon } from 'lucide-react'
 import { Button } from './ui/button'
 import { useModeToggle } from '@/hooks/use-mode-toggle'
+import { cn } from '@/lib/utils'
 
 export function ModeToggle({ className }: { className?: string }) {
   const { theme, toggleTheme, isMounted } = useModeToggle()
@@ -14,7 +15,7 @@ export function ModeToggle({ className }: { className?: string }) {
       variant="ghost"
       size="icon"
       onClick={toggleTheme}
-      className={className}
+      className={cn('cursor-pointer', className)}
     >
       {theme === 'light' ? (
         <Sun className="h-[1.2rem] w-[1.2rem] transition-all" />
