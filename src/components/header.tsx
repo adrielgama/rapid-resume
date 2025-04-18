@@ -3,16 +3,16 @@
 import React, { useState } from 'react'
 
 import { Menu as MenuIcon, X as CloseIcon } from 'lucide-react'
-// import Link from 'next/link'
+import { useLocale, useTranslations } from 'next-intl'
+
 import { Link } from '@/i18n/navigation'
 
 import Logo from './logo'
 import { ModeToggle } from './mode-toggle'
 import { Button } from './ui/button'
-import { useLocale, useTranslations } from 'next-intl'
 
 function Header() {
-  const t = useTranslations('Header')
+  const t = useTranslations('Home.Header')
   const locale = useLocale()
   const [menuOpen, setMenuOpen] = useState(false)
 

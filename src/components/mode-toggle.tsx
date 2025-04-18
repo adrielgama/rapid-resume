@@ -1,9 +1,11 @@
 'use client'
 
 import { Sun, Moon } from 'lucide-react'
-import { Button } from './ui/button'
+
 import { useModeToggle } from '@/hooks/use-mode-toggle'
 import { cn } from '@/lib/utils'
+
+import { Button } from './ui/button'
 
 export function ModeToggle({ className }: { className?: string }) {
   const { theme, toggleTheme, isMounted } = useModeToggle()

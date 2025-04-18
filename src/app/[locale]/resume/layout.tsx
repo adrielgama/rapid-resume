@@ -2,9 +2,13 @@
 import React, { useEffect } from 'react'
 
 import { useAuth, useUser } from '@clerk/nextjs'
+import { FileText } from 'lucide-react'
 import { usePathname, useRouter } from 'next/navigation'
 
 import Loader from '@/components/loader'
+import Logo from '@/components/logo'
+import { NavUser } from '@/components/navbar/nav-user'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import {
   Sidebar,
   SidebarContent,
@@ -15,10 +19,6 @@ import {
   SidebarMenuItem,
   SidebarProvider,
 } from '@/components/ui/sidebar'
-import { FileText } from 'lucide-react'
-import { ScrollArea } from '@/components/ui/scroll-area'
-import { NavUser } from '@/components/navbar/nav-user'
-import Logo from '@/components/logo'
 
 type DashboardLayoutProps = {
   children: React.ReactNode

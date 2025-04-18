@@ -1,7 +1,8 @@
 'use client'
 
-import { LogOutIcon, Moon, MoreVerticalIcon, Sun } from 'lucide-react'
 import { useUser } from '@clerk/nextjs'
+import { LogOutIcon, Moon, MoreVerticalIcon, Sun } from 'lucide-react'
+
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
   DropdownMenu,

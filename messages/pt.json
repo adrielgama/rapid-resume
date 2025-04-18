@@ -1,121 +1,230 @@
-// SEPARAR POR PAGINAS (CHAT GPT ENSINA)
-// IMPLEMENTAR VERSÃO GRATUITA E PAGA
-// VERSÃO PAGA MANTÉM UM LINK COM URL PARA O RESUME DO CLIENTE - R$5 MENSAL OU R$50 ANUAL
 {
-  "Header": {
-    "features": "Funcionalidades",
-    "pricing": "Preços",
-    "testimonials": "Depoimentos",
-    "login": "Entrar",
-    "getStarted": "Começar"
-  },
-  "HeroSection": {
-    "title": "Crie um currículo profissional em apenas alguns minutos,",
-    "highlight": "gratuito",
-    "description": "Basta preencher os campos e seu currículo estará pronto para uso.",
-    "cta": "Começar"
-  },
-  "Statistics": {
-    "cvCreated": "Currículos criados",
-    "rating": "Avaliação",
-    "users": "Usuários"
-  },
-  "OurFeatures": {
-    "sectionTitle": "Funcionalidades",
-    "cta": "Comece de graça",
-    "easyBuilder": {
-      "title": "Construtor fácil",
-      "description": "Crie seus PDFs facilmente com nossa interface intuitiva.",
-      "summary": "Nossa interface intuitiva facilita a criação de PDFs em poucos cliques."
-    },
-    "free": {
-      "title": "Completamente grátis",
-      "description": "Aproveite conversões ilimitadas de PDF sem custos ou taxas ocultas.",
-      "summary": "Nosso serviço é totalmente gratuito, sem cobranças escondidas ou assinaturas."
-    },
-    "secure": {
-      "title": "Privacidade e segurança",
-      "description": "Seus arquivos estão seguros conosco — sem armazenamento, sem rastreamento.",
-      "summary": "Priorizamos sua privacidade e segurança. Nenhum dado é armazenado ou rastreado durante a conversão."
-    },
-    "multiLanguage": {
-      "title": "Multilíngue",
-      "description": "Suporte multilíngue para todas as suas conversões de PDF.",
-      "summary": "Nossa ferramenta funciona com diversos idiomas, facilitando a conversão de PDFs em qualquer língua."
-    }
-  },
-  "Pricing": {
-    "title": "Preços",
-    "description": "Nosso serviço é totalmente <strong>gratuito</strong> para usar. Se achar útil, você pode nos apoiar comprando um café para ajudar a manter o projeto funcionando!",
-    "buttonAlt": "Compre um café para mim - Botão",
-    "qrAlt": "Compre um café para mim - Código QR"
-  },
-  "Testimonials": {
-    "title": "Depoimentos",
-    "items": [
-      {
-        "text": "Este gerador de PDF online é simplesmente incrível! Consegui criar meus documentos em minutos e, o melhor de tudo, é totalmente gratuito. Altamente recomendado!",
-        "name": "João Silva"
-      },
-      {
-        "text": "Eu procurava uma ferramenta fácil de usar para converter meus arquivos, e este site superou minhas expectativas. A interface é intuitiva e o processo é rápido.",
-        "name": "Edna Oliveira"
-      },
-      {
-        "text": "Nunca imaginei que seria tão fácil criar PDFs de alta qualidade. Além disso, a segurança dos meus arquivos foi um grande diferencial. Excelente trabalho!",
-        "name": "Lucas Souza"
-      },
-      {
-        "text": "Sou usuária fiel deste gerador de PDF. É gratuito, rápido e confiável. Se precisar de ajuda, os desenvolvedores ainda oferecem um suporte incrível.",
-        "name": "Olívia Ferreira"
-      },
-      {
-        "text": "Uso este gerador de PDF para todas as minhas necessidades de trabalho. O suporte a múltiplos formatos é essencial para mim. Adoro!",
-        "name": "Sofia Costa"
-      }
-    ]
-  },
-  "FAQ": {
-    "title": "Perguntas Frequentes",
-    "items": [
-      {
-        "question": "Como eu crio um PDF usando esta ferramenta?",
-        "answer": "Para criar um PDF com nossa ferramenta, basta criar uma conta, preencher suas informações ou enviar o PDF gerado pelo LinkedIn. Após revisar os dados, você poderá baixar o PDF final com apenas um clique."
-      },
-      {
-        "question": "O serviço é realmente gratuito?",
-        "answer": "Sim, nosso serviço é totalmente gratuito. Não há custos ocultos ou taxas. Porém, se você achar o serviço útil e quiser nos apoiar, pode fazer uma doação para manter o projeto funcionando."
-      },
-      {
-        "question": "Quais formatos de arquivo são suportados?",
-        "answer": "Atualmente, nossa ferramenta suporta apenas PDFs gerados pelo LinkedIn. Estamos trabalhando para oferecer suporte a mais formatos em breve."
-      },
-      {
-        "question": "Meus dados estão seguros ao usar este serviço?",
-        "answer": "Sim, seus dados estão seguros. Usamos suas informações apenas para armazenar o histórico de criações de PDF. Todos os dados são gerenciados com segurança, garantindo sua privacidade."
-      },
-      {
-        "question": "Posso usar esta ferramenta em dispositivos móveis?",
-        "answer": "Sim, nosso site é totalmente responsivo e otimizado para dispositivos móveis, permitindo o uso fácil em smartphones ou tablets."
-      }
-    ]
-  },
-  "Footer": {
-    "description": "Crie seu currículo em minutos. Sem bloqueio criativo ou formatação.",
-    "donateAlt": "Compre um café para mim",
-    "sectionsTitle": "Seções",
-    "contactTitle": "Contato",
-    "sections": {
+  "Home": {
+    "Header": {
       "features": "Funcionalidades",
       "pricing": "Preços",
       "testimonials": "Depoimentos",
-      "faq": "FAQ"
+      "login": "Entrar",
+      "getStarted": "Começar"
+    },
+    "HeroSection": {
+      "title": "Crie um currículo profissional em apenas alguns minutos,",
+      "highlight": "gratuito",
+      "description": "Basta preencher os campos e seu currículo estará pronto para uso.",
+      "cta": "Começar"
+    },
+    "Statistics": {
+      "cvCreated": "Currículos criados",
+      "rating": "Avaliação",
+      "users": "Usuários"
+    },
+    "OurFeatures": {
+      "sectionTitle": "Funcionalidades",
+      "cta": "Comece de graça",
+      "easyBuilder": {
+        "title": "Construtor fácil",
+        "description": "Crie seus PDFs facilmente com nossa interface intuitiva.",
+        "summary": "Nossa interface intuitiva facilita a criação de PDFs em poucos cliques."
+      },
+      "free": {
+        "title": "Completamente grátis",
+        "description": "Aproveite conversões ilimitadas de PDF sem custos ou taxas ocultas.",
+        "summary": "Nosso serviço é totalmente gratuito, sem cobranças escondidas ou assinaturas."
+      },
+      "secure": {
+        "title": "Privacidade e segurança",
+        "description": "Seus arquivos estão seguros conosco — sem armazenamento, sem rastreamento.",
+        "summary": "Priorizamos sua privacidade e segurança. Nenhum dado é armazenado ou rastreado durante a conversão."
+      },
+      "multiLanguage": {
+        "title": "Multilíngue",
+        "description": "Suporte multilíngue para todas as suas conversões de PDF.",
+        "summary": "Nossa ferramenta funciona com diversos idiomas, facilitando a conversão de PDFs em qualquer língua."
+      }
+    },
+    "Pricing": {
+      "title": "Preços",
+      "description": "Nosso serviço é totalmente <strong>gratuito</strong> para usar. Se achar útil, você pode nos apoiar comprando um café para ajudar a manter o projeto funcionando!",
+      "buttonAlt": "Compre um café para mim - Botão",
+      "qrAlt": "Compre um café para mim - Código QR"
+    },
+    "Testimonials": {
+      "title": "Depoimentos",
+      "items": [
+        {
+          "text": "Este gerador de PDF online é simplesmente incrível! Consegui criar meus documentos em minutos e, o melhor de tudo, é totalmente gratuito. Altamente recomendado!",
+          "name": "João Silva"
+        },
+        {
+          "text": "Eu procurava uma ferramenta fácil de usar para converter meus arquivos, e este site superou minhas expectativas. A interface é intuitiva e o processo é rápido.",
+          "name": "Edna Oliveira"
+        },
+        {
+          "text": "Nunca imaginei que seria tão fácil criar PDFs de alta qualidade. Além disso, a segurança dos meus arquivos foi um grande diferencial. Excelente trabalho!",
+          "name": "Lucas Souza"
+        },
+        {
+          "text": "Sou usuária fiel deste gerador de PDF. É gratuito, rápido e confiável. Se precisar de ajuda, os desenvolvedores ainda oferecem um suporte incrível.",
+          "name": "Olívia Ferreira"
+        },
+        {
+          "text": "Uso este gerador de PDF para todas as minhas necessidades de trabalho. O suporte a múltiplos formatos é essencial para mim. Adoro!",
+          "name": "Sofia Costa"
+        }
+      ]
+    },
+    "FAQ": {
+      "title": "Perguntas Frequentes",
+      "items": [
+        {
+          "question": "Como eu crio um PDF usando esta ferramenta?",
+          "answer": "Para criar um PDF com nossa ferramenta, basta criar uma conta, preencher suas informações ou enviar o PDF gerado pelo LinkedIn. Após revisar os dados, você poderá baixar o PDF final com apenas um clique."
+        },
+        {
+          "question": "O serviço é realmente gratuito?",
+          "answer": "Sim, nosso serviço é totalmente gratuito. Não há custos ocultos ou taxas. Porém, se você achar o serviço útil e quiser nos apoiar, pode fazer uma doação para manter o projeto funcionando."
+        },
+        {
+          "question": "Quais formatos de arquivo são suportados?",
+          "answer": "Atualmente, nossa ferramenta suporta apenas PDFs gerados pelo LinkedIn. Estamos trabalhando para oferecer suporte a mais formatos em breve."
+        },
+        {
+          "question": "Meus dados estão seguros ao usar este serviço?",
+          "answer": "Sim, seus dados estão seguros. Usamos suas informações apenas para armazenar o histórico de criações de PDF. Todos os dados são gerenciados com segurança, garantindo sua privacidade."
+        },
+        {
+          "question": "Posso usar esta ferramenta em dispositivos móveis?",
+          "answer": "Sim, nosso site é totalmente responsivo e otimizado para dispositivos móveis, permitindo o uso fácil em smartphones ou tablets."
+        }
+      ]
+    },
+    "Footer": {
+      "description": "Crie seu currículo em minutos. Sem bloqueio criativo ou formatação.",
+      "donateAlt": "Compre um café para mim",
+      "sectionsTitle": "Seções",
+      "contactTitle": "Contato",
+      "sections": {
+        "features": "Funcionalidades",
+        "pricing": "Preços",
+        "testimonials": "Depoimentos",
+        "faq": "FAQ"
+      }
+    },
+    "Legal": {
+      "privacyPolicy": "Política de Privacidade",
+      "termsOfService": "Termos de Uso",
+      "copyright": "Rapid Resume. Todos os direitos reservados.",
+      "developedBy": "Desenvolvido por"
     }
   },
   "Legal": {
-    "privacyPolicy": "Política de Privacidade",
-    "termsOfService": "Termos de Uso",
-    "copyright": "Resume Builder. Todos os direitos reservados.",
-    "developedBy": "Desenvolvido por"
+    "CookieBanner": {
+      "message": "Utilizamos cookies para melhorar sua experiência em nosso site. Ao continuar navegando, você aceita nossa",
+      "policyLink": "Política de Cookies",
+      "accept": "Aceitar",
+      "decline": "Recusar"
+    },
+    "CookiePolicy": {
+      "intro": "Ao usar nosso site, você concorda com o uso de cookies de acordo com esta Política de Cookies. Por favor, leia com atenção.",
+      "section1": {
+        "title": "1. O que são Cookies?",
+        "content": "Cookies são pequenos arquivos de texto colocados no seu dispositivo quando você visita um site. Eles são amplamente utilizados para fazer os sites funcionarem de forma mais eficiente e fornecer informações aos proprietários do site."
+      },
+      "section2": {
+        "title": "2. Como Usamos Cookies",
+        "content": "Utilizamos cookies para melhorar sua experiência em nosso site, como lembrar suas preferências e visitas recorrentes. Alguns cookies são essenciais para o funcionamento do site, enquanto outros ajudam a entender como ele está sendo utilizado."
+      },
+      "section3": {
+        "title": "3. Tipos de Cookies que Usamos",
+        "necessary": {
+          "title": "Cookies Necessários:",
+          "content": "Esses cookies são essenciais para o funcionamento do site e não podem ser desativados em nossos sistemas..."
+        },
+        "performance": {
+          "title": "Cookies de Desempenho:",
+          "content": "Permitem contar visitas e fontes de tráfego para medir e melhorar o desempenho do site..."
+        },
+        "functional": {
+          "title": "Cookies Funcionais:",
+          "content": "Permitem funcionalidades aprimoradas e personalização no site..."
+        },
+        "targeting": {
+          "title": "Cookies de Segmentação:",
+          "content": "Podem ser definidos por parceiros de publicidade para criar perfis de interesse e exibir anúncios relevantes..."
+        }
+      }
+    },
+    "PrivacyPolicy": {
+      "intro": "Esta Política de Privacidade descreve como tratamos suas informações pessoais ao utilizar nosso serviço. Ao utilizar o serviço, você concorda com a coleta e uso das informações conforme descrito nesta política.",
+      "section1": {
+        "title": "1. Informações que Coletamos",
+        "personal": {
+          "title": "Dados Pessoais",
+          "content": "Ao usar nosso serviço, podemos solicitar que você forneça informações pessoais, como nome, e-mail e quaisquer outros dados que decidir compartilhar."
+        },
+        "usage": {
+          "title": "Dados de Uso",
+          "content": "Podemos coletar informações sobre como o serviço é acessado e utilizado, incluindo IP, tipo e versão do navegador, páginas visitadas, data e hora da visita e dados de diagnóstico."
+        }
+      },
+      "section2": {
+        "title": "2. Como Usamos Suas Informações",
+        "provide": {
+          "title": "Para fornecer e manter nosso serviço",
+          "content": "Usamos suas informações para entregar o serviço solicitado, como gerar PDFs com base nos dados fornecidos."
+        },
+        "communicate": {
+          "title": "Para nos comunicarmos com você",
+          "content": "Podemos usar seus dados de contato para enviar atualizações, responder dúvidas ou oferecer suporte técnico."
+        }
+      },
+      "section3": {
+        "title": "3. Segurança dos Dados",
+        "content": "Levamos a segurança a sério e adotamos medidas razoáveis para proteger suas informações. No entanto, nenhum método de transmissão ou armazenamento eletrônico é 100% seguro."
+      },
+      "section4": {
+        "title": "4. Alterações nesta Política de Privacidade",
+        "content": "Podemos atualizar esta Política de Privacidade periodicamente. Notificaremos sobre mudanças publicando a nova versão nesta página."
+      },
+      "section5": {
+        "title": "5. Fale Conosco",
+        "content": "Se tiver dúvidas sobre esta Política de Privacidade, entre em contato pelo e-mail: adrielgama@gmail.com"
+      }
+    },
+    "TermsOfService": {
+      "intro": "Ao utilizar nosso serviço, você concorda com os seguintes termos e condições. Por favor, leia com atenção.",
+      "section1": {
+        "title": "1. Uso do Serviço",
+        "content": "Nosso serviço permite gerar PDFs com base nas informações fornecidas por você. Você é responsável por garantir que essas informações sejam precisas e legais."
+      },
+      "section2": {
+        "title": "2. Contas de Usuário",
+        "content": "Pode ser necessário criar uma conta para utilizar certos recursos do serviço. Você é responsável por manter a confidencialidade da sua conta e senha, bem como por restringir o acesso à sua conta."
+      },
+      "section3": {
+        "title": "3. Usos Proibidos",
+        "content": "Você concorda em não utilizar o serviço para fins ilegais ou de forma que possa danificar, desativar ou comprometer o serviço. Isso inclui, mas não se limita a, envio de conteúdo malicioso ou tentativa de acesso não autorizado aos nossos sistemas."
+      },
+      "section4": {
+        "title": "4. Rescisão",
+        "content": "Reservamo-nos o direito de encerrar ou suspender seu acesso ao serviço, a nosso critério, sem aviso prévio, caso entendamos que você está violando estes termos."
+      },
+      "section5": {
+        "title": "5. Limitação de Responsabilidade",
+        "content": "Nosso serviço é fornecido “como está”, sem garantias de qualquer tipo. Não nos responsabilizamos por danos ou prejuízos decorrentes do uso do serviço."
+      },
+      "section6": {
+        "title": "6. Alterações a Estes Termos",
+        "content": "Podemos modificar estes termos a qualquer momento, publicando a versão atualizada em nosso site. O uso contínuo do serviço após as alterações constitui aceitação dos novos termos."
+      },
+      "section7": {
+        "title": "7. Legislação Aplicável",
+        "content": "Estes termos são regidos pelas leis do Brasil."
+      },
+      "section8": {
+        "title": "8. Fale Conosco",
+        "content": "Se tiver dúvidas sobre estes Termos de Serviço, entre em contato pelo e-mail: adrielgama@gmail.com"
+      }
+    }
   }
 }

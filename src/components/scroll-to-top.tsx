@@ -36,7 +36,7 @@ const ScrollToTopButton = () => {
       <Button
         size="icon"
         onClick={scrollToTop}
-        className={`fixed bottom-4 right-4 z-50 rounded-full bg-light-blue/80 p-3 text-white shadow-lg transition-all duration-300 ease-in-out dark:bg-white/80 lg:bg-light-blue dark:lg:bg-white ${isVisible ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
+        className={`bg-light-blue/80 lg:bg-light-blue fixed right-4 bottom-4 z-50 rounded-full p-3 text-white shadow-lg transition-all duration-300 ease-in-out dark:bg-white/80 dark:lg:bg-white ${isVisible ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
       >
         <ArrowUp size={24} />
       </Button>

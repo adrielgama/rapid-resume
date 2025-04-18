@@ -16,7 +16,6 @@ const PDFDownloader: React.FC<PDFDownloaderProps> = ({
   fileName,
 }) => {
   const generatePDF = () => {
-    // eslint-disable-next-line new-cap
     const doc = new jsPDF()
 
     // Adiciona o nome do perfil
@@ -83,7 +82,7 @@ const PDFDownloader: React.FC<PDFDownloaderProps> = ({
       variant="outline"
       size="sm"
       onClick={generatePDF}
-      className="dark:border-gray-200 dark:bg-white dark:hover:bg-gray-100 dark:hover:text-dark-blue"
+      className="dark:hover:text-dark-blue dark:border-gray-200 dark:bg-white dark:hover:bg-gray-100"
     >
       <Download size={16} className="mr-2" /> Download
     </Button>

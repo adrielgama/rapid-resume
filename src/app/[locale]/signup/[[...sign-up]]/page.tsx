@@ -7,7 +7,7 @@ import BackgroundGrid from '@public/images/bg-grids.svg'
 
 export default function Page() {
   return (
-    <div className="relative grid min-h-screen w-screen grid-cols-1 items-center bg-gray-200 dark:bg-dark-blue lg:grid-cols-2">
+    <div className="dark:bg-dark-blue relative grid min-h-screen w-screen grid-cols-1 items-center bg-gray-200 lg:grid-cols-2">
       <div className="relative hidden min-h-screen w-full overflow-hidden lg:col-span-1 lg:block">
         <Image
           src={BackgroundGrid}

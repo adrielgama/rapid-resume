@@ -1,8 +1,9 @@
 'use client'
+import { useTranslations } from 'next-intl'
+
 import useCountUp from '@/hooks/useCountStatistics'
 
 import { Separator } from '../ui/separator'
-import { useTranslations } from 'next-intl'
 
 const StatisticsItem = ({ title, value }: { title: string; value: string }) => {
   const decimalPlaces = value.includes('.') ? value.split('.')[1].length : 0
@@ -20,7 +21,7 @@ const StatisticsItem = ({ title, value }: { title: string; value: string }) => {
 }
 
 function StatisticsSection() {
-  const t = useTranslations('Statistics')
+  const t = useTranslations('Home.Statistics')
 
   return (
     <section className="text-dark-blue flex items-center justify-evenly space-x-4 py-16 text-sm dark:text-white">

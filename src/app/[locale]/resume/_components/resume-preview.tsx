@@ -19,7 +19,7 @@ function ResumePreview({ resumeData, color = '#4aa2ef' }: ResumePreviewProps) {
   return (
     <div
       id="resume-preview"
-      className="space-y-4 rounded-md border bg-white p-4 text-dark-blue"
+      className="text-dark-blue space-y-4 rounded-md border bg-white p-4"
     >
       <header className="flex items-center justify-between">
         <h2 className="text-4xl font-bold">{resumeData.profile.name}</h2>

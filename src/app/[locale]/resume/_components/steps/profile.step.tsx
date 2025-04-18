@@ -9,7 +9,7 @@ interface ProfileStepProps {
 function ProfileStep({ resumeData, setResumeData }: ProfileStepProps) {
   return (
     <div className="rounded-md p-4">
-      <h2 className="text-xl font-semibold text-dark-blue dark:text-neutral-200">
+      <h2 className="text-dark-blue text-xl font-semibold dark:text-neutral-200">
         Profile
       </h2>
       <Textarea

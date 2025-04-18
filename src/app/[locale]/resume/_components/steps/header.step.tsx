@@ -10,7 +10,7 @@ interface HeaderStepProps {
 function HeaderStep({ resumeData, setResumeData }: HeaderStepProps) {
   return (
     <div className="rounded-md p-4">
-      <h2 className="text-xl font-semibold text-dark-blue dark:text-neutral-200">
+      <h2 className="text-dark-blue text-xl font-semibold dark:text-neutral-200">
         Header
       </h2>
       <Label htmlFor="header" className="mt-4">

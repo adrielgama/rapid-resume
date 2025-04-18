@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+
 import {
   Accordion,
   AccordionContent,
@@ -7,7 +8,7 @@ import {
 } from '../ui/accordion'
 
 function FAQSection() {
-  const t = useTranslations('FAQ')
+  const t = useTranslations('Home.FAQ')
 
   const faqItems = [
     {

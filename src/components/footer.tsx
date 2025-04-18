@@ -1,12 +1,14 @@
+import { useTranslations } from 'next-intl'
+
 import { Link } from '@/i18n/navigation'
+
 import { DialogPolicy } from './terms/dialog-policy'
 import PrivacyPolicy from './terms/privacy-policy'
 import TermsOfService from './terms/terms-of-service'
 import { Separator } from './ui/separator'
-import { useTranslations } from 'next-intl'
 
 function Footer() {
-  const t = useTranslations('Legal')
+  const t = useTranslations('Home.Legal')
   const year = new Date().getFullYear()
 
   return (

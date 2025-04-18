@@ -69,7 +69,7 @@ function LinksStep({ resumeData, setResumeData }: LinksStepProps) {
 
   return (
     <div className="rounded-md p-4">
-      <h2 className="text-xl font-semibold text-dark-blue dark:text-neutral-200">
+      <h2 className="text-dark-blue text-xl font-semibold dark:text-neutral-200">
         Links
       </h2>
       <Label htmlFor="header" className="mt-4">
@@ -94,7 +94,7 @@ function LinksStep({ resumeData, setResumeData }: LinksStepProps) {
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
-                      className="flex items-center space-x-2 space-y-1"
+                      className="flex items-center space-y-1 space-x-2"
                     >
                       <GripVertical className="h-4 w-4" />
                       <UrlInput

@@ -1,14 +1,14 @@
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
+import { Link } from '@/i18n/navigation'
 import BMCButton from '@public/images/bmc-button.svg'
 import BMCQRCode from '@public/images/bmc_qr.webp'
 
 import { Separator } from '../ui/separator'
-import { useTranslations } from 'next-intl'
-import { Link } from '@/i18n/navigation'
 
 function PricingSection() {
-  const t = useTranslations('Pricing')
+  const t = useTranslations('Home.Pricing')
 
   return (
     <section

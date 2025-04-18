@@ -1,3 +1,5 @@
+import { JSX } from 'react'
+
 import { cn } from '@/lib/utils'
 
 import { Button } from '../ui/button'
@@ -32,7 +34,7 @@ export function DialogPolicy({
         <Button
           variant="link"
           className={cn(
-            'h-0 cursor-pointer px-0 text-xs font-normal text-gray-600 hover:text-light-blue',
+            'hover:text-light-blue h-0 cursor-pointer px-0 text-xs font-normal text-gray-600',
             className
           )}
         >

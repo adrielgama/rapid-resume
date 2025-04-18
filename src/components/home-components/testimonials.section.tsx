@@ -1,8 +1,9 @@
 import { useTranslations } from 'next-intl'
+
 import { InfiniteMovingCards } from '../ui/infinite-moving-cards'
 
 function TestimonialsSection() {
-  const t = useTranslations('Testimonials')
+  const t = useTranslations('Home.Testimonials')
 
   const testimonials = [
     {

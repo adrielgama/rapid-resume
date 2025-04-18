@@ -7,7 +7,7 @@ export const Paragraph = ({
   children: React.ReactNode
   className?: string
 }) => (
-  <p className={cn('text-sm font-medium text-dark-blue', className)}>
+  <p className={cn('text-dark-blue text-sm font-medium', className)}>
     {children}
   </p>
 )

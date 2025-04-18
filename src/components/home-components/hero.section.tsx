@@ -1,10 +1,11 @@
+import { useTranslations } from 'next-intl'
+
 import { Link } from '@/i18n/navigation'
 
 import { Button } from '../ui/button'
-import { useTranslations } from 'next-intl'
 
 function HeroSection() {
-  const t = useTranslations('HeroSection')
+  const t = useTranslations('Home.HeroSection')
 
   return (
     <section className="flex flex-col items-center justify-center space-y-6">

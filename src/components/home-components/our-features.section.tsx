@@ -3,10 +3,10 @@ import React from 'react'
 
 import { DollarSign, Hammer, Languages, ShieldCheck } from 'lucide-react'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 import { Button } from '../ui/button'
 import { Card, CardDescription, CardHeader, CardTitle } from '../ui/card'
-import { useTranslations } from 'next-intl'
 
 // const features = [
 //   {
@@ -73,7 +73,7 @@ import { useTranslations } from 'next-intl'
 // )
 
 function OurFeatures() {
-  const t = useTranslations('OurFeatures')
+  const t = useTranslations('Home.OurFeatures')
 
   const features = [
     {

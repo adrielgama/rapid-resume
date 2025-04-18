@@ -36,7 +36,7 @@ export const ResumeItem = ({
     <div className="flex items-center gap-2">
       <Paragraph className="font-semibold">{institutionOrCompany}</Paragraph>
       <Separator orientation="vertical" className="h-3 bg-gray-300" />
-      <Paragraph className="font-normal italic text-gray-400">
+      <Paragraph className="font-normal text-gray-400 italic">
         {degreeOrLocation}
       </Paragraph>
     </div>

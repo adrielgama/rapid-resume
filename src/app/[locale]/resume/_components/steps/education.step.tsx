@@ -50,7 +50,7 @@ function EducationStep({ resumeData, setResumeData }: EducationStepProps) {
 
   return (
     <div className="rounded-md p-4">
-      <h2 className="text-xl font-semibold text-dark-blue dark:text-neutral-200">
+      <h2 className="text-dark-blue text-xl font-semibold dark:text-neutral-200">
         Education
       </h2>
       {resumeData.education.map((edu, idx) => (

@@ -1,16 +1,16 @@
 import { Linkedin, Mail, Phone } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 import BMCButton from '@public/images/bmc-button.svg'
 
 import Footer from '../footer'
 import Logo from '../logo'
 import { Separator } from '../ui/separator'
-import { useTranslations } from 'next-intl'
 
 function FooterSection() {
-  const t = useTranslations('Footer')
+  const t = useTranslations('Home.Footer')
 
   const sections = [
     { title: t('sections.features'), href: '#features' },

@@ -1,47 +1,17 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
-import React, { Suspense, useCallback, useMemo, useState, lazy } from 'react'
+import React, { Suspense, useState, lazy } from 'react'
 
 import Loader from '@/components/loader'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ResumeData } from '@/types/resume'
 
 import { dataProfile } from './_data/data'
 
-const HeaderStep = lazy(() => import('./_components/steps/header.step'))
-const LinksStep = lazy(() => import('./_components/steps/links.step'))
-const ProfileStep = lazy(() => import('./_components/steps/profile.step'))
-const ExperienceStep = lazy(() => import('./_components/steps/experience.step'))
-const EducationStep = lazy(() => import('./_components/steps/education.step'))
-const SkillStep = lazy(() => import('./_components/steps/skills.step'))
-const LanguageStep = lazy(() => import('./_components/steps/language.step'))
 const ResumePreview = lazy(() => import('./_components/resume-preview'))
 
 export default function ResumePage() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [resumeData, setResumeData] = useState<ResumeData>(
     dataProfile as ResumeData
-  )
-
-  const steps = useMemo(
-    () => [
-      { label: 'Header', component: HeaderStep },
-      { label: 'Links', component: LinksStep },
-      { label: 'Profile', component: ProfileStep },
-      { label: 'Experience', component: ExperienceStep },
-      { label: 'Education', component: EducationStep },
-      { label: 'Skills', component: SkillStep },
-      { label: 'Language', component: LanguageStep },
-    ],
-    []
-  )
-
-  const renderTabContent = useCallback(
-    (Component: React.ComponentType<any>) => (
-      <Suspense fallback={<Loader />}>
-        <Component resumeData={resumeData} setResumeData={setResumeData} />
-      </Suspense>
-    ),
-    [resumeData]
   )
 
   return (

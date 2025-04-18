@@ -98,14 +98,14 @@ export const InfiniteMovingCards = ({
             <blockquote>
               <div
                 aria-hidden="true"
-                className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
+                className="user-select-none pointer-events-none absolute -top-0.5 -left-0.5 -z-1 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
               ></div>
-              <span className="relative z-20 text-sm font-normal leading-[1.6] text-slate-800 dark:text-gray-100">
+              <span className="relative z-20 text-sm leading-[1.6] font-normal text-slate-800 dark:text-gray-100">
                 {item.testimonial}
               </span>
               <div className="relative z-20 mt-6 flex flex-row items-center">
                 <span className="flex flex-col gap-1">
-                  <span className="text-sm font-normal leading-[1.6] text-gray-400">
+                  <span className="text-sm leading-[1.6] font-normal text-gray-400">
                     {item.name}
                   </span>
                 </span>
