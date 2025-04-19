@@ -1,13 +1,11 @@
-'use client'
-import React, { useEffect } from 'react'
+// 'use client'
+import React from 'react'
 
-import { useAuth, useUser } from '@clerk/nextjs'
 import { FileText } from 'lucide-react'
-import { usePathname, useRouter } from 'next/navigation'
+import { redirect } from 'next/navigation'
 
-import Loader from '@/components/loader'
 import Logo from '@/components/logo'
-import { NavUser } from '@/components/navbar/nav-user'
+// import { NavUser } from '@/components/navbar/nav-user'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import {
   Sidebar,
@@ -19,27 +17,22 @@ import {
   SidebarMenuItem,
   SidebarProvider,
 } from '@/components/ui/sidebar'
+import { auth, signOut } from '@/lib/auth'
 
-type DashboardLayoutProps = {
+type ResumeLayoutProps = {
   children: React.ReactNode
 }
 
-export default function DashboardLayout({ children }: DashboardLayoutProps) {
-  const { isLoaded, userId, signOut } = useAuth()
-  const { user } = useUser()
-  const pathname = usePathname()
-  const router = useRouter()
+export default async function ResumeLayout({ children }: ResumeLayoutProps) {
+  const session = await auth()
 
-  const isActive = (href: string) => pathname === href
+  // const isActive = (href: string) => pathname === href
 
-  useEffect(() => {
-    if (isLoaded && !userId) {
-      router.push('/login')
-    }
-  }, [isLoaded, userId, router])
+  if (!session) redirect('/login')
 
-  if (!isLoaded || !userId) {
-    return <Loader />
+  async function handleSignOut() {
+    'use server'
+    await signOut()
   }
 
   return (
@@ -53,8 +46,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton
-                  onClick={() => router.push('/resume')}
-                  isActive={isActive('/resume')}
+                // onClick={() => console.log('/resume')}
+                // isActive={isActive('/resume')}
                 >
                   <FileText />
                   <span>Resume</span>
@@ -64,7 +57,17 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           </SidebarContent>
 
           <SidebarFooter>
-            <NavUser user={user} logout={signOut} />
+            {session.user?.email && (
+              <form action={handleSignOut}>
+                <button
+                  type="submit"
+                  className="cursor-pointer rounded-md border px-2 py-1"
+                >
+                  Logout
+                </button>
+              </form>
+            )}
+            {/* <NavUser user={user} logout={signOut} /> */}
           </SidebarFooter>
         </Sidebar>
         <ScrollArea className="h-full w-full">{children}</ScrollArea>
