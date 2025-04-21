@@ -1,25 +1,34 @@
+import { headers } from 'next/headers'
+import { getTranslations } from 'next-intl/server'
+
 import { LoginForm } from '@/components/auth/login-form'
 
-import type { Metadata } from 'next'
+export default async function LoginPage() {
+  const t = await getTranslations('Auth')
 
-export const metadata: Metadata = {
-  title: 'Login',
-  description: 'Login to your account',
-}
+  const headersList = (await headers()) as unknown as Headers
+  const rawUrl = headersList.get('x-url')
+  const url = new URL(rawUrl ?? '', 'http://localhost')
 
-export default function LoginPage() {
+  const error = url.searchParams.get('error')
+  const email = url.searchParams.get('email')
+
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
-      <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+      <div className="mx-auto flex w-full flex-col justify-center space-y-12 sm:w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
           <h1 className="text-2xl font-semibold tracking-tight">
-            Welcome back
+            {t('title')}
           </h1>
-          <p className="text-muted-foreground text-sm">
-            Enter your credentials to sign in to your account
-          </p>
+          <p className="text-muted-foreground text-sm">{t('description')}</p>
         </div>
-        <LoginForm />
+
+        {error === 'OAuthAccountNotLinked' && (
+          <div className="text-sm text-red-500">
+            {`${t('error.oauthAccountNotLinked')}`}
+          </div>
+        )}
+        <LoginForm defaultEmail={email ?? ''} />
       </div>
     </div>
   )

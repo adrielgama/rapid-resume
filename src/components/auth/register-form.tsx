@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-html-link-for-pages */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
@@ -13,24 +14,26 @@ import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { registerUser } from '@/lib/register-user'
 import { cn } from '@/lib/utils'
 
 import { Icons } from './icons'
 
-interface LoginFormProps extends React.HTMLAttributes<HTMLDivElement> {
+interface RegisterFormProps extends React.HTMLAttributes<HTMLDivElement> {
   defaultEmail?: string
 }
 
-export function LoginForm({
+export function RegisterForm({
   className,
   defaultEmail,
   ...props
-}: LoginFormProps) {
+}: RegisterFormProps) {
   const t = useTranslations('Auth')
   const router = useRouter()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [formData, setFormData] = useState({
+    name: '',
     email: defaultEmail ?? '',
     password: '',
   })
@@ -47,79 +50,41 @@ export function LoginForm({
     setIsLoading(true)
     setError(null)
 
-    // Client-side validation
-    if (!formData.email.includes('@') || !formData.email.includes('.')) {
-      setError(t('error.invalidInputEmail'))
-      toast.error(t('error.invalidInputEmail'))
-      setIsLoading(false)
-      return
-    }
-    if (formData.password.length < 8) {
-      setError(t('error.invalidInputPassword'))
-      toast.error(t('error.invalidInputPassword'))
-      setIsLoading(false)
-      return
-    }
-
     try {
-      const result = await signIn('credentials', {
+      const { name, email, password } = formData
+      const result = await registerUser({ name, email, password })
+
+      if (!result.success) {
+        if (Array.isArray(result.error)) {
+          const firstError = result.error[0]
+          toast.error(`${firstError.path.toUpperCase()}:`, {
+            description: firstError.message,
+          })
+          setError(`${firstError.path.toUpperCase()}: ${firstError.message}`)
+        } else {
+          setError(result.error || t('error.somethingWentWrong'))
+        }
+
+        setIsLoading(false)
+        return
+      }
+
+      const signInResult = await signIn('credentials', {
         email: formData.email,
         password: formData.password,
         redirect: false,
+        callbackUrl: '/resume',
       })
 
-      console.log('signIn result:', result)
-
-      if (result?.error) {
-        // Try to parse the error as a JSON object
-        let errorCode = result.error
-        let errorMessage = t('error.invalidCredentials') // Default message
-
-        try {
-          const parsedError = JSON.parse(result.error)
-          errorCode = parsedError.code
-          errorMessage = parsedError.message
-        } catch (e) {
-          console.log('Error is not a JSON string:', result.error)
-        }
-
-        // Handle specific error codes
-        if (errorCode.includes('_INVALID:')) {
-          const [field, message] = errorCode.split('_INVALID: ')
-          setError(t(`error.${field.toLowerCase()}Invalid`, { message }))
-          toast.error(t(`error.${field.toLowerCase()}Invalid`, { message }))
-        } else {
-          switch (errorCode) {
-            case 'USER_NOT_FOUND':
-              setError(t('error.userNotFound'))
-              toast.error(t('error.userNotFound'))
-              break
-            case 'INVALID_PASSWORD':
-              setError(t('error.invalidPassword'))
-              toast.error(t('error.invalidPassword'))
-              break
-            case 'DATABASE_ERROR':
-              setError(t('error.databaseError'))
-              toast.error(t('error.databaseError'))
-              break
-            case 'CredentialsSignin':
-              setError(t('error.invalidCredentials'))
-              toast.error(t('error.invalidCredentials'))
-              break
-            default:
-              setError(t('error.somethingWentWrong'))
-              toast.error(t('error.somethingWentWrong'))
-          }
-        }
+      if (signInResult?.error) {
+        setError(t('error.somethingWentWrong'))
         setIsLoading(false)
         return
       }
 
       router.push('/resume')
-    } catch (error) {
-      console.error('Login error:', error)
-      setError(t('error.somethingWentWrong'))
-      toast.error(t('error.somethingWentWrong'))
+    } catch (err: any) {
+      setError(err.message || t('error.somethingWentWrong'))
       setIsLoading(false)
     }
   }
@@ -133,7 +98,6 @@ export function LoginForm({
 
       if (result?.error === 'OAuthAccountNotLinked') {
         toast.error(t('error.oauthAccountNotLinked'))
-
         const emailParam = formData.email ? `&email=${formData.email}` : ''
         window.location.href = `/login?error=OAuthAccountNotLinked${emailParam}`
         return
@@ -155,6 +119,23 @@ export function LoginForm({
       <form onSubmit={onSubmit} autoComplete="off">
         <div className="grid gap-4">
           <div className="grid gap-2">
+            <Label htmlFor="name">{t('name')}</Label>
+            <Input
+              id="name"
+              name="name"
+              placeholder="John Doe"
+              type="text"
+              autoCapitalize="none"
+              autoComplete="given-name"
+              autoCorrect="off"
+              spellCheck="false"
+              disabled={isLoading}
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="grid gap-2">
             <Label htmlFor="email">{t('email')}</Label>
             <Input
               id="email"
@@ -173,21 +154,13 @@ export function LoginForm({
             />
           </div>
           <div className="grid gap-2">
-            <div className="flex items-center justify-between">
-              <Label htmlFor="password">{t('password')}</Label>
-              <a
-                href="/forgot-password"
-                className="text-primary text-xs font-medium underline-offset-4 hover:underline"
-              >
-                {t('forgotPassword')}
-              </a>
-            </div>
+            <Label htmlFor="password">{t('password')}</Label>
             <Input
               id="password"
               name="password"
               type="password"
               autoCapitalize="none"
-              autoComplete="current-password"
+              autoComplete="new-password"
               disabled={isLoading}
               value={formData.password}
               onChange={handleChange}
@@ -199,7 +172,7 @@ export function LoginForm({
             {isLoading && (
               <Icons.spinner className="mr-2 size-4 animate-spin" />
             )}
-            {t('login')}
+            {t('signup')}
           </Button>
         </div>
       </form>
@@ -252,12 +225,12 @@ export function LoginForm({
         </Button>
       </div>
       <div className="text-center text-sm">
-        {t('noAccount')}{' '}
+        {t('alreadyHaveAccount')}{' '}
         <a
-          href="/signup"
+          href="/login"
           className="text-primary font-medium underline-offset-4 hover:underline"
         >
-          {t('signup')}
+          {t('login')}
         </a>
       </div>
     </div>

@@ -6,6 +6,7 @@ import { redirect } from 'next/navigation'
 
 import Logo from '@/components/logo'
 // import { NavUser } from '@/components/navbar/nav-user'
+import { NavUser } from '@/components/navbar/nav-user'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import {
   Sidebar,
@@ -18,6 +19,7 @@ import {
   SidebarProvider,
 } from '@/components/ui/sidebar'
 import { auth, signOut } from '@/lib/auth'
+import AppUser from '@/types/user'
 
 type ResumeLayoutProps = {
   children: React.ReactNode
@@ -26,9 +28,9 @@ type ResumeLayoutProps = {
 export default async function ResumeLayout({ children }: ResumeLayoutProps) {
   const session = await auth()
 
-  // const isActive = (href: string) => pathname === href
-
   if (!session) redirect('/login')
+
+  const user = session.user as AppUser
 
   async function handleSignOut() {
     'use server'
@@ -57,17 +59,7 @@ export default async function ResumeLayout({ children }: ResumeLayoutProps) {
           </SidebarContent>
 
           <SidebarFooter>
-            {session.user?.email && (
-              <form action={handleSignOut}>
-                <button
-                  type="submit"
-                  className="cursor-pointer rounded-md border px-2 py-1"
-                >
-                  Logout
-                </button>
-              </form>
-            )}
-            {/* <NavUser user={user} logout={signOut} /> */}
+            <NavUser user={user} logout={handleSignOut} />
           </SidebarFooter>
         </Sidebar>
         <ScrollArea className="h-full w-full">{children}</ScrollArea>

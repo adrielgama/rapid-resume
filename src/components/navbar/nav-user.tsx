@@ -1,6 +1,5 @@
 'use client'
 
-import { useUser } from '@clerk/nextjs'
 import { LogOutIcon, Moon, MoreVerticalIcon, Sun } from 'lucide-react'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
@@ -19,14 +18,15 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar'
 import { useModeToggle } from '@/hooks/use-mode-toggle'
+import { getInitials } from '@/utils/get-initials'
 
-export function NavUser({
-  user,
-  logout,
-}: {
-  user: typeof useUser extends () => { user: infer U } ? U : never
-  logout: () => void
-}) {
+type User = {
+  email: string
+  name: string
+  image: string | null
+}
+
+export function NavUser({ user, logout }: { user: User; logout: () => void }) {
   const { isMobile } = useSidebar()
   const { toggleTheme, theme } = useModeToggle()
 
@@ -41,15 +41,18 @@ export function NavUser({
             >
               <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage
-                  src={user?.imageUrl}
-                  alt={user?.fullName ?? 'Avatar Image'}
+                  src={user.image ?? undefined}
+                  alt={user.name ?? 'Avatar Image'}
                 />
-                <AvatarFallback className="rounded-lg">{`${user?.firstName?.[0]}${user?.lastName?.[0]}`}</AvatarFallback>
+                <AvatarFallback className="rounded-lg">
+                  {/* {`${user?.name?.[0]}${user?.name.split(' ')[1]?.[0]}`} */}
+                  {getInitials(user.name)}
+                </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{`${user?.firstName} ${user?.lastName}`}</span>
+                <span className="truncate font-medium">{user?.name}</span>
                 <span className="text-muted-foreground truncate text-xs">
-                  {user?.emailAddresses[0].emailAddress}
+                  {user.email}
                 </span>
               </div>
               <MoreVerticalIcon className="ml-auto size-4" />
@@ -65,19 +68,17 @@ export function NavUser({
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
                   <AvatarImage
-                    src={user?.imageUrl}
-                    alt={user?.fullName ?? 'Avatar Image'}
+                    src={user.image ?? undefined}
+                    alt={user.name ?? 'Avatar Image'}
                   />
                   <AvatarFallback className="rounded-lg">
-                    {`${user?.firstName?.[0]}${user?.lastName?.[0]}`}
+                    {`${user?.name?.[0]}${user?.name.split(' ')[1]?.[0]}`}
                   </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">
-                    {`${user?.firstName} ${user?.lastName}`}
-                  </span>
+                  <span className="truncate font-medium">{user.name}</span>
                   <span className="text-muted-foreground truncate text-xs">
-                    {user?.emailAddresses[0].emailAddress}
+                    {user.email}
                   </span>
                 </div>
               </div>

@@ -11,6 +11,7 @@ export async function handleAuth() {
     })
   }
 
+  // AJUSTAR TODOS OS CALLBACKS PARA GOOGLE LINKEDIN GITHUB E CREDENCIAIS
   await signIn('google', {
     redirectTo: '/resume',
   })

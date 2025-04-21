@@ -1,3 +1,4 @@
+import { NextRequest } from 'next/server'
 import createIntlMiddleware from 'next-intl/middleware'
 
 const intlMiddleware = createIntlMiddleware({
@@ -5,7 +6,13 @@ const intlMiddleware = createIntlMiddleware({
   defaultLocale: 'pt',
 })
 
-export default intlMiddleware
+export function middleware(req: NextRequest) {
+  const response = intlMiddleware(req)
+
+  response.headers.set('x-url', req.url)
+
+  return response
+}
 
 export const config = {
   matcher: ['/((?!api/auth|_next|.*\\..*).*)'],

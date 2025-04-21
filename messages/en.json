@@ -1,4 +1,30 @@
 {
+  "Auth": {
+    "title": "Welcome back",
+    "titleSignup": "Create an account",
+    "description": "Enter your credentials to sign in to your account",
+    "name": "Full name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "forgotPassword": "Forgot password?",
+    "login": "Sign in",
+    "signup": "Create an account",
+    "noAccount": "Don't have an account?",
+    "alreadyHaveAccount": "Already have an account?",
+    "or": "or continue with",
+    "error": {
+      "userNotFound": "User not found",
+      "invalidPassword": "Invalid password",
+      "invalidInputPassword": "The password must have at least 8 characters",
+      "databaseError": "Database error",
+      "invalidCredentials": "Invalid credentials",
+      "oauthAccountNotLinked": "This email is already linked to an account created with another provider. Use the same login used before.",
+      "somethingWentWrong": "Something went wrong. Try again.",
+      "passwordsDoNotMatch": "Passwords do not match",
+      "emailInUse": "This email is already in use"
+    }
+  },
   "Home": {
     "Header": {
       "features": "Our features",
