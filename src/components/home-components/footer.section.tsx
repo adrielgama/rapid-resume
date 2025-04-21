@@ -39,7 +39,7 @@ function FooterSection() {
 
   return (
     <section className="w-full bg-zinc-100 dark:bg-zinc-900">
-      <div className="container mx-auto grid max-w-5xl grid-cols-1 gap-8 py-16 md:grid-cols-4 lg:py-24">
+      <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-8 py-16 md:grid-cols-4 lg:py-24">
         <div className="col-span-2 space-y-4">
           <Logo className="text-lg" />
           <p className="mt-4 max-w-sm text-xs text-gray-400">

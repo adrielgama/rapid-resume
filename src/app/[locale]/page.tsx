@@ -16,7 +16,7 @@ export default function Home() {
     <>
       <main className="dark:bg-dark-blue flex min-h-screen flex-col items-center bg-zinc-50">
         <Header />
-        <div className="container h-full w-full max-w-5xl space-y-4 py-16">
+        <div className="container h-full w-full max-w-7xl space-y-4 py-16">
           <HeroSection />
           <StatisticsSection />
           <OurFeaturesSection />

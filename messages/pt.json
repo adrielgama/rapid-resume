@@ -53,10 +53,43 @@
       }
     },
     "Pricing": {
-      "title": "Preços",
-      "description": "Nosso serviço é totalmente <strong>gratuito</strong> para usar. Se achar útil, você pode nos apoiar comprando um café para ajudar a manter o projeto funcionando!",
-      "buttonAlt": "Compre um café para mim - Botão",
-      "qrAlt": "Compre um café para mim - Código QR"
+      "title": "Planos e Preços",
+      "description": "Escolha o plano ideal para destacar seu currículo e conquistar sua próxima oportunidade. Nossos planos oferecem <strong>flexibilidade</strong> e <strong>recursos exclusivos</strong> para recrutadores e análises automatizadas.",
+      "mostPopular": "Mais Escolhido",
+      "disclaimer": "Todos os planos utilizam o mesmo modelo profissional e compatível com análise automática por IA.",
+      "plans": {
+        "free": {
+          "name": "Grátis",
+          "duration": "",
+          "description": "Perfeito para começar e testar a plataforma gratuitamente.",
+          "cta": "Começar Grátis"
+        },
+        "monthly": {
+          "name": "Mensal",
+          "duration": "/mês",
+          "description": "Ideal para quem busca recursos premium e flexibilidade.",
+          "cta": "Assinar Agora"
+        },
+        "annual": {
+          "name": "Anual",
+          "duration": "/ano",
+          "description": "Economize com o plano anual e acesse todos os recursos premium.",
+          "cta": "Assinar Agora"
+        }
+      },
+      "features": {
+        "freePlanIncluded": "Todos os benefícios do plano Grátis, com bônus de:",
+        "onlineResume": "Currículo online acessível em qualquer dispositivo",
+        "uniqueTemplate": "Modelo único otimizado para bots e IAs de recrutamento",
+        "pdfDownload": "Download do currículo em PDF",
+        "realTimeUpdates": "Atualizações em tempo real no seu currículo",
+        "recruiterVisibility": "Maior visibilidade para recrutadores",
+        "crossPlatform": "Compatibilidade com todas as plataformas",
+        "englishTranslation": "Tradução automática do currículo para o inglês",
+        "dualLanguageDownload": "Download do currículo em português e inglês",
+        "customUrl": "URL personalizada com seu perfil",
+        "annualDiscount": "Desconto de 25% no plano anual"
+      }
     },
     "Testimonials": {
       "title": "Depoimentos",

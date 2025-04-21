@@ -12,7 +12,7 @@ function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="container grid max-w-5xl grid-cols-1 place-content-center py-4 text-center lg:grid-cols-2 lg:text-start">
+    <footer className="container grid max-w-7xl grid-cols-1 place-content-center py-4 text-center lg:grid-cols-2 lg:text-start">
       <div className="text-xs text-gray-400">
         <div className="my-2 flex justify-center gap-4 py-2 lg:justify-start">
           <DialogPolicy

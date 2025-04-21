@@ -54,9 +54,42 @@
     },
     "Pricing": {
       "title": "Pricing",
-      "description": "Our service is completely <strong>free</strong> to use. If you find it helpful, you can support us by buying a coffee to help keep the project running!",
-      "buttonAlt": "Buy me a coffee - Button",
-      "qrAlt": "Buy me a coffee - QR Code"
+      "description": "Choose the ideal plan to highlight your resume and land your next opportunity. Our plans offer <strong>flexibility</strong> and <strong>exclusive features</strong> for recruiters and automated analysis.",
+      "mostPopular": "Most Popular",
+      "disclaimer": "All plans use the same professional template compatible with AI automated analysis.",
+      "plans": {
+        "free": {
+          "name": "Free",
+          "duration": "",
+          "description": "Perfect for getting started and testing the platform.",
+          "cta": "Get Started Free"
+        },
+        "monthly": {
+          "name": "Monthly",
+          "duration": "/month",
+          "description": "Ideal for getting premium features and flexibility.",
+          "cta": "Subscribe Now"
+        },
+        "annual": {
+          "name": "Annual",
+          "duration": "/year",
+          "description": "Save with the annual plan and access all premium features.",
+          "cta": "Subscribe Now"
+        }
+      },
+      "features": {
+        "freePlanIncluded": "All benefits of the free plan, with a bonus of:",
+        "onlineResume": "Online resume accessible on any device",
+        "uniqueTemplate": "Unique template optimized for recruitment bots and AIs",
+        "pdfDownload": "Downloadable PDF",
+        "realTimeUpdates": "Real-time updates to your resume",
+        "recruiterVisibility": "Greater visibility for recruiters",
+        "crossPlatform": "Compatibility with all platforms",
+        "englishTranslation": "Automatic translation of the resume to English",
+        "dualLanguageDownload": "Download the resume in Portuguese and English",
+        "customUrl": "Custom URL with your profile",
+        "annualDiscount": "Save 25% with the annual plan"
+      }
     },
     "Testimonials": {
       "title": "Testimonials",
