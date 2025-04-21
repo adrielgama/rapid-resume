@@ -1,28 +1,12 @@
 {
   "Auth": {
-    "title": "Bem-vindo de volta",
-    "titleSignup": "Crie sua conta",
-    "description": "Insira suas credenciais para entrar em sua conta",
-    "name": "Nome completo",
-    "email": "E-mail",
-    "password": "Senha",
-    "confirmPassword": "Confirmar senha",
-    "forgotPassword": "Esqueceu sua senha?",
-    "login": "Entrar",
-    "signup": "Criar uma conta",
-    "noAccount": "Não tem uma conta?",
-    "alreadyHaveAccount": "Já tem uma conta?",
-    "or": "ou continue com",
+    "title": "Bem-vindo!",
+    "description": "Entre com seu provedor favorito",
+    "signIn": "Entrar com",
     "error": {
-      "userNotFound": "Usuário não encontrado",
-      "invalidPassword": "Senha inválida",
-      "invalidInputPassword": "A senha deve ter pelo menos 8 caracteres",
       "databaseError": "Erro ao conectar ao banco de dados",
-      "invalidCredentials": "Credenciais inválidas",
       "oauthAccountNotLinked": "Este e-mail já está vinculado a uma conta criada com outro provedor. Use o mesmo login utilizado anteriormente.",
-      "somethingWentWrong": "Ocorreu um erro. Tente novamente.",
-      "passwordsDoNotMatch": "As senhas não coincidem",
-      "emailInUse": "Este e-mail já está em uso"
+      "somethingWentWrong": "Ocorreu um erro. Tente novamente."
     }
   },
   "Home": {

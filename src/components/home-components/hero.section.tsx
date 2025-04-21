@@ -15,7 +15,7 @@ function HeroSection() {
       <p className="text-dark-gray text-sm lg:text-base">{t('description')}</p>
 
       <Button size="lg" asChild>
-        <Link href="/signup">{t('cta')}</Link>
+        <Link href="/login">{t('cta')}</Link>
       </Button>
     </section>
   )

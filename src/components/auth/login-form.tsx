@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 
@@ -11,131 +10,26 @@ import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { cn } from '@/lib/utils'
 
 import { Icons } from './icons'
 
-interface LoginFormProps extends React.HTMLAttributes<HTMLDivElement> {
-  defaultEmail?: string
-}
+interface LoginFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export function LoginForm({
-  className,
-  defaultEmail,
-  ...props
-}: LoginFormProps) {
+export function LoginForm({ className, ...props }: LoginFormProps) {
   const t = useTranslations('Auth')
   const router = useRouter()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
-  const [formData, setFormData] = useState({
-    email: defaultEmail ?? '',
-    password: '',
-  })
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
-  }
-
-  async function onSubmit(event: React.FormEvent) {
-    event.preventDefault()
-    setIsLoading(true)
-    setError(null)
-
-    // Client-side validation
-    if (!formData.email.includes('@') || !formData.email.includes('.')) {
-      setError(t('error.invalidInputEmail'))
-      toast.error(t('error.invalidInputEmail'))
-      setIsLoading(false)
-      return
-    }
-    if (formData.password.length < 8) {
-      setError(t('error.invalidInputPassword'))
-      toast.error(t('error.invalidInputPassword'))
-      setIsLoading(false)
-      return
-    }
-
-    try {
-      const result = await signIn('credentials', {
-        email: formData.email,
-        password: formData.password,
-        redirect: false,
-      })
-
-      console.log('signIn result:', result)
-
-      if (result?.error) {
-        // Try to parse the error as a JSON object
-        let errorCode = result.error
-        let errorMessage = t('error.invalidCredentials') // Default message
-
-        try {
-          const parsedError = JSON.parse(result.error)
-          errorCode = parsedError.code
-          errorMessage = parsedError.message
-        } catch (e) {
-          console.log('Error is not a JSON string:', result.error)
-        }
-
-        // Handle specific error codes
-        if (errorCode.includes('_INVALID:')) {
-          const [field, message] = errorCode.split('_INVALID: ')
-          setError(t(`error.${field.toLowerCase()}Invalid`, { message }))
-          toast.error(t(`error.${field.toLowerCase()}Invalid`, { message }))
-        } else {
-          switch (errorCode) {
-            case 'USER_NOT_FOUND':
-              setError(t('error.userNotFound'))
-              toast.error(t('error.userNotFound'))
-              break
-            case 'INVALID_PASSWORD':
-              setError(t('error.invalidPassword'))
-              toast.error(t('error.invalidPassword'))
-              break
-            case 'DATABASE_ERROR':
-              setError(t('error.databaseError'))
-              toast.error(t('error.databaseError'))
-              break
-            case 'CredentialsSignin':
-              setError(t('error.invalidCredentials'))
-              toast.error(t('error.invalidCredentials'))
-              break
-            default:
-              setError(t('error.somethingWentWrong'))
-              toast.error(t('error.somethingWentWrong'))
-          }
-        }
-        setIsLoading(false)
-        return
-      }
-
-      router.push('/resume')
-    } catch (error) {
-      console.error('Login error:', error)
-      setError(t('error.somethingWentWrong'))
-      toast.error(t('error.somethingWentWrong'))
-      setIsLoading(false)
-    }
-  }
 
   const handleSocialLogin = async (provider: string) => {
     setIsLoading(true)
     try {
-      const result = await signIn(provider, {
-        callbackUrl: '/resume',
-      })
+      const result = await signIn(provider, { callbackUrl: '/resume' })
 
       if (result?.error === 'OAuthAccountNotLinked') {
         toast.error(t('error.oauthAccountNotLinked'))
-
-        const emailParam = formData.email ? `&email=${formData.email}` : ''
-        window.location.href = `/login?error=OAuthAccountNotLinked${emailParam}`
+        window.location.href = `/login?error=OAuthAccountNotLinked`
         return
       }
 
@@ -143,8 +37,8 @@ export function LoginForm({
         router.push(result.url)
       }
     } catch (error) {
-      toast.error(t('error.somethingWentWrong'))
       setError(t('error.somethingWentWrong'))
+      toast.error(t('error.somethingWentWrong'))
     } finally {
       setIsLoading(false)
     }
@@ -152,113 +46,54 @@ export function LoginForm({
 
   return (
     <div className={cn('grid gap-6', className)} {...props}>
-      <form onSubmit={onSubmit} autoComplete="off">
-        <div className="grid gap-4">
-          <div className="grid gap-2">
-            <Label htmlFor="email">{t('email')}</Label>
-            <Input
-              id="email"
-              name="email"
-              placeholder="name@example.com"
-              type="email"
-              autoCapitalize="none"
-              autoComplete="new-email"
-              inputMode="email"
-              autoCorrect="off"
-              spellCheck="false"
-              disabled={isLoading}
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="grid gap-2">
-            <div className="flex items-center justify-between">
-              <Label htmlFor="password">{t('password')}</Label>
-              <a
-                href="/forgot-password"
-                className="text-primary text-xs font-medium underline-offset-4 hover:underline"
-              >
-                {t('forgotPassword')}
-              </a>
-            </div>
-            <Input
-              id="password"
-              name="password"
-              type="password"
-              autoCapitalize="none"
-              autoComplete="current-password"
-              disabled={isLoading}
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          {error && <div className="text-sm text-red-500">{error}</div>}
-          <Button disabled={isLoading}>
-            {isLoading && (
-              <Icons.spinner className="mr-2 size-4 animate-spin" />
+      <div className="grid gap-4">
+        <div className="grid grid-cols-1 gap-4">
+          <Button
+            variant="outline"
+            type="button"
+            disabled={isLoading}
+            onClick={() => handleSocialLogin('github')}
+            className="flex items-center justify-center gap-2"
+          >
+            {isLoading ? (
+              <Icons.spinner className="h-4 w-4 animate-spin" />
+            ) : (
+              <Icons.gitHub className="h-4 w-4" />
             )}
-            {t('login')}
+            <span>{t('signIn')} GitHub</span>
+          </Button>
+          <Button
+            variant="outline"
+            type="button"
+            disabled={isLoading}
+            onClick={() => handleSocialLogin('google')}
+            className="flex items-center justify-center gap-2"
+          >
+            {isLoading ? (
+              <Icons.spinner className="h-4 w-4 animate-spin" />
+            ) : (
+              <Icons.google className="h-4 w-4" />
+            )}
+            <span>{t('signIn')} Google</span>
+          </Button>
+          <Button
+            variant="outline"
+            type="button"
+            disabled={isLoading}
+            onClick={() => handleSocialLogin('linkedin')}
+            className="flex items-center justify-center gap-2"
+          >
+            {isLoading ? (
+              <Icons.spinner className="h-4 w-4 animate-spin" />
+            ) : (
+              <Icons.linkedin className="h-4 w-4" />
+            )}
+            <span>{t('signIn')} LinkedIn</span>
           </Button>
         </div>
-      </form>
-      <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <span className="w-full border-t" />
-        </div>
-        <div className="relative flex justify-center text-xs uppercase">
-          <span className="text-muted-foreground bg-[#121212] px-2">
-            {t('or')}
-          </span>
-        </div>
-      </div>
-      <div className="grid grid-cols-3 gap-3">
-        <Button
-          variant="outline"
-          type="button"
-          disabled={isLoading}
-          onClick={() => handleSocialLogin('github')}
-        >
-          {isLoading ? (
-            <Icons.spinner className="size-4 animate-spin" />
-          ) : (
-            <Icons.gitHub className="size-4" />
-          )}
-        </Button>
-        <Button
-          variant="outline"
-          type="button"
-          disabled={isLoading}
-          onClick={() => handleSocialLogin('google')}
-        >
-          {isLoading ? (
-            <Icons.spinner className="size-4 animate-spin" />
-          ) : (
-            <Icons.google className="size-4" />
-          )}
-        </Button>
-        <Button
-          variant="outline"
-          type="button"
-          disabled={isLoading}
-          onClick={() => handleSocialLogin('linkedin')}
-        >
-          {isLoading ? (
-            <Icons.spinner className="size-4 animate-spin" />
-          ) : (
-            <Icons.linkedin className="size-4" />
-          )}
-        </Button>
-      </div>
-      <div className="text-center text-sm">
-        {t('noAccount')}{' '}
-        <a
-          href="/signup"
-          className="text-primary font-medium underline-offset-4 hover:underline"
-        >
-          {t('signup')}
-        </a>
+        {error && (
+          <div className="text-center text-sm text-red-500">{error}</div>
+        )}
       </div>
     </div>
   )

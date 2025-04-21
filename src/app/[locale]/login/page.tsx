@@ -11,7 +11,6 @@ export default async function LoginPage() {
   const url = new URL(rawUrl ?? '', 'http://localhost')
 
   const error = url.searchParams.get('error')
-  const email = url.searchParams.get('email')
 
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
@@ -28,7 +27,7 @@ export default async function LoginPage() {
             {`${t('error.oauthAccountNotLinked')}`}
           </div>
         )}
-        <LoginForm defaultEmail={email ?? ''} />
+        <LoginForm />
       </div>
     </div>
   )

@@ -57,7 +57,7 @@ function Header() {
             </Link>
           </Button>
           <Button aria-label="Get started" asChild>
-            <Link locale={locale} href="/signup">
+            <Link locale={locale} href="/login">
               {t('getStarted')}
             </Link>
           </Button>
@@ -122,7 +122,7 @@ function Header() {
               </Link>
             </Button>
             <Button aria-label="Get started" asChild>
-              <Link locale={locale} href="/signup">
+              <Link locale={locale} href="/login">
                 {t('getStarted')}
               </Link>
             </Button>

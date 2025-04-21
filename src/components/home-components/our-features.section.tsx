@@ -118,7 +118,7 @@ function OurFeatures() {
           className="hover:border-light-blue dark:hover:border-light-blue max-w-48 bg-transparent dark:bg-transparent dark:hover:bg-transparent"
           asChild
         >
-          <Link href="/signup">{t('cta')}</Link>
+          <Link href="/login">{t('cta')}</Link>
         </Button>
       </div>
       <div className="grid grid-cols-2 gap-2">
