@@ -7,29 +7,27 @@ export async function getOrCreateCustomer(userId: string, userEmail: string) {
     const userRef = db.collection('users').doc(userId)
     const userDoc = await userRef.get()
 
-    if (!userDoc.exists) {
-      throw new Error('User not found')
-    }
-
-    const stripeCustomerId = userDoc.data()?.stripeCustomerId
+    const userData = userDoc.exists ? userDoc.data() : {}
+    const stripeCustomerId = userData?.stripeCustomerId
 
     if (stripeCustomerId) {
       return stripeCustomerId
     }
 
-    const userName = userDoc.data()?.name
-
     const stripeCustomer = await stripe.customers.create({
       email: userEmail,
-      ...(userName && { name: userName }),
+      ...(userData?.name && { name: userData.name }),
       metadata: {
         userId,
       },
     })
 
-    await userRef.update({
-      stripeCustomerId: stripeCustomer.id,
-    })
+    await userRef.set(
+      {
+        stripeCustomerId: stripeCustomer.id,
+      },
+      { merge: true }
+    )
 
     return stripeCustomer.id
   } catch (error) {

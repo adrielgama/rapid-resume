@@ -5,7 +5,7 @@ import stripe from '@/lib/stripe'
 import { getOrCreateCustomer } from '@/server/stripe/get-customer-id'
 
 export async function POST(req: NextRequest) {
-  const { testeId, planType } = await req.json()
+  const { planType } = await req.json()
   const prices = {
     monthly: process.env.STRIPE_SUBSCRIPTION_MONTHLY_PRICE_ID,
     annual: process.env.STRIPE_SUBSCRIPTION_ANNUAL_PRICE_ID,
@@ -28,7 +28,6 @@ export async function POST(req: NextRequest) {
   const customerId = await getOrCreateCustomer(userId, userEmail)
 
   const metadata = {
-    testeId,
     price,
     planType,
     userId,
@@ -39,8 +38,8 @@ export async function POST(req: NextRequest) {
       line_items: [{ price: price, quantity: 1 }],
       mode: 'subscription',
       payment_method_types: ['card'],
-      success_url: `${req.headers.get('origin')}/success`,
-      cancel_url: `${req.headers.get('origin')}/`,
+      success_url: `${req.headers.get('origin')}/resume/success`,
+      cancel_url: `${req.headers.get('origin')}/resume`,
       metadata,
       customer: customerId,
     })

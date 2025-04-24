@@ -15,10 +15,6 @@ import {
 
 import { main, container, box, hr, paragraph, anchor, footer } from './styles'
 
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : 'http://localhost:3000'
-
 export const PremiumCanceledEmail = () => {
   return (
     <Html>
@@ -28,7 +24,7 @@ export const PremiumCanceledEmail = () => {
         <Container style={container}>
           <Section style={box}>
             <Img
-              src={`${baseUrl}/images/banner_readme.webp`}
+              src="https://rapid-resume.adrielgama.dev/images/banner_readme.webp"
               width="300"
               height="72"
               alt="Rapid Resume"

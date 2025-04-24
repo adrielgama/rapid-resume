@@ -15,12 +15,8 @@ export default function ResumePage() {
   )
 
   return (
-    <div className="z-0 grid min-h-screen w-full grid-cols-1 gap-2 rounded-tl-2xl border border-neutral-200 bg-white p-2 lg:grid-cols-2 lg:p-6 dark:border-neutral-700 dark:bg-neutral-900">
-      <div className="col-span-1">
-        <Suspense fallback={<Loader />}>
-          <ResumePreview resumeData={resumeData} />
-        </Suspense>
-      </div>
-    </div>
+    <Suspense fallback={<Loader />}>
+      <ResumePreview resumeData={resumeData} />
+    </Suspense>
   )
 }

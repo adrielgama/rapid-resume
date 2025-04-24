@@ -17,7 +17,7 @@ export function useStripe() {
   }, [])
 
   async function createSubscriptionStripeCheckout(checkoutData: {
-    testId: string
+    userId: string
     planType: 'monthly' | 'annual'
   }) {
     if (!stripe) return

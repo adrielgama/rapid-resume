@@ -5,12 +5,13 @@ import Stripe from 'stripe'
 import PremiumWelcomeEmail from '@/components/resend/welcome'
 import { db } from '@/lib/firebase'
 import resend from '@/lib/resend'
+import { formatDate } from '@/utils/format-date'
 
 export async function handleStripeSubscription(
   event: Stripe.CheckoutSessionCompletedEvent
 ) {
   if (event.data.object.payment_status === 'paid') {
-    console.log('Paramento realizado com sucesso! Liberar acesso')
+    console.log('Pagamento realizado com sucesso! Liberar acesso')
 
     const metadata = event.data.object.metadata
     const userEmail =
@@ -27,12 +28,15 @@ export async function handleStripeSubscription(
     await db
       .collection('users')
       .doc(userId)
-      .update({
-        stripeSubscriptionId: event.data.object.subscription,
-        subscriptionStatus: 'active',
-        subscriptionPlan: metadata.planType,
-        subscriptionStartDate: new Date(event.created * 1000).toISOString(),
-      })
+      .set(
+        {
+          stripeSubscriptionId: event.data.object.subscription,
+          subscriptionStatus: 'active',
+          subscriptionPlan: metadata.planType,
+          subscriptionStartDate: formatDate(event.data.object.created),
+        },
+        { merge: true }
+      )
 
     const { data, error } = await resend.emails.send({
       from: 'Rapid Resume <me@adrielgama.dev>',

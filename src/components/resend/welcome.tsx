@@ -29,10 +29,6 @@ interface PremiumWelcomeEmailProps {
   name?: string
 }
 
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : 'http://localhost:3000'
-
 export const PremiumWelcomeEmail = ({ name }: PremiumWelcomeEmailProps) => {
   return (
     <Html>
@@ -42,7 +38,7 @@ export const PremiumWelcomeEmail = ({ name }: PremiumWelcomeEmailProps) => {
         <Container style={container}>
           <Section style={box}>
             <Img
-              src={`${baseUrl}/images/banner_readme.webp`}
+              src="https://rapid-resume.adrielgama.dev/images/banner_readme.webp"
               width="300"
               height="72"
               alt="Rapid Resume"
@@ -66,7 +62,10 @@ export const PremiumWelcomeEmail = ({ name }: PremiumWelcomeEmailProps) => {
               elegante e um layout profissional.
             </Text>
 
-            <Button style={button} href="https://rapid-resume.adrielgama.dev">
+            <Button
+              style={button}
+              href="https://rapid-resume.adrielgama.dev/resume"
+            >
               {' '}
               Acessar o Rapid Resume{' '}
             </Button>

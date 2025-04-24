@@ -17,6 +17,7 @@ import {
   SidebarTrigger,
 } from '@/components/ui/sidebar'
 import { auth, signOut } from '@/lib/auth'
+import { db } from '@/lib/firebase'
 
 type ResumeLayoutProps = {
   children: React.ReactNode
@@ -27,8 +28,13 @@ export default async function ResumeLayout({ children }: ResumeLayoutProps) {
 
   if (!session) redirect('/login')
 
-  const user = session.user as User & { subscriptionStatus: string | null }
-  const subscriptionStatus = user.subscriptionStatus || null
+  const user = session.user as User
+  const userId = user.id
+
+  if (!userId) redirect('/login')
+
+  const userDoc = await db.collection('users').doc(userId).get()
+  const subscriptionStatus = userDoc.data()?.subscriptionStatus || null
 
   async function handleSignOut() {
     'use server'
@@ -36,7 +42,7 @@ export default async function ResumeLayout({ children }: ResumeLayoutProps) {
   }
 
   return (
-    <div className="flex h-screen flex-col bg-neutral-100 md:flex-row dark:bg-neutral-800">
+    <div className="flex h-screen flex-col overflow-hidden bg-neutral-100 md:flex-row dark:bg-neutral-800">
       <SidebarProvider>
         <div className="fixed top-4 left-1 !z-50 md:hidden">
           <SidebarTrigger />
@@ -49,15 +55,17 @@ export default async function ResumeLayout({ children }: ResumeLayoutProps) {
           <NavContent status={subscriptionStatus} />
 
           <SidebarFooter>
-            <PremiumFeatures status={subscriptionStatus} />
+            <PremiumFeatures userId={userId} status={subscriptionStatus} />
             <SidebarSeparator className="my-4" />
             <NavUser user={user} logout={handleSignOut} />
             <HelpAndSupport />
           </SidebarFooter>
         </Sidebar>
-        <ScrollArea className="ml-8 h-full w-full md:ml-0">
-          {children}
-        </ScrollArea>
+        <div className="w-full rounded-tl-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900">
+          <div className="container mx-auto h-full w-full py-4">
+            <ScrollArea className="w-full md:ml-0">{children}</ScrollArea>
+          </div>
+        </div>
       </SidebarProvider>
     </div>
   )
