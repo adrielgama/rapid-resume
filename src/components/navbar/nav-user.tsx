@@ -1,6 +1,7 @@
 'use client'
 
 import { LogOutIcon, Moon, MoreVerticalIcon, Sun } from 'lucide-react'
+import { User } from 'next-auth'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
@@ -20,12 +21,6 @@ import {
 import { useModeToggle } from '@/hooks/use-mode-toggle'
 import { getInitials } from '@/utils/get-initials'
 
-type User = {
-  email: string
-  name: string
-  image: string | null
-}
-
 export function NavUser({ user, logout }: { user: User; logout: () => void }) {
   const { isMobile } = useSidebar()
   const { toggleTheme, theme } = useModeToggle()
@@ -37,7 +32,7 @@ export function NavUser({ user, logout }: { user: User; logout: () => void }) {
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground cursor-pointer"
             >
               <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage
@@ -45,8 +40,7 @@ export function NavUser({ user, logout }: { user: User; logout: () => void }) {
                   alt={user.name ?? 'Avatar Image'}
                 />
                 <AvatarFallback className="rounded-lg">
-                  {/* {`${user?.name?.[0]}${user?.name.split(' ')[1]?.[0]}`} */}
-                  {getInitials(user.name)}
+                  {getInitials(user.name ?? 'RR')}
                 </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
@@ -72,7 +66,7 @@ export function NavUser({ user, logout }: { user: User; logout: () => void }) {
                     alt={user.name ?? 'Avatar Image'}
                   />
                   <AvatarFallback className="rounded-lg">
-                    {`${user?.name?.[0]}${user?.name.split(' ')[1]?.[0]}`}
+                    {`${user?.name?.[0]}${user?.name?.split(' ')[1]?.[0]}`}
                   </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">

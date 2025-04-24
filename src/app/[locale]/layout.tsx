@@ -2,9 +2,10 @@ import { Inter } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider, hasLocale } from 'next-intl'
 
-import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
 import { routing } from '@/i18n/routing'
+import { ProgressProviderWrapper } from '@/providers/progress'
+import { ThemeProvider } from '@/providers/theme'
 
 import type { Metadata } from 'next'
 
@@ -33,17 +34,19 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className={inter.className} data-theme="light">
-        <NextIntlClientProvider>
-          <Toaster richColors />
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </NextIntlClientProvider>
+        <ProgressProviderWrapper>
+          <NextIntlClientProvider>
+            <Toaster richColors />
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+            </ThemeProvider>
+          </NextIntlClientProvider>
+        </ProgressProviderWrapper>
       </body>
     </html>
   )

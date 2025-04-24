@@ -32,7 +32,7 @@ function PricingSection() {
     },
     {
       name: t('plans.monthly.name'),
-      price: 10,
+      price: 9.9,
       duration: t('plans.monthly.duration'),
       description: t('plans.monthly.description'),
       features: [
@@ -52,7 +52,7 @@ function PricingSection() {
     },
     {
       name: t('plans.annual.name'),
-      price: 90,
+      price: 69.9,
       duration: t('plans.annual.duration'),
       description: t('plans.annual.description'),
       features: [

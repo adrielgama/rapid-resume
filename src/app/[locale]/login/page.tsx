@@ -1,9 +1,17 @@
 import { headers } from 'next/headers'
+import { redirect } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 
 import { LoginForm } from '@/components/auth/login-form'
+import { auth } from '@/lib/auth'
 
 export default async function LoginPage() {
+  const session = await auth()
+
+  if (session?.user) {
+    return redirect('/resume')
+  }
+
   const t = await getTranslations('Auth')
 
   const headersList = (await headers()) as unknown as Headers

@@ -1,25 +1,21 @@
-// 'use client'
 import React from 'react'
 
-import { FileText } from 'lucide-react'
 import { redirect } from 'next/navigation'
+import { User } from 'next-auth'
 
 import Logo from '@/components/logo'
-// import { NavUser } from '@/components/navbar/nav-user'
+import { HelpAndSupport, PremiumFeatures } from '@/components/navbar/nav-bottom'
+import { NavContent } from '@/components/navbar/nav-content'
 import { NavUser } from '@/components/navbar/nav-user'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import {
   Sidebar,
-  SidebarContent,
   SidebarFooter,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
   SidebarProvider,
+  SidebarSeparator,
 } from '@/components/ui/sidebar'
 import { auth, signOut } from '@/lib/auth'
-import AppUser from '@/types/user'
 
 type ResumeLayoutProps = {
   children: React.ReactNode
@@ -30,7 +26,7 @@ export default async function ResumeLayout({ children }: ResumeLayoutProps) {
 
   if (!session) redirect('/login')
 
-  const user = session.user as AppUser
+  const user = session.user as User
 
   async function handleSignOut() {
     'use server'
@@ -40,26 +36,18 @@ export default async function ResumeLayout({ children }: ResumeLayoutProps) {
   return (
     <div className="flex h-screen flex-col bg-neutral-100 md:flex-row dark:bg-neutral-800">
       <SidebarProvider>
-        <Sidebar variant="inset">
+        <Sidebar variant="inset" className="pr-6">
           <SidebarHeader>
             <Logo />
           </SidebarHeader>
-          <SidebarContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton
-                // onClick={() => console.log('/resume')}
-                // isActive={isActive('/resume')}
-                >
-                  <FileText />
-                  <span>Resume</span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarContent>
+          <SidebarSeparator className="mt-2 mb-4" />
+          <NavContent />
 
           <SidebarFooter>
+            <PremiumFeatures />
+            <SidebarSeparator className="my-4" />
             <NavUser user={user} logout={handleSignOut} />
+            <HelpAndSupport />
           </SidebarFooter>
         </Sidebar>
         <ScrollArea className="h-full w-full">{children}</ScrollArea>
