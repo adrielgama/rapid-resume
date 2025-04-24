@@ -98,7 +98,7 @@ function PricingSection() {
             className="relative flex flex-col rounded-xl border border-zinc-300 bg-gradient-to-b from-zinc-50 to-zinc-100 shadow-md dark:!border-zinc-800 dark:from-zinc-900 dark:to-neutral-950"
           >
             {plan.highlighted && (
-              <div className="absolute top-4 right-4">
+              <div className="absolute top-4 right-4 md:top-2 md:right-2 lg:top-6 lg:right-6">
                 <Badge className="!bg-blue-400 !text-zinc-800">
                   {t('mostPopular')}
                 </Badge>
@@ -109,7 +109,7 @@ function PricingSection() {
                 {plan.name}
               </CardTitle>
               <p className="text-sm opacity-80">{plan.description}</p>
-              <div className="mt-2 text-4xl font-bold">
+              <div className="mt-2 text-4xl font-bold md:text-3xl lg:text-4xl">
                 {formatCurrency(plan.price)}
                 <span className="ml-1 text-sm">{plan.duration}</span>
               </div>

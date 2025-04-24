@@ -14,6 +14,7 @@ import {
   SidebarHeader,
   SidebarProvider,
   SidebarSeparator,
+  SidebarTrigger,
 } from '@/components/ui/sidebar'
 import { auth, signOut } from '@/lib/auth'
 
@@ -26,7 +27,8 @@ export default async function ResumeLayout({ children }: ResumeLayoutProps) {
 
   if (!session) redirect('/login')
 
-  const user = session.user as User
+  const user = session.user as User & { subscriptionStatus: string | null }
+  const subscriptionStatus = user.subscriptionStatus || null
 
   async function handleSignOut() {
     'use server'
@@ -36,21 +38,26 @@ export default async function ResumeLayout({ children }: ResumeLayoutProps) {
   return (
     <div className="flex h-screen flex-col bg-neutral-100 md:flex-row dark:bg-neutral-800">
       <SidebarProvider>
+        <div className="fixed top-4 left-1 !z-50 md:hidden">
+          <SidebarTrigger />
+        </div>
         <Sidebar variant="inset" className="pr-6">
-          <SidebarHeader>
+          <SidebarHeader className="mt-2 flex items-center justify-between">
             <Logo />
           </SidebarHeader>
-          <SidebarSeparator className="mt-2 mb-4" />
-          <NavContent />
+
+          <NavContent status={subscriptionStatus} />
 
           <SidebarFooter>
-            <PremiumFeatures />
+            <PremiumFeatures status={subscriptionStatus} />
             <SidebarSeparator className="my-4" />
             <NavUser user={user} logout={handleSignOut} />
             <HelpAndSupport />
           </SidebarFooter>
         </Sidebar>
-        <ScrollArea className="h-full w-full">{children}</ScrollArea>
+        <ScrollArea className="ml-8 h-full w-full md:ml-0">
+          {children}
+        </ScrollArea>
       </SidebarProvider>
     </div>
   )

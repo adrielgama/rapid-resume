@@ -25,8 +25,12 @@ const HelpAndSupport = memo(function HelpAndSupport() {
   )
 })
 
-const PremiumFeatures = memo(function PremiumFeatures() {
-  // Adicionar autenticação + validação que o usuário já possui o premium para poder exibir esse componente
+const PremiumFeatures = memo(function PremiumFeatures({
+  status: subscriptionStatus,
+}: {
+  status: string | null
+}) {
+  if (subscriptionStatus === 'active') return null
   // Adicionar um modal para o usuário fazer o upgrade para o premium
   return (
     <Card className="border-none bg-gradient-to-br from-blue-50 to-blue-100 bg-cover bg-no-repeat shadow-sm">
