@@ -3,16 +3,11 @@ import { Label } from '@/components/ui/label'
 import { TabsContent } from '@/components/ui/tabs'
 import { cn } from '@/lib/utils'
 import { Personal } from '@/schema/resume'
+import { FormErrors } from '@/types/errors'
 import { ResumeData } from '@/types/resume'
 
 interface PersonalFormProps {
-  errors: {
-    personal?: {
-      name?: string
-      email?: string
-      phone?: string
-    }
-  }
+  errors: Pick<FormErrors, 'personal'>
   resumeData: ResumeData
   updatePersonal: (field: keyof Personal, value: string) => void
 }

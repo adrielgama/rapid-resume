@@ -1,5 +1,3 @@
-// (index: number, field: keyof Education, value: string) => void
-
 import { Trash2, Plus } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
@@ -8,6 +6,7 @@ import { Label } from '@/components/ui/label'
 import { TabsContent } from '@/components/ui/tabs'
 import { cn } from '@/lib/utils'
 import { Education } from '@/schema/resume'
+import { FormErrors } from '@/types/errors'
 import { ResumeData } from '@/types/resume'
 
 interface EducationFormProps {
@@ -19,7 +18,7 @@ interface EducationFormProps {
   ) => void
   addEducation: () => void
   removeEducation: (index: number) => void
-  errors: { education?: Education[] }
+  errors: Pick<FormErrors, 'education'>
 }
 export default function EducationFormTab({
   resumeData,

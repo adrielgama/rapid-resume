@@ -1,5 +1,5 @@
 'use client'
-import { Eye, ChevronLeft, ChevronRight, Trash2, Plus } from 'lucide-react'
+import { Eye, ChevronLeft, ChevronRight } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -9,16 +9,15 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Separator } from '@/components/ui/separator'
-import { Tabs, TabsContent } from '@/components/ui/tabs'
-import { Textarea } from '@/components/ui/textarea'
+import { Tabs } from '@/components/ui/tabs'
 import { useResume } from '@/context/resume-context'
 import { cn } from '@/lib/utils'
 
 import EducationFormTab from './tabs/education'
+import ExperienceFormTab from './tabs/experience'
 import PersonalFormTab from './tabs/personal'
+import SkillsFormTab from './tabs/skills'
+import SummaryFormTab from './tabs/summary'
 
 export default function ResumeForm() {
   const {
@@ -105,284 +104,29 @@ export default function ResumeForm() {
             removeEducation={removeEducation}
             addEducation={addEducation}
           />
-          <TabsContent value="education" className="space-y-4">
-            {resumeData.education.map((edu, index) => (
-              <div key={index} className="relative space-y-4">
-                {resumeData.education.length > 1 && (
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="absolute top-2 right-2 size-8"
-                    onClick={() => removeEducation(index)}
-                  >
-                    <Trash2 className="size-4" />
-                  </Button>
-                )}
-                <div className="space-y-2">
-                  <Label
-                    htmlFor={`school-${index}`}
-                    className={cn(
-                      errors.education?.[index]?.school && 'text-red-400'
-                    )}
-                  >
-                    Instituição
-                  </Label>
-                  <Input
-                    id={`school-${index}`}
-                    value={edu.school}
-                    onChange={(e) =>
-                      updateEducation(index, 'school', e.target.value)
-                    }
-                    className={cn(
-                      errors.education?.[index]?.school && 'border-red-400'
-                    )}
-                  />
-                  {errors.education?.[index]?.school && (
-                    <p className="text-xs text-red-400">
-                      {errors.education[index].school}
-                    </p>
-                  )}
-                </div>
-                <div className="space-y-2">
-                  <Label
-                    htmlFor={`degree-${index}`}
-                    className={cn(
-                      errors.education?.[index]?.degree && 'text-red-400'
-                    )}
-                  >
-                    Curso/Grau
-                  </Label>
-                  <Input
-                    id={`degree-${index}`}
-                    value={edu.degree}
-                    onChange={(e) =>
-                      updateEducation(index, 'degree', e.target.value)
-                    }
-                    className={cn(
-                      errors.education?.[index]?.degree && 'border-red-400'
-                    )}
-                  />
-                  {errors.education?.[index]?.degree && (
-                    <p className="text-xs text-red-400">
-                      {errors.education[index].degree}
-                    </p>
-                  )}
-                </div>
-                <div className="space-y-2">
-                  <Label
-                    htmlFor={`year-${index}`}
-                    className={cn(
-                      errors.education?.[index]?.year && 'text-red-400'
-                    )}
-                  >
-                    Período
-                  </Label>
-                  <Input
-                    id={`year-${index}`}
-                    value={edu.year}
-                    onChange={(e) =>
-                      updateEducation(index, 'year', e.target.value)
-                    }
-                    className={cn(
-                      errors.education?.[index]?.year && 'border-red-400'
-                    )}
-                  />
-                  {errors.education?.[index]?.year && (
-                    <p className="text-xs text-red-400">
-                      {errors.education[index].year}
-                    </p>
-                  )}
-                </div>
-              </div>
-            ))}
-            <Button
-              variant="outline"
-              onClick={addEducation}
-              className="flex items-center"
-            >
-              <Plus className="mr-2 size-4" /> Adicionar Educação
-            </Button>
-          </TabsContent>
 
           {/* EXPERIÊNCIA */}
-          <TabsContent value="experience" className="space-y-4">
-            {resumeData.experience.map((exp, index) => (
-              <div key={index} className="relative space-y-4">
-                {index > 0 && <Separator className="my-12" />}
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <Label
-                      htmlFor={`company-${index}`}
-                      className={cn(
-                        errors.experience?.[index]?.company && 'text-red-400'
-                      )}
-                    >
-                      Empresa
-                    </Label>
-                    {resumeData.experience.length > 1 && (
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="size-8"
-                        onClick={() => removeExperience(index)}
-                      >
-                        <Trash2 className="size-4" />
-                      </Button>
-                    )}
-                  </div>
-                  <Input
-                    id={`company-${index}`}
-                    value={exp.company}
-                    onChange={(e) =>
-                      updateExperience(index, 'company', e.target.value)
-                    }
-                    className={cn(
-                      errors.experience?.[index]?.company && 'border-red-400'
-                    )}
-                  />
-                  {errors.experience?.[index]?.company && (
-                    <p className="text-xs text-red-400">
-                      {errors.experience[index].company}
-                    </p>
-                  )}
-                </div>
-                <div className="space-y-2">
-                  <Label
-                    htmlFor={`position-${index}`}
-                    className={cn(
-                      errors.experience?.[index]?.position && 'text-red-400'
-                    )}
-                  >
-                    Cargo
-                  </Label>
-                  <Input
-                    id={`position-${index}`}
-                    value={exp.position}
-                    onChange={(e) =>
-                      updateExperience(index, 'position', e.target.value)
-                    }
-                    className={cn(
-                      errors.experience?.[index]?.position && 'border-red-400'
-                    )}
-                  />
-                  {errors.experience?.[index]?.position && (
-                    <p className="text-xs text-red-400">
-                      {errors.experience[index].position}
-                    </p>
-                  )}
-                </div>
-                <div className="space-y-2">
-                  <Label
-                    htmlFor={`period-${index}`}
-                    className={cn(
-                      errors.experience?.[index]?.period && 'text-red-400'
-                    )}
-                  >
-                    Período
-                  </Label>
-                  <Input
-                    id={`period-${index}`}
-                    value={exp.period}
-                    onChange={(e) =>
-                      updateExperience(index, 'period', e.target.value)
-                    }
-                    className={cn(
-                      errors.experience?.[index]?.period && 'border-red-400'
-                    )}
-                  />
-                  {errors.experience?.[index]?.period && (
-                    <p className="text-xs text-red-400">
-                      {errors.experience[index].period}
-                    </p>
-                  )}
-                </div>
-              </div>
-            ))}
-            <Button
-              variant="outline"
-              onClick={addExperience}
-              className="flex items-center"
-            >
-              <Plus className="mr-2 size-4" /> Adicionar Experiência
-            </Button>
-          </TabsContent>
+          <ExperienceFormTab
+            errors={errors}
+            resumeData={resumeData}
+            updateExperience={updateExperience}
+            removeExperience={removeExperience}
+            addExperience={addExperience}
+          />
 
           {/* HABILIDADES */}
-          <TabsContent value="skills" className="space-y-4">
-            <div className="space-y-2">
-              <Label className="text-sm font-medium">Habilidades</Label>
-              <div className="mb-4 flex flex-wrap gap-2">
-                {resumeData.skills.map((skill, index) => (
-                  <div
-                    key={index}
-                    className="bg-muted flex items-center rounded-full px-3 py-1"
-                  >
-                    <span className="mr-2">{skill}</span>
-                    <button
-                      className="text-muted-foreground hover:text-red-400"
-                      onClick={() => removeSkill(index)}
-                    >
-                      ×
-                    </button>
-                  </div>
-                ))}
-                {resumeData.skills.length === 0 && (
-                  <p className="text-muted-foreground text-sm">
-                    Adicione pelo menos uma habilidade
-                  </p>
-                )}
-              </div>
-              <div className="flex gap-2">
-                <Input
-                  id="new-skill"
-                  placeholder="Adicionar nova habilidade"
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' && e.currentTarget.value.trim()) {
-                      addSkill(e.currentTarget.value.trim())
-                      e.currentTarget.value = ''
-                    }
-                  }}
-                />
-                <Button
-                  onClick={() => {
-                    const input = document.getElementById(
-                      'new-skill'
-                    ) as HTMLInputElement
-                    if (input.value.trim()) {
-                      addSkill(input.value.trim())
-                      input.value = ''
-                    }
-                  }}
-                >
-                  Adicionar
-                </Button>
-              </div>
-            </div>
-          </TabsContent>
+          <SkillsFormTab
+            resumeData={resumeData}
+            addSkill={addSkill}
+            removeSkill={removeSkill}
+          />
 
           {/* RESUMO */}
-          <TabsContent value="summary" className="space-y-4">
-            <div className="space-y-2">
-              <Label
-                htmlFor="summary"
-                className={cn(errors.summary && 'text-red-400')}
-              >
-                Resumo Profissional
-              </Label>
-              <Textarea
-                id="summary"
-                className={cn(
-                  'min-h-[150px]',
-                  errors.summary && 'border-red-400'
-                )}
-                value={resumeData.summary}
-                onChange={(e) => updateSummary(e.target.value)}
-              />
-              {errors.summary && (
-                <p className="text-xs text-red-400">{errors.summary}</p>
-              )}
-            </div>
-          </TabsContent>
+          <SummaryFormTab
+            resumeData={resumeData}
+            updateSummary={updateSummary}
+            errors={errors}
+          />
         </Tabs>
       </CardContent>
       <CardFooter className="flex justify-between pt-6">
