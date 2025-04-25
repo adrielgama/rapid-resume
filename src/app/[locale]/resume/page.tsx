@@ -1,22 +1,24 @@
-'use client'
-import React, { Suspense, useState, lazy } from 'react'
+import React, { Suspense } from 'react'
 
 import Loader from '@/components/loader'
-import { ResumeData } from '@/types/resume'
+import { ResumeProvider } from '@/context/resume-context'
 
-import { dataProfile } from './_data/data'
-
-const ResumePreview = lazy(() => import('./_components/resume-preview'))
+import ResumeForm from './_components/resume-form'
+import ResumePreview from './_components/resume-preview'
+import Steppers from './_components/stepper'
 
 export default function ResumePage() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [resumeData, setResumeData] = useState<ResumeData>(
-    dataProfile as ResumeData
-  )
-
   return (
-    <Suspense fallback={<Loader />}>
-      <ResumePreview resumeData={resumeData} />
-    </Suspense>
+    <div className="container mx-auto p-2">
+      <ResumeProvider>
+        <Steppers />
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <ResumeForm />
+          <Suspense fallback={<Loader />}>
+            <ResumePreview />
+          </Suspense>
+        </div>
+      </ResumeProvider>
+    </div>
   )
 }

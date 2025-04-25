@@ -1,5 +1,0 @@
-export * from './header'
-export * from './paragraph'
-export * from './resume-item'
-export * from './contact-item'
-export * from './language-item'

@@ -62,9 +62,9 @@ export default async function ResumeLayout({ children }: ResumeLayoutProps) {
           </SidebarFooter>
         </Sidebar>
         <div className="w-full rounded-tl-2xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900">
-          <div className="container mx-auto h-full w-full py-4">
-            <ScrollArea className="w-full md:ml-0">{children}</ScrollArea>
-          </div>
+          <ScrollArea className="h-full w-full px-5 py-8 md:ml-0 lg:px-4 lg:py-4">
+            {children}
+          </ScrollArea>
         </div>
       </SidebarProvider>
     </div>

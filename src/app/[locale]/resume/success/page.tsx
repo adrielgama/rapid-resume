@@ -9,7 +9,7 @@ import success from '../../../../../public/lottie/success.json'
 export default function Success() {
   const isMobile = useIsMobile()
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
+    <div className="container mx-auto flex min-h-svh flex-col items-center justify-center">
       <Lottie
         options={{
           loop: true,
