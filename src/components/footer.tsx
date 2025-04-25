@@ -9,7 +9,6 @@ import { Separator } from './ui/separator'
 
 function Footer() {
   const t = useTranslations('Home.Legal')
-  const year = new Date().getFullYear()
 
   return (
     <footer className="container grid max-w-7xl grid-cols-1 place-content-center py-4 text-center lg:grid-cols-2 lg:text-start">
@@ -27,9 +26,7 @@ function Footer() {
             content={<TermsOfService />}
           />
         </div>
-        <p>
-          &copy; {year} {t('copyright')}
-        </p>
+        <p>&copy; 2025 {t('copyright')}</p>
       </div>
       <div className="mt-1 text-xs text-gray-400 lg:mt-4 lg:text-right">
         <p>

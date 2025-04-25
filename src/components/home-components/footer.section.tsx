@@ -1,9 +1,7 @@
-import { Linkedin, Mail, Phone } from 'lucide-react'
-import Image from 'next/image'
+import { Mail, Phone } from 'lucide-react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-
-import BMCButton from '@public/images/bmc-button.svg'
+import { FaLinkedinIn } from 'react-icons/fa'
 
 import Footer from '../footer'
 import Logo from '../logo'
@@ -31,9 +29,9 @@ function FooterSection() {
       href: 'tel:+5571996559476',
     },
     {
-      icon: Linkedin,
-      label: 'adrielgama',
-      href: 'https://linkedin.com/in/adrielgama',
+      icon: FaLinkedinIn,
+      label: 'Rapid Resume',
+      href: 'https://www.linkedin.com/company/rapid-resume-builder',
     },
   ]
 
@@ -45,19 +43,6 @@ function FooterSection() {
           <p className="mt-4 max-w-sm text-xs text-gray-400">
             {t('description')}
           </p>
-          <Link
-            href="https://buymeacoffee.com/adrielgama"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              src={BMCButton}
-              alt={t('donateAlt')}
-              width={150}
-              height={150}
-              className="mt-2 grayscale transition-all duration-300 hover:grayscale-0"
-            />
-          </Link>
         </div>
         <div className="col-span-1 text-sm">
           <h3 className="mb-4 font-bold text-gray-500 dark:text-gray-200">

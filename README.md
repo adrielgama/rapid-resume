@@ -42,6 +42,7 @@ Welcome to the Resume Builder project! This application allows users to create a
 To get started with the project, follow these steps:
 
 1. **Clone the repository**:
+
    ```bash
    git clone https://github.com/adrielgama/rapid-resume.git
    cd rapid-resume
@@ -103,7 +104,7 @@ Contributions are welcome! If you have suggestions or want to contribute to the 
 We are continually working on improving the Resume Builder. Here are some of the planned features and enhancements:
 
 - [x] **Profile Page Security**: Implement authentication and authorization to restrict access to profile and edit pages.
-- [x] **Optimize Step Components**: Implement lazy loading for the step components to improve performance by loading these components. 
+- [x] **Optimize Step Components**: Implement lazy loading for the step components to improve performance by loading these components.
 - [ ] **Input Validation**: Implement input validation using Yup or Zod to ensure all required fields are correctly filled out.
 - [ ] **Testing**: Add comprehensive testing to ensure the reliability of the application.
 - [ ] **Data Storage**: Implement data storage in MongoDB for persistent resume data management.
@@ -115,17 +116,3 @@ We are continually working on improving the Resume Builder. Here are some of the
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
----
-
-If you found this project helpful, consider buying me a coffee to support further development:
-
-<a href="https://buymeacoffee.com/adrielgama" target="_blank">
-  <img src="public/images/bmc-button.svg" alt="Buy Me a Coffee" width="200">
-</a>
-
-
-You can also scan the QR code to donate:
-
-<img src="public/images/bmc_qr.webp" alt="Buy Me a Coffee QR Code" width="150" >
-
