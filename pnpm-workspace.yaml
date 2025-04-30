@@ -1,4 +1,6 @@
 onlyBuiltDependencies:
-  - '@clerk/shared'
+  - '@firebase/util'
   - core-js
+  - protobufjs
   - sharp
+  - unrs-resolver

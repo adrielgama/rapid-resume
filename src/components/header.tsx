@@ -76,7 +76,7 @@ function Header() {
             aria-label="Open menu"
             onClick={toggleMenu}
           >
-            <MenuIcon className="h-5 w-5" />
+            <MenuIcon className="size-5" />
           </Button>
         </div>
       </div>
@@ -96,7 +96,7 @@ function Header() {
             className="absolute top-4 right-4"
             onClick={toggleMenu}
           >
-            <CloseIcon className="h-5 w-5" />
+            <CloseIcon className="size-5" />
           </Button>
 
           <nav

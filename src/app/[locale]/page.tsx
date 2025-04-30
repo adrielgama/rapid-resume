@@ -1,33 +1,44 @@
-import Header from '@/components/header'
-import {
-  FAQSection,
-  FooterSection,
-  HeroSection,
-  OurFeaturesSection,
-  PricingSection,
-  StatisticsSection,
-  TestimonialsSection,
-} from '@/components/home-components'
-import ScrollToTopButton from '@/components/scroll-to-top'
-import CookieBanner from '@/components/terms/cookies'
+'use client'
+import { useEffect } from 'react'
+
+import { Footer } from '@/components/home-page/footer'
+import { Header } from '@/components/home-page/header'
+import { HeroSection } from '@/components/home-page/hero-section'
+import { HowItWorks } from '@/components/home-page/how-it-works'
+import { PricingSection } from '@/components/home-page/pricing-section'
+import { TestimonialsSection } from '@/components/home-page/testimonials-section'
 
 export default function Home() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animated')
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
+    )
+
+    const animatedElements = document.querySelectorAll('.animate-on-scroll')
+    animatedElements.forEach((el) => observer.observe(el))
+
+    return () => {
+      animatedElements.forEach((el) => observer.unobserve(el))
+    }
+  }, [])
+
   return (
-    <>
-      <main className="dark:bg-dark-blue flex min-h-screen flex-col items-center bg-zinc-50">
-        <Header />
-        <div className="container h-full w-full max-w-7xl space-y-4 py-16">
-          <HeroSection />
-          <StatisticsSection />
-          <OurFeaturesSection />
-          <PricingSection />
-          <TestimonialsSection />
-          <FAQSection />
-        </div>
-        <FooterSection />
-        <ScrollToTopButton />
+    <div className="flex min-h-screen flex-col">
+      <Header />
+      <main>
+        <HeroSection />
+        <HowItWorks />
+        <PricingSection />
+        <TestimonialsSection />
       </main>
-      <CookieBanner />
-    </>
+      <Footer />
+    </div>
   )
 }

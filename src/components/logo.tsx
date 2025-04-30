@@ -8,9 +8,8 @@ interface LogoProps {
 export default function Logo({ className }: LogoProps) {
   return (
     <div className={cn('text-2xl', className)}>
-      <span className="text-light-blue font-bold">rapid</span>
-      <span className="text-dark-gray dark:text-light-gray font-medium">
-        resume
+      <span className="font-bold">
+        Rapid<span className="text-blue-400">Resume</span>
       </span>
     </div>
   )
@@ -19,8 +18,9 @@ export default function Logo({ className }: LogoProps) {
 export function ShortLogo({ className }: LogoProps) {
   return (
     <div className={cn('text-xl', className)}>
-      <span className="text-light-blue font-bold">R</span>
-      <span className="text-dark-gray dark:text-light-gray font-medium">R</span>
+      <span className="font-bold">
+        R<span className="text-blue-400">R</span>
+      </span>
     </div>
   )
 }

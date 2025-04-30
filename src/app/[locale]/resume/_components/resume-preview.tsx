@@ -2,7 +2,6 @@
 
 import { useRef } from 'react'
 
-import html2canvas from 'html2canvas'
 import jsPDF from 'jspdf'
 import { Download } from 'lucide-react'
 import Link from 'next/link'
@@ -19,28 +18,198 @@ export default function ResumePreview() {
   const exportToPDF = async () => {
     if (!resumeRef.current) return
 
-    try {
-      const canvas = await html2canvas(resumeRef.current, {
-        scale: 2,
-        logging: false,
-        useCORS: true,
+    // Initialize PDF document
+    const pdf = new jsPDF({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: 'a4',
+    })
+
+    const pageWidth = pdf.internal.pageSize.getWidth()
+    const margin = 20 // margin in mm
+    const contentWidth = pageWidth - margin * 2
+    let yPosition = margin
+
+    // Set default font
+    pdf.setFont('helvetica')
+
+    // Name - Large and bold
+    pdf.setFontSize(24)
+    pdf.setFont('helvetica', 'bold')
+    pdf.text(resumeData.personal.name, margin, yPosition)
+    yPosition += 8
+
+    // Add a dividing line
+    pdf.setDrawColor(220, 220, 220)
+    pdf.line(margin, yPosition, pageWidth - margin, yPosition)
+    yPosition += 6
+
+    /// Contact info on separate lines
+    pdf.setFontSize(11)
+    pdf.setFont('helvetica', 'normal')
+    pdf.text(resumeData.personal.location!, margin, yPosition)
+    yPosition += 5
+    pdf.text(resumeData.personal.email, margin, yPosition)
+    yPosition += 5
+    pdf.text(resumeData.personal.phone, margin, yPosition)
+    yPosition += 5
+
+    // Links
+    pdf.setTextColor(0, 102, 204)
+    resumeData.links.forEach((link) => {
+      pdf.text(link, margin, yPosition)
+      yPosition += 5
+    })
+    pdf.setTextColor(0)
+    yPosition += 5
+
+    // Qualificação Profissional
+    addSectionTitle(pdf, 'Qualificação Profissional', margin, yPosition)
+    yPosition += 6
+
+    // Summary text with wrapping
+    pdf.setFontSize(10)
+    pdf.setFont('helvetica', 'normal')
+    const summaryLines = pdf.splitTextToSize(resumeData.summary, contentWidth)
+    pdf.text(summaryLines, margin, yPosition)
+    yPosition += summaryLines.length * 5 + 5
+
+    // Idioma
+    addSectionTitle(pdf, 'Idioma', margin, yPosition)
+    yPosition += 6
+
+    // Languages
+    pdf.setFontSize(10)
+    pdf.setFont('helvetica', 'normal')
+    resumeData.languages.forEach((lang) => {
+      pdf.text(`${lang.language} - ${lang.level}`, margin, yPosition)
+      yPosition += 5
+    })
+    yPosition += 3
+
+    // Experiência Profissional
+    addSectionTitle(pdf, 'Experiência Profissional', margin, yPosition)
+    yPosition += 6
+
+    // Job experiences
+    if (resumeData.experience.length > 0) {
+      resumeData.experience.forEach((exp) => {
+        // Position - bold
+        pdf.setFont('helvetica', 'bold')
+        pdf.text(exp.position, margin, yPosition)
+
+        // Period - right aligned
+        pdf.setFont('helvetica', 'normal')
+        const periodWidth =
+          (pdf.getStringUnitWidth(exp.period) * 10) / pdf.internal.scaleFactor
+        pdf.text(exp.period, pageWidth - margin - periodWidth, yPosition)
+
+        yPosition += 5
+
+        // Company
+        pdf.setFont('helvetica', 'normal')
+        pdf.text(exp.company, margin, yPosition)
+        yPosition += 7
       })
-
-      const imgData = canvas.toDataURL('image/png')
-      const pdf = new jsPDF({
-        orientation: 'portrait',
-        unit: 'mm',
-        format: 'a4',
-      })
-
-      const imgWidth = 210 // A4 width in mm
-      const imgHeight = (canvas.height * imgWidth) / canvas.width
-
-      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight)
-      pdf.save('curriculo.pdf')
-    } catch (error) {
-      console.error('Erro ao exportar PDF:', error)
+    } else {
+      pdf.setFont('helvetica', 'normal')
+      pdf.text('Nenhuma experiência adicionada.', margin, yPosition)
+      yPosition += 7
     }
+    yPosition += 3
+
+    // Formação Acadêmica
+    addSectionTitle(pdf, 'Formação Acadêmica', margin, yPosition)
+    yPosition += 6
+
+    // Education
+    if (resumeData.education.length > 0) {
+      resumeData.education.forEach((edu) => {
+        // Degree - bold
+        pdf.setFont('helvetica', 'bold')
+        pdf.text(edu.degree, margin, yPosition)
+
+        // Year - right aligned
+        pdf.setFont('helvetica', 'normal')
+        const yearWidth =
+          (pdf.getStringUnitWidth(edu.year) * 10) / pdf.internal.scaleFactor
+        pdf.text(edu.year, pageWidth - margin - yearWidth, yPosition)
+
+        yPosition += 5
+
+        // School
+        pdf.setFont('helvetica', 'normal')
+        pdf.text(edu.school, margin, yPosition)
+        yPosition += 7
+      })
+    } else {
+      pdf.setFont('helvetica', 'normal')
+      pdf.text('Nenhuma formação adicionada.', margin, yPosition)
+      yPosition += 7
+    }
+    yPosition += 3
+
+    // Habilidades
+    addSectionTitle(pdf, 'Habilidades', margin, yPosition)
+    yPosition += 6
+
+    // Skills as tags
+    if (resumeData.skills.length > 0) {
+      // Need to format skills to wrap correctly
+      pdf.setFontSize(9)
+      let currentLinePosition = margin
+      const lineHeight = 6
+
+      resumeData.skills.forEach((skill) => {
+        const skillWidth =
+          (pdf.getStringUnitWidth(skill) * 9) / pdf.internal.scaleFactor + 10 // add some padding
+
+        // Check if we need to move to next line
+        if (currentLinePosition + skillWidth > pageWidth - margin) {
+          currentLinePosition = margin
+          yPosition += lineHeight
+        }
+
+        // Draw pill background
+        pdf.setFillColor(240, 240, 240)
+        pdf.roundedRect(
+          currentLinePosition,
+          yPosition - 4,
+          skillWidth,
+          lineHeight,
+          3,
+          3,
+          'F'
+        )
+
+        // Add skill text
+        pdf.setTextColor(80, 80, 80)
+        pdf.text(skill, currentLinePosition + 5, yPosition)
+
+        currentLinePosition += skillWidth + 5
+      })
+      pdf.setTextColor(0, 0, 0) // Reset to black
+    } else {
+      pdf.setFont('helvetica', 'normal')
+      pdf.text('Nenhuma habilidade adicionada.', margin, yPosition)
+    }
+
+    // Save the PDF
+    pdf.save('curriculo.pdf')
+  }
+
+  // Helper function to add section titles with consistent formatting
+  const addSectionTitle = (pdf: jsPDF, title: string, x: number, y: number) => {
+    pdf.setFontSize(14)
+    pdf.setFont('helvetica', 'bold')
+    pdf.setTextColor(0, 0, 0)
+    pdf.text(title, x, y)
+
+    // Add underline
+    const titleWidth =
+      (pdf.getStringUnitWidth(title) * 14) / pdf.internal.scaleFactor
+    pdf.setDrawColor(0, 0, 0)
+    pdf.line(x, y + 1, x + titleWidth, y + 1)
   }
 
   return (
@@ -64,7 +233,7 @@ export default function ResumePreview() {
       <CardContent className="prose prose-sm max-w-none">
         <div
           ref={resumeRef}
-          className="space-y-6 rounded-sm border border-zinc-200/45 bg-white p-4 dark:border-zinc-800/30 dark:bg-zinc-950"
+          className="space-y-6 rounded-sm border border-[#e4e4e7] bg-white p-4 dark:border-[#27272a] dark:bg-zinc-950"
         >
           <div className="border-b pb-4">
             <h2 className="text-2xl font-bold">{resumeData.personal.name}</h2>
@@ -87,7 +256,7 @@ export default function ResumePreview() {
                   href={link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground text-sm text-blue-500 underline"
+                  className="text-muted-foreground text-sm text-[#2b7fff] underline"
                 >
                   {link}
                 </Link>

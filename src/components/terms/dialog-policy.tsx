@@ -31,15 +31,14 @@ export function DialogPolicy({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button
-          variant="link"
+        <button
           className={cn(
-            'hover:text-light-blue h-0 cursor-pointer px-0 text-xs font-normal text-gray-600',
+            'cursor-pointer text-sm text-gray-400 transition hover:text-blue-400',
             className
           )}
         >
           {title}
-        </Button>
+        </button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md lg:max-w-xl">
         <DialogHeader>

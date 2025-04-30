@@ -1,8 +1,5 @@
 import React from 'react'
 
-import { redirect } from 'next/navigation'
-import { User } from 'next-auth'
-
 import Logo from '@/components/logo'
 import { HelpAndSupport, PremiumFeatures } from '@/components/navbar/nav-bottom'
 import { NavContent } from '@/components/navbar/nav-content'
@@ -16,25 +13,15 @@ import {
   SidebarSeparator,
   SidebarTrigger,
 } from '@/components/ui/sidebar'
-import { auth, signOut } from '@/lib/auth'
-import { db } from '@/lib/firebase'
+import { signOut } from '@/lib/auth'
+import { getAuthenticatedUser } from '@/server/firestore/get-authenticated-user'
 
 type ResumeLayoutProps = {
   children: React.ReactNode
 }
 
 export default async function ResumeLayout({ children }: ResumeLayoutProps) {
-  const session = await auth()
-
-  if (!session) redirect('/login')
-
-  const user = session.user as User
-  const userId = user.id
-
-  if (!userId) redirect('/login')
-
-  const userDoc = await db.collection('users').doc(userId).get()
-  const subscriptionStatus = userDoc.data()?.subscriptionStatus || null
+  const { user, userId, subscriptionStatus } = await getAuthenticatedUser()
 
   async function handleSignOut() {
     'use server'

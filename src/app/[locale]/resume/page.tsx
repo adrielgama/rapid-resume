@@ -1,13 +1,22 @@
-import React, { Suspense } from 'react'
+'use client'
+import React, { Suspense, useEffect } from 'react'
 
 import Loader from '@/components/loader'
 import { ResumeProvider } from '@/context/resume-context'
+import { useRefreshUser } from '@/hooks/use-refresh-user'
 
 import ResumeForm from './_components/resume-form'
 import ResumePreview from './_components/resume-preview'
 import Steppers from './_components/stepper'
 
 export default function ResumePage() {
+  const { refreshUserData } = useRefreshUser()
+
+  useEffect(() => {
+    refreshUserData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <div className="container mx-auto p-2">
       <ResumeProvider>
