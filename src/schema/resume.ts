@@ -4,6 +4,7 @@ export const personalSchema = z.object({
   name: z.string().min(1, 'Nome é obrigatório'),
   email: z.string().email('Email inválido').min(1, 'Email é obrigatório'),
   phone: z.string().min(1, 'Telefone é obrigatório'),
+  location: z.string().min(1, 'Localização é obrigatória'),
 })
 
 export const educationSchema = z.object({

@@ -1,15 +1,21 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Plus, Trash2 } from 'lucide-react'
+
+import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { TabsContent } from '@/components/ui/tabs'
 import { cn } from '@/lib/utils'
-import { Personal } from '@/schema/resume'
 import { FormErrors } from '@/types/errors'
 import { ResumeData } from '@/types/resume'
 
 interface PersonalFormProps {
   errors: Pick<FormErrors, 'personal'>
   resumeData: ResumeData
-  updatePersonal: (field: keyof Personal, value: string) => void
+  updatePersonal: <K extends keyof ResumeData['personal']>(
+    field: K,
+    value: ResumeData['personal'][K]
+  ) => void
 }
 
 export default function PersonalFormTab({
@@ -39,20 +45,19 @@ export default function PersonalFormTab({
         </div>
         <div className="space-y-2">
           <Label
-            htmlFor="email"
-            className={cn(errors.personal?.email && 'text-red-400')}
+            htmlFor="location"
+            className={cn(errors.personal?.location && 'text-red-400')}
           >
-            E-mail
+            Localização
           </Label>
           <Input
-            id="email"
-            type="email"
-            value={resumeData.personal.email}
-            onChange={(e) => updatePersonal('email', e.target.value)}
-            className={cn(errors.personal?.email && 'border-red-400')}
+            id="location"
+            value={resumeData.personal.location}
+            onChange={(e) => updatePersonal('location', e.target.value)}
+            className={cn(errors.personal?.name && 'border-red-400')}
           />
-          {errors.personal?.email && (
-            <p className="text-xs text-red-400">{errors.personal.email}</p>
+          {errors.personal?.name && (
+            <p className="text-xs text-red-400">{errors.personal.name}</p>
           )}
         </div>
         <div className="space-y-2">
@@ -70,6 +75,66 @@ export default function PersonalFormTab({
           />
           {errors.personal?.phone && (
             <p className="text-xs text-red-400">{errors.personal.phone}</p>
+          )}
+        </div>
+        <div className="space-y-2">
+          <Label
+            htmlFor="email"
+            className={cn(errors.personal?.email && 'text-red-400')}
+          >
+            E-mail
+          </Label>
+          <Input
+            id="email"
+            type="email"
+            value={resumeData.personal.email}
+            onChange={(e) => updatePersonal('email', e.target.value)}
+            className={cn(errors.personal?.email && 'border-red-400')}
+          />
+          {errors.personal?.email && (
+            <p className="text-xs text-red-400">{errors.personal.email}</p>
+          )}
+        </div>
+        <div className="space-y-2">
+          <Label className="text-sm font-medium">Links</Label>
+          {resumeData.personal.links.map((link, index) => (
+            <div key={index} className="flex items-center gap-2">
+              <Input
+                value={link}
+                onChange={(e) => {
+                  const updatedLinks = [...resumeData.personal.links]
+                  updatedLinks[index] = e.target.value
+                  updatePersonal('links', updatedLinks as any)
+                }}
+                className={cn(errors.personal?.links && 'border-red-400')}
+              />
+              {resumeData.personal.links.length > 1 && (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => {
+                    const updatedLinks = resumeData.personal.links.filter(
+                      (_, i) => i !== index
+                    )
+                    updatePersonal('links', updatedLinks as any)
+                  }}
+                >
+                  <Trash2 className="size-4" />
+                </Button>
+              )}
+            </div>
+          ))}
+          <Button
+            variant="outline"
+            onClick={() =>
+              updatePersonal('links', [...resumeData.personal.links, ''] as any)
+            }
+            className="flex items-center"
+          >
+            <Plus className="mr-2 size-4" /> Adicionar Link
+          </Button>
+          {errors.personal?.links && (
+            <p className="text-xs text-red-400">{errors.personal.links}</p>
           )}
         </div>
       </div>

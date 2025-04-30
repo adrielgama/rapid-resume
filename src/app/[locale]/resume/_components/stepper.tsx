@@ -1,12 +1,5 @@
 'use client'
-import {
-  Check,
-  User,
-  GraduationCap,
-  Briefcase,
-  Lightbulb,
-  FileText,
-} from 'lucide-react'
+import { Check } from 'lucide-react'
 
 import { useResume } from '@/context/resume-context'
 import { cn } from '@/lib/utils'
@@ -24,14 +17,6 @@ export default function StepperNavigation() {
     }
   }
 
-  const iconComponents = {
-    User,
-    GraduationCap,
-    Briefcase,
-    Lightbulb,
-    FileText,
-  }
-
   return (
     <div className="mb-8">
       <div className="flex items-center justify-between">
@@ -39,8 +24,7 @@ export default function StepperNavigation() {
           const stepIndex = steps.findIndex((s) => s.id === step.id)
           const isActive = currentStep === step.id
           const isCompleted = currentIndex > stepIndex
-          const IconComponent =
-            iconComponents[step.icon as keyof typeof iconComponents] || FileText
+          const IconComponent = step.icon
 
           return (
             <div

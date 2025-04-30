@@ -7,6 +7,7 @@ import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import { useResume } from '@/context/resume-context'
 import { useExportToPDF } from '@/hooks/use-export-pdf'
 import { cn } from '@/lib/utils'
@@ -44,120 +45,157 @@ export default function ResumePreview() {
           <Download className="mr-2 size-4" /> Exportar PDF
         </Button>
       </CardHeader>
-      <CardContent className="prose prose-sm max-w-none">
-        <div
-          ref={resumeRef}
-          className="space-y-6 rounded-sm border border-[#e4e4e7] bg-white p-4 dark:border-[#27272a] dark:bg-zinc-950"
-        >
-          <div className="border-b pb-4">
-            <h2 className="text-2xl font-bold">{resumeData.personal.name}</h2>
-          </div>
-
-          <div className="space-y-0.5">
-            <p className="text-muted-foreground text-sm">
-              {resumeData.personal.location}
-            </p>
-            <p className="text-muted-foreground text-sm">
-              {resumeData.personal.phone}
-            </p>
-            <p className="text-muted-foreground text-sm">
-              {resumeData.personal.email}
-            </p>
-            <div className="flex flex-col gap-0.5">
-              {resumeData.links.map((link) => (
-                <Link
-                  key={link}
-                  href={link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground text-sm text-[#2b7fff] underline"
-                >
-                  {link}
-                </Link>
-              ))}
+      <ScrollArea className="h-[70svh]">
+        <CardContent className="max-w-none">
+          <div
+            ref={resumeRef}
+            className="space-y-6 rounded-sm border border-[#e4e4e7] bg-white p-4 dark:border-[#27272a] dark:bg-zinc-950"
+          >
+            <div className="border-b pb-4">
+              <h2 className="text-2xl font-bold">{resumeData.personal.name}</h2>
             </div>
-          </div>
 
-          <div>
-            <Title title="Qualificação Profissional" />
-            <p className="mt-2 text-sm">{resumeData.summary}</p>
-          </div>
-
-          <div>
-            <Title title="Idioma" />
-            <div className="flex flex-col gap-0.5">
-              {resumeData.languages.map((lang) => (
-                <p
-                  key={lang.language}
-                  className="text-muted-foreground text-sm"
-                >
-                  {lang.language} - {lang.level}
-                </p>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <Title title="Experiência Profissional" />
-            {resumeData.experience.length > 0 ? (
-              resumeData.experience.map((exp, i) => (
-                <div key={i} className="mt-3">
-                  <div className="flex justify-between">
-                    <p className="font-medium">{exp.position}</p>
-                    <p className="text-muted-foreground text-sm">
-                      {exp.period}
-                    </p>
-                  </div>
-                  <p className="text-sm">{exp.company}</p>
-                </div>
-              ))
-            ) : (
+            {/* DADOS PESSOAIS  */}
+            <div className="space-y-0.5">
               <p className="text-muted-foreground text-sm">
-                Nenhuma experiência adicionada.
+                {resumeData.personal.location}
               </p>
-            )}
-          </div>
-
-          <div>
-            <Title title="Formação Acadêmica" />
-            {resumeData.education.length > 0 ? (
-              resumeData.education.map((edu, i) => (
-                <div key={i} className="mt-3">
-                  <div className="flex justify-between">
-                    <p className="font-medium">{edu.degree}</p>
-                    <p className="text-muted-foreground text-sm">{edu.year}</p>
-                  </div>
-                  <p className="text-sm">{edu.school}</p>
-                </div>
-              ))
-            ) : (
               <p className="text-muted-foreground text-sm">
-                Nenhuma formação adicionada.
+                {resumeData.personal.phone}
               </p>
-            )}
-          </div>
-
-          <div>
-            <Title title="Habilidades" />
-            {resumeData.skills.length > 0 ? (
-              <div className="mt-2 flex flex-wrap gap-2">
-                {resumeData.skills.map((skill, i) => (
-                  <span
-                    key={i}
-                    className="bg-muted rounded-full px-3 py-1 text-xs"
+              <p className="text-muted-foreground text-sm">
+                {resumeData.personal.email}
+              </p>
+              <div className="flex flex-col gap-0.5">
+                {resumeData.personal.links.map((link) => (
+                  <Link
+                    key={link}
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground text-sm text-[#2b7fff] underline"
                   >
-                    {skill}
-                  </span>
+                    {link}
+                  </Link>
                 ))}
               </div>
-            ) : (
-              <p className="text-muted-foreground text-sm">
-                Nenhuma habilidade adicionada.
-              </p>
-            )}
+            </div>
+
+            {/* RESUMO  */}
+            <div>
+              <Title title="Qualificação Profissional" />
+              <p className="mt-2 text-sm">{resumeData.summary}</p>
+            </div>
+
+            {/* IDIOMAS  */}
+            <div>
+              <Title title="Idioma" />
+              <div className="flex flex-col gap-0.5">
+                {resumeData.languages.map((lang) => (
+                  <p
+                    key={lang.language}
+                    className="text-muted-foreground text-sm"
+                  >
+                    {lang.language} - {lang.level}
+                  </p>
+                ))}
+              </div>
+            </div>
+
+            {/* EXPERIÊNCIA PROFISSIONAL  */}
+            <div>
+              <Title title="Experiência Profissional" />
+              {resumeData.experience.length > 0 ? (
+                resumeData.experience.map((exp, i) => (
+                  <div key={i} className="mt-4 space-y-6">
+                    {/* Cargo e Período */}
+                    <div className="mb-6">
+                      <div className="flex items-center justify-between">
+                        <p className="font-bold">{exp.company}</p>
+                        <p className="text-muted-foreground text-sm">
+                          {exp.period}
+                        </p>
+                      </div>
+                      <p className="text-sm">{exp.position}</p>
+                    </div>
+                    {/* Empresa */}
+
+                    {/* Responsabilidades */}
+                    {exp.skills && exp.skills.length > 0 && (
+                      <ul className="text-muted-foreground list-disc space-y-1 pl-10 text-sm">
+                        {exp.skills.map((skill, j) => (
+                          <li key={j}>{skill}</li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {/* Resultados */}
+                    {exp.achievements && exp.achievements.length > 0 && (
+                      <div className="mt-2 space-y-2">
+                        <p className="text-sm underline">
+                          Resultados Relevantes:
+                        </p>
+                        <ul className="text-muted-foreground mt-1 list-disc space-y-1 pl-10 text-sm">
+                          {exp.achievements.map((ach, k) => (
+                            <li key={k}>{ach}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <p className="text-muted-foreground text-sm">
+                  Nenhuma experiência adicionada.
+                </p>
+              )}
+            </div>
+
+            {/* FORMAÇÃO ACADÊMICA  */}
+            <div>
+              <Title title="Formação Acadêmica" />
+              {resumeData.education.length > 0 ? (
+                resumeData.education.map((edu, i) => (
+                  <div key={i} className="mt-3">
+                    <div className="flex justify-between">
+                      <p className="font-medium">{edu.degree}</p>
+                      <p className="text-muted-foreground text-sm">
+                        {edu.year}
+                      </p>
+                    </div>
+                    <p className="text-sm">{edu.school}</p>
+                  </div>
+                ))
+              ) : (
+                <p className="text-muted-foreground text-sm">
+                  Nenhuma formação adicionada.
+                </p>
+              )}
+            </div>
+
+            {/* HABILIDADES  */}
+            <div>
+              <Title title="Habilidades" />
+              {resumeData.skills.length > 0 ? (
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {resumeData.skills.map((skill, i) => (
+                    <span
+                      key={i}
+                      className="bg-muted rounded-full px-3 py-1 text-xs"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-muted-foreground text-sm">
+                  Nenhuma habilidade adicionada.
+                </p>
+              )}
+            </div>
           </div>
-        </div>
-      </CardContent>
+        </CardContent>
+      </ScrollArea>
     </Card>
   )
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { RefObject } from 'react'
 
 import jsPDF from 'jspdf'
@@ -19,9 +20,34 @@ export const useExportToPDF = (
     })
 
     const pageWidth = pdf.internal.pageSize.getWidth()
+    const pageHeight = pdf.internal.pageSize.getHeight()
     const margin = 20 // margin in mm
     const contentWidth = pageWidth - margin * 2
     let yPosition = margin
+
+    const checkPageBreak = (spaceNeeded = 20) => {
+      if (yPosition + spaceNeeded > pageHeight - margin) {
+        pdf.addPage()
+        yPosition = margin
+      }
+    }
+
+    const addSectionTitle = (
+      pdf: jsPDF,
+      title: string,
+      x: number,
+      y: number
+    ) => {
+      pdf.setFontSize(14)
+      pdf.setFont('helvetica', 'italic', 700)
+      pdf.setTextColor(0, 0, 0)
+      pdf.text(title, x, y)
+      const titleWidth =
+        (pdf.getStringUnitWidth(title) * 14) / pdf.internal.scaleFactor
+      pdf.setDrawColor(0, 0, 0)
+      pdf.setLineWidth(0.3)
+      pdf.line(x, y + 1, x + titleWidth, y + 1)
+    }
 
     // Set default font
     pdf.setFont('helvetica')
@@ -52,7 +78,8 @@ export const useExportToPDF = (
     yPosition += 6
 
     // Links
-    resumeData.links.forEach((link) => {
+    resumeData.personal.links.forEach((link) => {
+      checkPageBreak(6)
       pdf.text(link, margin, yPosition)
       yPosition += 6
     })
@@ -92,36 +119,66 @@ export const useExportToPDF = (
     yPosition += 6
 
     // Job experiences
-    if (resumeData.experience.length > 0) {
-      resumeData.experience.forEach((exp) => {
-        // Position - bold
-        pdf.setFont('helvetica', 'bold')
-        pdf.setFontSize(11)
-        pdf.text(exp.position, margin, yPosition)
+    resumeData.experience.forEach((exp) => {
+      checkPageBreak(25)
 
-        // Period - right aligned, muted gray
-        pdf.setFont('helvetica', 'normal')
-        pdf.setTextColor(28, 28, 28)
-        const periodWidth =
-          (pdf.getStringUnitWidth(exp.period) * 10) / pdf.internal.scaleFactor
-        pdf.text(exp.period, pageWidth - margin - periodWidth, yPosition)
-        pdf.setTextColor(0, 0, 0)
+      // Cargo + Período
+      pdf.setFont('helvetica', 'bold')
+      pdf.setFontSize(11)
+      pdf.text(exp.position, margin, yPosition)
 
-        yPosition += 6
-
-        // Company
-        pdf.setFont('helvetica', 'normal')
-        pdf.text(exp.company, margin, yPosition)
-        yPosition += 8
-      })
-    } else {
+      const periodWidth =
+        (pdf.getStringUnitWidth(exp.period) * 10) / pdf.internal.scaleFactor
       pdf.setFont('helvetica', 'normal')
-      pdf.setTextColor(100, 100, 100)
-      pdf.text('Nenhuma experiência adicionada.', margin, yPosition)
+      pdf.setTextColor(28, 28, 28)
+      pdf.text(exp.period, pageWidth - margin - periodWidth, yPosition)
       pdf.setTextColor(0, 0, 0)
       yPosition += 6
-    }
-    yPosition += 2
+
+      // Empresa
+      pdf.setFont('helvetica', 'normal')
+      pdf.text(exp.company, margin, yPosition)
+      yPosition += 5
+
+      // Responsabilidades
+      if (exp.skills?.length) {
+        yPosition += 4
+        pdf.setFontSize(10)
+        exp.skills.forEach((skill) => {
+          const lines = pdf.splitTextToSize(skill, contentWidth - 5)
+          lines.forEach((line: any, idx: number) => {
+            checkPageBreak(6)
+            // Adiciona o bullet apenas na primeira linha
+            const prefix = idx === 0 ? '• ' : '  '
+            pdf.text(`${prefix}${line}`, margin + 2, yPosition)
+            yPosition += 5
+          })
+        })
+      }
+
+      // Resultados
+      if (exp.achievements?.length) {
+        yPosition += 4
+        checkPageBreak(10)
+        pdf.setFont('helvetica', 'bold')
+        pdf.text('Resultados Relevantes:', margin, yPosition)
+        yPosition += 5
+
+        yPosition += 3
+        pdf.setFont('helvetica', 'normal')
+        exp.achievements.forEach((ach) => {
+          const lines = pdf.splitTextToSize(ach, contentWidth - 5)
+          lines.forEach((line: any, idx: number) => {
+            checkPageBreak(6)
+            const prefix = idx === 0 ? '• ' : '  '
+            pdf.text(`${prefix}${line}`, margin + 2, yPosition)
+            yPosition += 5
+          })
+        })
+      }
+
+      yPosition += 6
+    })
 
     // Formação Acadêmica
     yPosition += 4
@@ -129,35 +186,23 @@ export const useExportToPDF = (
     yPosition += 6
 
     // Education
-    if (resumeData.education.length > 0) {
-      resumeData.education.forEach((edu) => {
-        // Degree - bold
-        pdf.setFont('helvetica', 'bold')
-        pdf.setFontSize(11)
-        pdf.text(edu.degree, margin, yPosition)
+    resumeData.education.forEach((edu) => {
+      checkPageBreak(20)
+      pdf.setFont('helvetica', 'bold')
+      pdf.setFontSize(11)
+      pdf.text(edu.degree, margin, yPosition)
 
-        // Year - right aligned, muted gray
-        pdf.setFont('helvetica', 'normal')
-        pdf.setTextColor(28, 28, 28)
-        const yearWidth =
-          (pdf.getStringUnitWidth(edu.year) * 10) / pdf.internal.scaleFactor
-        pdf.text(edu.year, pageWidth - margin - yearWidth, yPosition)
-        pdf.setTextColor(0, 0, 0)
-
-        yPosition += 6
-
-        // School
-        pdf.setFont('helvetica', 'normal')
-        pdf.text(edu.school, margin, yPosition)
-        yPosition += 8
-      })
-    } else {
+      const yearWidth =
+        (pdf.getStringUnitWidth(edu.year) * 10) / pdf.internal.scaleFactor
       pdf.setFont('helvetica', 'normal')
-      pdf.setTextColor(100, 100, 100)
-      pdf.text('Nenhuma formação adicionada.', margin, yPosition)
+      pdf.setTextColor(28, 28, 28)
+      pdf.text(edu.year, pageWidth - margin - yearWidth, yPosition)
       pdf.setTextColor(0, 0, 0)
+
       yPosition += 6
-    }
+      pdf.text(edu.school, margin, yPosition)
+      yPosition += 8
+    })
     yPosition += 2
 
     // Habilidades
@@ -172,8 +217,11 @@ export const useExportToPDF = (
       pdf.setTextColor(0, 0, 0)
       const skillsText = resumeData.skills.join(', ')
       const skillsLines = pdf.splitTextToSize(skillsText, contentWidth)
-      pdf.text(skillsLines, margin, yPosition)
-      yPosition += skillsLines.length * 6
+      skillsLines.forEach((line: string | string[]) => {
+        checkPageBreak(6)
+        pdf.text(line, margin, yPosition)
+        yPosition += 6
+      })
     } else {
       pdf.setFont('helvetica', 'normal')
       pdf.setTextColor(100, 100, 100)
@@ -183,21 +231,6 @@ export const useExportToPDF = (
 
     // Save the PDF
     pdf.save('curriculo.pdf')
-  }
-
-  // Helper function to add section titles with consistent formatting
-  const addSectionTitle = (pdf: jsPDF, title: string, x: number, y: number) => {
-    pdf.setFontSize(14)
-    pdf.setFont('helvetica', 'italic', 700)
-    pdf.setTextColor(0, 0, 0)
-    pdf.text(title, x, y)
-
-    // Add underline
-    const titleWidth =
-      (pdf.getStringUnitWidth(title) * 14) / pdf.internal.scaleFactor
-    pdf.setDrawColor(0, 0, 0)
-    pdf.setLineWidth(0.3)
-    pdf.line(x, y + 1, x + titleWidth, y + 1)
   }
 
   return { exportToPDF }

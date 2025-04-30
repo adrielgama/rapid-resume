@@ -96,13 +96,11 @@ export default function ResumeForm() {
             updatePersonal={updatePersonal}
           />
 
-          {/* EDUCAÇÃO */}
-          <EducationFormTab
-            errors={errors}
+          {/* RESUMO */}
+          <SummaryFormTab
             resumeData={resumeData}
-            updateEducation={updateEducation}
-            removeEducation={removeEducation}
-            addEducation={addEducation}
+            updateSummary={updateSummary}
+            errors={errors}
           />
 
           {/* EXPERIÊNCIA */}
@@ -114,18 +112,20 @@ export default function ResumeForm() {
             addExperience={addExperience}
           />
 
+          {/* EDUCAÇÃO */}
+          <EducationFormTab
+            errors={errors}
+            resumeData={resumeData}
+            updateEducation={updateEducation}
+            removeEducation={removeEducation}
+            addEducation={addEducation}
+          />
+
           {/* HABILIDADES */}
           <SkillsFormTab
             resumeData={resumeData}
             addSkill={addSkill}
             removeSkill={removeSkill}
-          />
-
-          {/* RESUMO */}
-          <SummaryFormTab
-            resumeData={resumeData}
-            updateSummary={updateSummary}
-            errors={errors}
           />
         </Tabs>
       </CardContent>

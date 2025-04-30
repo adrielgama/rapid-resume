@@ -1,68 +1,71 @@
 import { ResumeData } from '@/types/resume'
 
-export const dataProfile: ResumeData = {
-  profile: {
+export const defaultResumeData: ResumeData = {
+  personal: {
     name: 'John Doe',
-    email: 'johndoe@mail.com',
-    phone: '+1 (212) 456-7890',
-    location: 'Miami, FL',
-    title: 'Software Engineer',
+    email: 'john.doe@example.com',
+    phone: '+55 (11) 99999-9999',
+    location: 'Brasília, Distrito Federal, Brazil',
+    links: [
+      'https://github.com/johndoe',
+      'https://www.linkedin.com/in/johndoe',
+    ],
   },
-  resume:
-    'Fullstack web development specialist with expertise in front-end technologies...',
-  experience: [
-    {
-      title: 'Full-stack Developer',
-      company: 'Farmácias APP',
-      location: 'Salvador, Brazil',
-      startPeriod: 'Jul 2021',
-      endPeriod: 'Present',
-      description:
-        'Fullstack web development specialist with expertise in front-end technologies...',
-    },
-  ],
   education: [
     {
-      title: 'Bachelor of Science in Computer Science',
-      institution: 'University of Miami',
-      degree: 'BSc',
-      startPeriod: '2017',
-      endPeriod: '2021',
-      description:
-        'Computer Science is the study of computers and computational systems...',
+      school: 'Universidade de Brasília',
+      degree: 'Análise e Desenvolvimento de Sistemas',
+      year: '2025',
     },
   ],
-  links: [
+  experience: [
     {
-      icon: 'linkedin',
-      url: 'https://www.linkedin.com/in/johndoe',
-    },
-    {
-      icon: 'github',
-      url: 'https://github.com/johndoe',
-    },
-    {
-      icon: 'behance',
-      url: 'https://www.behance.net/johndoe',
-    },
-    {
-      icon: 'link',
-      url: 'https://www.mywebsite.com',
+      company: 'Tech Solutions',
+      position: 'Desenvolvedor Fullstack Pleno',
+      period: 'Jul 2021 a Atual',
+      skills: [
+        'Responsável pela manutenção de aplicações web e suporte no desenvolvimento backend, atuando com ReactJS, TypeScript e NextJS no front-end, enquanto auxilia na integração e otimização de APIs desenvolvidas com Node, Express e Nest, garantindo interfaces responsivas e aplicações de alto desempenho.',
+        'Participação ativa na implementação de testes automatizados, utilizando Jest e Cypress, assegurando a qualidade e confiabilidade do código, além de contribuir para a melhoria contínua dos processos de desenvolvimento ágil, promovendo práticas como Code Review e integração contínua.',
+        'Colaboração com equipes multifuncionais para identificar e resolver problemas técnicos, oferecendo suporte técnico e treinamento a membros da equipe, promovendo um ambiente de aprendizado contínuo e compartilhamento de conhecimento.',
+      ],
+      achievements: [
+        'Desenvolvimento de uma aplicação de gerenciamento de projetos que aumentou a eficiência da equipe em 30%.',
+        'Implementação de um sistema de autenticação que reduziu o tempo de login em 50%.',
+        'Participação em um projeto de migração de dados que economizou 20% do tempo de desenvolvimento.',
+      ],
     },
   ],
-  skills: ['JavaScript', 'TypeScript', 'React', 'Node.js', 'GraphQL', 'Docker'],
+  skills: [
+    'JavaScript',
+    'React',
+    'Node.js',
+    'TypeScript',
+    'CSS',
+    'HTML',
+    'SQL',
+    'MongoDB',
+    'Git',
+    'Agile',
+    'Scrum',
+    'Jest',
+    'Cypress',
+    'NestJS',
+    'Express',
+    'NextJS',
+    'Tailwind CSS',
+    'Figma',
+    'PostgreSQL',
+  ],
+  summary:
+    'Sou um desenvolvedor apaixonado por tecnologia e inovação. Gosto de aprender novas tecnologias e aplicar meus conhecimentos em projetos desafiadores.',
   languages: [
-    {
-      language: 'English',
-      level: 'Fluent',
-    },
-    {
-      language: 'Spanish',
-      level: 'Conversational',
-    },
-    {
-      language: 'Portuguese',
-      level: 'Basic',
-    },
+    { language: 'Inglês', level: 'Fluente' },
+    { language: 'Espanhol', level: 'Intermediário' },
+    { language: 'Português', level: 'Nativo' },
+  ],
+  certifications: [
+    { name: 'Certificação em JavaScript', year: '2022' },
+    { name: 'Certificação em React', year: '2023' },
+    { name: 'Certificação em Node.js', year: '2024' },
   ],
 }

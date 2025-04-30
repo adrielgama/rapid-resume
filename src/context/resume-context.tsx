@@ -12,10 +12,9 @@ import {
 } from 'lucide-react'
 import { z } from 'zod'
 
+import { defaultResumeData } from '@/app/[locale]/resume/_data/data'
 import {
   Education,
-  Experience,
-  Personal,
   personalSchema,
   educationSchema,
   experienceSchema,
@@ -31,7 +30,10 @@ type ResumeContextType = {
   setCurrentStep: (step: string) => void
   resumeData: ResumeData
   updateResumeData: (newData: Partial<ResumeData>) => void
-  updatePersonal: (field: keyof Personal, value: string) => void
+  updatePersonal: <K extends keyof ResumeData['personal']>(
+    field: K,
+    value: ResumeData['personal'][K]
+  ) => void
   updateEducation: (
     index: number,
     field: keyof Education,
@@ -39,88 +41,28 @@ type ResumeContextType = {
   ) => void
   addEducation: () => void
   removeEducation: (index: number) => void
-  updateExperience: (
+  updateExperience: <K extends keyof ResumeData['experience'][number]>(
     index: number,
-    field: keyof Experience,
-    value: string
+    field: K,
+    value: ResumeData['experience'][number][K]
   ) => void
   addExperience: () => void
   removeExperience: (index: number) => void
   addSkill: (skill: string) => void
   removeSkill: (index: number) => void
   updateSummary: (value: string) => void
+  updateLanguage: (
+    index: number,
+    field: keyof ResumeData['languages'][number],
+    value: string
+  ) => void
+  addLanguage: () => void
+  removeLanguage: (index: number) => void
   validateCurrentStep: () => boolean
   errors: FormErrors
   showPreview: boolean
   setShowPreview: (show: boolean) => void
   isLoading: boolean
-}
-
-const defaultResumeData: ResumeData = {
-  personal: {
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    phone: '+55 (11) 99999-9999',
-    location: 'Brasília, Distrito Federal, Brazil',
-  },
-  education: [
-    {
-      school: 'Universidade de Brasília',
-      degree: 'Análise e Desenvolvimento de Sistemas',
-      year: '2025',
-    },
-  ],
-  experience: [
-    {
-      company: 'Tech Solutions',
-      position: 'Desenvolvedor Fullstack Pleno',
-      period: 'Jul 2021 a Atual',
-      skills: [
-        'Responsável pela manutenção de aplicações web e suporte no desenvolvimento backend, atuando com ReactJS, TypeScript e NextJS no front-end, enquanto auxilia na integração e otimização de APIs desenvolvidas com Node, Express e Nest, garantindo interfaces responsivas e aplicações de alto desempenho.',
-        'Participação ativa na implementação de testes automatizados, utilizando Jest e Cypress, assegurando a qualidade e confiabilidade do código, além de contribuir para a melhoria contínua dos processos de desenvolvimento ágil, promovendo práticas como Code Review e integração contínua.',
-        'Colaboração com equipes multifuncionais para identificar e resolver problemas técnicos, oferecendo suporte técnico e treinamento a membros da equipe, promovendo um ambiente de aprendizado contínuo e compartilhamento de conhecimento.',
-      ],
-      achievements: [
-        'Desenvolvimento de uma aplicação de gerenciamento de projetos que aumentou a eficiência da equipe em 30%.',
-        'Implementação de um sistema de autenticação que reduziu o tempo de login em 50%.',
-        'Participação em um projeto de migração de dados que economizou 20% do tempo de desenvolvimento.',
-      ],
-    },
-  ],
-  skills: [
-    'JavaScript',
-    'React',
-    'Node.js',
-    'TypeScript',
-    'CSS',
-    'HTML',
-    'SQL',
-    'MongoDB',
-    'Git',
-    'Agile',
-    'Scrum',
-    'Jest',
-    'Cypress',
-    'NestJS',
-    'Express',
-    'NextJS',
-    'Tailwind CSS',
-    'Figma',
-    'PostgreSQL',
-  ],
-  summary:
-    'Sou um desenvolvedor apaixonado por tecnologia e inovação. Gosto de aprender novas tecnologias e aplicar meus conhecimentos em projetos desafiadores.',
-  links: ['https://github.com/johndoe', 'https://www.linkedin.com/in/johndoe'],
-  languages: [
-    { language: 'Inglês', level: 'Fluente' },
-    { language: 'Espanhol', level: 'Intermediário' },
-    { language: 'Português', level: 'Nativo' },
-  ],
-  certifications: [
-    { name: 'Certificação em JavaScript', year: '2022' },
-    { name: 'Certificação em React', year: '2023' },
-    { name: 'Certificação em Node.js', year: '2024' },
-  ],
 }
 
 const ResumeContext = createContext<ResumeContextType | undefined>(undefined)
@@ -161,10 +103,10 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
 
   const steps = [
     { id: 'personal', title: 'Dados Pessoais', icon: User },
-    { id: 'education', title: 'Educação', icon: GraduationCap },
-    { id: 'experience', title: 'Experiência', icon: Briefcase },
-    { id: 'skills', title: 'Habilidades', icon: Lightbulb },
     { id: 'summary', title: 'Resumo', icon: FileText },
+    { id: 'experience', title: 'Experiência', icon: Briefcase },
+    { id: 'education', title: 'Educação', icon: GraduationCap },
+    { id: 'skills', title: 'Habilidades', icon: Lightbulb },
   ]
 
   useEffect(() => {
@@ -175,7 +117,10 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
     setResumeData((prev) => ({ ...prev, ...newData }))
   }
 
-  const updatePersonal = (field: keyof Personal, value: string) => {
+  const updatePersonal = <K extends keyof ResumeData['personal']>(
+    field: K,
+    value: ResumeData['personal'][K]
+  ) => {
     setResumeData((prev) => ({
       ...prev,
       personal: { ...prev.personal, [field]: value },
@@ -208,10 +153,10 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
     }))
   }
 
-  const updateExperience = (
+  const updateExperience = <K extends keyof ResumeData['experience'][number]>(
     index: number,
-    field: keyof Experience,
-    value: string
+    field: K,
+    value: ResumeData['experience'][number][K]
   ) => {
     setResumeData((prev) => {
       const newExperience = [...prev.experience]
@@ -257,6 +202,32 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
     setResumeData((prev) => ({
       ...prev,
       summary: value,
+    }))
+  }
+
+  const updateLanguage = (
+    index: number,
+    field: keyof ResumeData['languages'][number],
+    value: string
+  ) => {
+    setResumeData((prev) => {
+      const newLanguages = [...prev.languages]
+      newLanguages[index] = { ...newLanguages[index], [field]: value }
+      return { ...prev, languages: newLanguages }
+    })
+  }
+
+  const addLanguage = () => {
+    setResumeData((prev) => ({
+      ...prev,
+      languages: [...prev.languages, { language: '', level: '' }],
+    }))
+  }
+
+  const removeLanguage = (index: number) => {
+    setResumeData((prev) => ({
+      ...prev,
+      languages: prev.languages.filter((_, i) => i !== index),
     }))
   }
 
@@ -346,6 +317,9 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
         addSkill,
         removeSkill,
         updateSummary,
+        updateLanguage,
+        addLanguage,
+        removeLanguage,
         validateCurrentStep,
         errors,
         showPreview,
